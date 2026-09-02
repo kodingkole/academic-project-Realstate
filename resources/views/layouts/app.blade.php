@@ -60,5 +60,6 @@
             © {{ date('Y') }} Intern Estate. Academic Internship Project.
         </div>
     </footer>
+    @stack('scripts')
 </body>
 </html>

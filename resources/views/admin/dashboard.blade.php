@@ -133,6 +133,16 @@
             </div>
 
             <div class="quick-actions">
+                <a href="{{ route('admin.investors') }}">
+                    <span>🤝</span>
+                    Verify Investor Payments & Bookings
+                </a>
+
+                <a href="{{ route('admin.investor-documents') }}">
+                    <span>📁</span>
+                    Upload Investor Documents
+                </a>
+
                 <a href="{{ route('admin.modules.create', 'projects') }}">
                     <span>+</span>
                     Add new project

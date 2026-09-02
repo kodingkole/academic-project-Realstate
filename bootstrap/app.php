@@ -13,6 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureUserRole::class,
+            'portal.role' => \App\Http\Middleware\EnsureUserRole::class,
+            'erp.module' => \App\Http\Middleware\EnsureErpModuleAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

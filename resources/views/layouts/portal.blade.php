@@ -1,46 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Portal | Intern Estate')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="portal-body">
-<div class="portal-layout">
-    <aside class="portal-sidebar" id="portalSidebar">
-        <a href="{{ route('admin.dashboard') }}" class="portal-brand">
-            <span class="brand-icon">IE</span>
-            <span class="brand-name">Intern<span>Estate</span></span>
-        </a>
-        <p class="sidebar-label">MAIN MENU</p>
-        <nav class="sidebar-navigation">
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><span>⌂</span>Dashboard</a>
-            @foreach(\App\Http\Controllers\AdminModuleController::MODULES as $key => $item)
-                <a href="{{ route('admin.modules.index', $key) }}" class="{{ request()->route('module') === $key ? 'active' : '' }}">
-                    <span>{{ $item['icon'] }}</span>{{ $item['label'] }}
-                </a>
-            @endforeach
-        </nav>
-        <div class="sidebar-bottom">
-            <a href="{{ route('landing') }}">← Public Website</a>
-            <form method="POST" action="{{ route('logout') }}">@csrf<button type="submit">Logout</button></form>
-        </div>
-    </aside>
-    <div class="portal-main">
-        <header class="portal-topbar">
-            <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button>
-            <div><p class="topbar-date">{{ now()->format('l, d F Y') }}</p><h1>@yield('page-heading', 'Dashboard')</h1></div>
-            <div class="user-menu">
-                <div class="user-avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
-                <div><strong>{{ auth()->user()->name }}</strong><span>System Administrator</span></div>
-            </div>
-        </header>
-        <main class="portal-content">
-            @if(session('success'))<div class="portal-alert">{{ session('success') }}</div>@endif
-            @yield('content')
-        </main>
-    </div>
-</div>
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@yield('title','Command Center | InternEstate')</title>@vite(['resources/css/app.css','resources/js/app.js'])@stack('head')</head>
+<body class="erp-dark admin-portal"><div class="erp-shell">
+<aside class="erp-sidebar" id="portalSidebar"><a href="{{ route('admin.dashboard') }}" class="erp-brand"><span>IE</span><div>InternEstate<small>COMMAND CENTER</small></div></a>
+<nav><p>CONTROL</p><a class="{{ request()->routeIs('admin.dashboard')?'active':'' }}" href="{{ route('admin.dashboard') }}">◫ Overview</a><a class="{{ request()->routeIs('admin.erp')?'active':'' }}" href="{{ route('admin.erp') }}">◆ ERP Hub</a><a href="{{ route('erp.projects') }}">▦ Projects</a><a href="{{ route('erp.tasks') }}">✓ Tasks</a><a href="{{ route('erp.inventory') }}">▤ Inventory</a><a href="{{ route('erp.procurement') }}">⌁ Procurement</a><a href="{{ route('erp.workforce') }}">◎ Workforce</a><a href="{{ route('erp.finance') }}">৳ Finance</a>
+<p>GOVERNANCE & INVESTORS</p><a class="{{ request()->routeIs('admin.investors')?'active':'' }}" href="{{ route('admin.investors') }}">🤝 Investor Operations</a><a class="{{ request()->routeIs('admin.investor-documents')?'active':'' }}" href="{{ route('admin.investor-documents') }}">📁 Investor Documents</a><a href="{{ route('admin.lawyers') }}">⚖ Legal Desk</a><a href="{{ route('admin.audit') }}">◷ Audit Trail</a></nav>
+<div class="erp-sidebar-foot"><a href="{{ route('landing') }}">← Public website</a><form method="POST" action="{{ route('logout') }}">@csrf<button>Sign out</button></form></div></aside>
+<section class="erp-main"><header class="erp-topbar"><button id="sidebarToggle" class="erp-menu">☰</button><div><small>{{ now()->timezone('Asia/Dhaka')->format('l, d F Y · h:i A') }}</small><h1>@yield('page-heading','Command Center')</h1></div><div class="erp-user"><span>{{ strtoupper(substr(auth()->user()->name,0,1)) }}</span><div><b>{{ auth()->user()->name }}</b><small>{{ ucfirst(auth()->user()->role) }}</small></div></div></header>
+<main class="erp-content">@if(session('success'))<div class="erp-notice">✓ {{ session('success') }}</div>@endif @if($errors->any())<div class="erp-error">{{ $errors->first() }}</div>@endif @yield('content')</main></section>
+</div>@stack('scripts')</body></html>

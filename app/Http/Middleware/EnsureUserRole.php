@@ -12,10 +12,6 @@ class EnsureUserRole
     public function handle(Request $request, Closure $next, string $role): Response
     {
         if ($request->user()?->role !== $role) {
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
             $loginRoute = $role === 'investor' ? 'investor.login' : 'login';
 
             return redirect()->route($loginRoute)

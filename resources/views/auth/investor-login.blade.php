@@ -30,7 +30,11 @@
                 </div>
                 <button type="submit" class="login-submit">Sign In as Investor</button>
             </form>
-            <a href="{{ route('login') }}" class="back-home">Admin Portal Login</a>
+            <div class="auth-link-footer">
+                <a href="{{ route('investor.register') }}">New Investor? Register your account (NID / TIN Verified)</a>
+                <span class="meta-separator">•</span>
+                <a href="{{ route('login') }}">Admin Portal Login</a>
+            </div>
         </div>
     </div>
 </section>

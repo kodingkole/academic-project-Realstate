@@ -1,0 +1,7 @@
+@extends('layouts.investor')
+@section('title', 'Payment Ledger | Intern Estate')
+@section('page-heading', 'Payment Ledger')
+@section('content')
+<section class="stat-card-grid investor-stat-grid"><article class="stat-card investor-stat-card"><div><p>Total requested</p><h3>৳{{ number_format($total) }}</h3></div></article><article class="stat-card investor-stat-card"><div><p>Paid</p><h3>৳{{ number_format($paid) }}</h3></div></article><article class="stat-card investor-stat-card"><div><p>Awaiting / outstanding</p><h3>৳{{ number_format($total-$paid) }}</h3></div></article></section>
+<section class="dashboard-panel"><div class="panel-header"><div><h3>Payment history</h3><p>Every request is verified by finance before it is marked paid.</p></div></div><table class="erp-table"><thead><tr><th>Transaction</th><th>Amount</th><th>Method / reference</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>@forelse($payments as $payment)<tr><td>{{ $payment->transaction_id }}</td><td>৳{{ number_format($payment->amount) }}</td><td>{{ $payment->payment_method }}<small>{{ $payment->payer_reference ?: 'Reference not provided' }}</small></td><td>{{ ucfirst($payment->status) }}@if($payment->review_note)<small>{{ $payment->review_note }}</small>@endif</td><td>{{ $payment->created_at->format('d M Y') }}</td><td><a class="erp-secondary" href="{{ route('investor.invoice', $payment) }}">Invoice</a></td></tr>@empty<tr><td colspan="6" class="erp-empty">No payments recorded yet.</td></tr>@endforelse</tbody></table></section>
+@endsection

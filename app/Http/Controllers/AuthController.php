@@ -11,8 +11,18 @@ class AuthController extends Controller
     /**
      * Display the login form.
      */
-    public function showLogin(): View
+    public function showLogin(): View|RedirectResponse
     {
+        if (Auth::check()) {
+            $dashboard = match (Auth::user()->role) {
+                'investor' => route('investor.dashboard'),
+                'landowner' => route('landowner.dashboard'),
+                default => route('admin.dashboard'),
+            };
+
+            return redirect()->to($dashboard);
+        }
+
         return view('auth.login');
     }
 
@@ -36,9 +46,11 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        $dashboard = Auth::user()->role === 'investor'
-            ? route('investor.dashboard')
-            : route('admin.dashboard');
+        $dashboard = match (Auth::user()->role) {
+            'investor' => route('investor.dashboard'),
+            'landowner' => route('landowner.dashboard'),
+            default => route('admin.dashboard'),
+        };
 
         return redirect()
             ->to($dashboard)

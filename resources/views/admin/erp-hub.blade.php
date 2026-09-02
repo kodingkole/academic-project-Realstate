@@ -1,0 +1,2 @@
+@extends('layouts.portal') @section('page-heading','Construction ERP Hub')
+@section('content')<div class="erp-hero"><div><span class="erp-kicker">10 CONNECTED MODULES</span><h2>Construction operations, unified.</h2><p>Each workspace writes to a shared project and audit data layer.</p></div></div><div class="erp-module-grid">@foreach($modules as $key=>$module)<a href="{{ route('erp.'.$key) }}"><span>{{ str_pad($loop->iteration,2,'0',STR_PAD_LEFT) }}</span><h3>{{ $module['title'] }}</h3><p>{{ $module['desc'] }}</p><b>Open workspace →</b></a>@endforeach</div>@endsection

@@ -33,6 +33,10 @@
                     <a href="{{ route('login') }}" class="button button-light">
                         Access Your Portal
                     </a>
+
+                    <a href="{{ route('land.submit') }}" class="button button-light">
+                        Submit Your Land
+                    </a>
                 </div>
 
                 <div class="hero-trust">
@@ -87,9 +91,17 @@
                         ></div>
                     </div>
 
-                    <a href="#projects" class="text-link">
-                        View project details →
-                    </a>
+                    <div style="margin-top: 15px;">
+                        @auth
+                            <a href="{{ route('checkout.show', ['type' => 'project', 'id' => 1]) }}" class="button button-primary" style="padding: 10px 20px; font-size: 14px; font-weight: 700;">
+                                🛒 Buy / Invest Now
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="button button-primary" style="padding: 10px 20px; font-size: 14px; font-weight: 700;">
+                                🛒 Buy / Invest Now
+                            </a>
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,9 +211,20 @@
                                 ></div>
                             </div>
 
-                            <a href="{{ route('login') }}" class="project-link">
-                                View details
-                            </a>
+                            <div style="display: flex; gap: 10px; margin-top: 15px; align-items: center;">
+                                @auth
+                                    <a href="{{ route('checkout.show', ['type' => 'project', 'id' => $project['id']]) }}" class="button button-primary" style="padding: 8px 16px; font-size: 13px; font-weight: 700;">
+                                        🛒 Buy / Invest Now
+                                    </a>
+                                @else
+                                    <a href="{{ route('login') }}" class="button button-primary" style="padding: 8px 16px; font-size: 13px; font-weight: 700;">
+                                        🛒 Buy / Invest Now
+                                    </a>
+                                @endauth
+                                <a href="{{ route('login') }}" class="project-link" style="align-self: center;">
+                                    View details →
+                                </a>
+                            </div>
                         </div>
                     </article>
                 @endforeach

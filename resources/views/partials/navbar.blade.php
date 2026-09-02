@@ -24,11 +24,19 @@
             <a href="{{ route('landing') }}#process">How It Works</a>
 
             @auth
+                @php
+                    $dashRoute = match(auth()->user()->role) {
+                        'investor' => route('investor.dashboard'),
+                        'landowner' => route('landowner.dashboard'),
+                        default => route('admin.dashboard'),
+                    };
+                @endphp
+
                 <a
-                    href="{{ route('admin.dashboard') }}"
+                    href="{{ $dashRoute }}"
                     class="nav-dashboard"
                 >
-                    Dashboard
+                    Dashboard ({{ ucfirst(auth()->user()->role) }})
                 </a>
 
                 <form
