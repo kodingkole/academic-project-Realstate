@@ -2587,6 +2587,142 @@ img {
     font-size: 13px;
     margin-bottom: 4px;
 }
+/* Portal Registration Hub Styles */
+.portal-role-register-section {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.role-section-header {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.role-badge {
+    background: #0f172a;
+    border-radius: 6px;
+    color: #ffffff;
+    display: inline-block;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+}
+
+.role-section-header h3 {
+    color: #0f172a;
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.role-cards-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 600px) {
+    .role-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.role-register-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    transition: all 0.25s ease;
+}
+
+.role-register-card:hover {
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+}
+
+.role-register-card.investor {
+    border-color: #a7f3d0;
+}
+
+.role-register-card.landowner {
+    border-color: #bae6fd;
+}
+
+.role-pill {
+    border-radius: 6px;
+    display: inline-block;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+}
+
+.role-pill.investor {
+    background: #dcfce7;
+    color: #059669;
+}
+
+.role-pill.landowner {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.role-register-card h4 {
+    color: #0f172a;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.role-register-card p {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.btn-role-register {
+    border-radius: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn-role-register.investor {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.btn-role-register.investor:hover {
+    background: #059669;
+}
+
+.btn-role-register.landowner {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.btn-role-register.landowner:hover {
+    background: #0369a1;
+}
+
 .legal-warning-box {
     background: #fff1f2;
     border: 1px solid #fecdd3;
