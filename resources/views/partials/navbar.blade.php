@@ -2,7 +2,6 @@
     <div class="container navbar">
         <a href="{{ route('landing') }}" class="brand">
             <span class="brand-icon">IE</span>
-
             <span class="brand-name">
                 Intern<span>Estate</span>
             </span>
@@ -32,27 +31,22 @@
                     };
                 @endphp
 
-                <a
-                    href="{{ $dashRoute }}"
-                    class="nav-dashboard"
-                >
+                <a href="{{ $dashRoute }}" class="nav-dashboard">
                     Dashboard ({{ ucfirst(auth()->user()->role) }})
                 </a>
 
-                <form
-                    method="POST"
-                    action="{{ route('logout') }}"
-                    class="nav-logout-form"
-                >
+                <form method="POST" action="{{ route('logout') }}" class="nav-logout-form">
                     @csrf
-
                     <button type="submit" class="nav-login">
                         Logout
                     </button>
                 </form>
             @else
+                <a href="{{ route('investor.register') }}" class="nav-dashboard" style="background: #10b981; color: #fff;">
+                    Register as Investor
+                </a>
                 <a href="{{ route('login') }}" class="nav-login">
-                    Portal Login
+                    Sign In Portal
                 </a>
             @endauth
         </nav>
