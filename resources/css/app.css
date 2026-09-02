@@ -2610,6 +2610,118 @@ img {
     margin: 0;
 }
 
+/* Pre-Registration Document Checklist Banner */
+.pre-registration-checklist-box {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+}
+
+.pre-registration-checklist-box.landowner {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+}
+
+.checklist-header {
+    margin-bottom: 14px;
+}
+
+.checklist-badge {
+    background: #10b981;
+    border-radius: 6px;
+    color: #ffffff;
+    display: inline-block;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+}
+
+.checklist-badge.landowner {
+    background: #0284c7;
+}
+
+.checklist-header h4 {
+    color: #0f172a;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.checklist-header p {
+    color: #475569;
+    font-size: 12px;
+    margin: 0;
+}
+
+.checklist-items-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 600px) {
+    .checklist-items-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checklist-item {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    display: flex;
+    gap: 12px;
+    padding: 10px 12px;
+}
+
+.item-num {
+    align-items: center;
+    background: #ecfdf5;
+    border: 1px solid #10b981;
+    border-radius: 50%;
+    color: #059669;
+    display: flex;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    height: 26px;
+    justify-content: center;
+    min-width: 26px;
+    width: 26px;
+}
+
+.item-num.landowner {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    color: #0284c7;
+}
+
+.checklist-item strong {
+    color: #0f172a;
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.checklist-item small {
+    color: #64748b;
+    display: block;
+    font-size: 11px;
+}
+
+.nav-register-group {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
 .form-row-2col {
     display: grid;
     gap: 16px;

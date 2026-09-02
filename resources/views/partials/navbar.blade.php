@@ -42,9 +42,14 @@
                     </button>
                 </form>
             @else
-                <a href="{{ route('investor.register') }}" class="nav-dashboard" style="background: #10b981; color: #fff;">
-                    Register as Investor
-                </a>
+                <div class="nav-register-group">
+                    <a href="{{ route('investor.register') }}" class="nav-dashboard" style="background: #10b981; color: #fff; padding: 8px 14px; font-size: 13px;">
+                        Register Investor
+                    </a>
+                    <a href="{{ route('landowner.register') }}" class="nav-dashboard" style="background: #0284c7; color: #fff; padding: 8px 14px; font-size: 13px;">
+                        Register Landowner
+                    </a>
+                </div>
                 <a href="{{ route('login') }}" class="nav-login">
                     Sign In Portal
                 </a>
