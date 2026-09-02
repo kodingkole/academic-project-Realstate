@@ -43,7 +43,7 @@
                 </form>
             @else
                 <a href="{{ route('login') }}" class="nav-login">
-                    Sign In / Register
+                    Portal Login
                 </a>
             @endauth
         </nav>
