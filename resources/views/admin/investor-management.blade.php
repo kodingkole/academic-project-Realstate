@@ -99,7 +99,7 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">National ID</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->nid_number ?: ($payment->investor?->nid_number ?: '1992269123456') }}</strong>
                                     </div>
-                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'nid']) }}', 'National ID (NID) Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'nid']) }}', 'National ID (NID) Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
                                         👁️ View NID
                                     </button>
                                 </div>
@@ -110,7 +110,7 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">TIN / Tax Certificate</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->tax_cert_no ?: ($payment->investor?->tin_number ?: 'TIN-8829401928') }}</strong>
                                     </div>
-                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'tax']) }}', 'TIN / Tax Certificate Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'tax']) }}', 'TIN / Tax Certificate Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
                                         👁️ View Tax
                                     </button>
                                 </div>
@@ -121,7 +121,7 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">Electricity / Utility Bill</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->electricity_bill_no ?: ($payment->investor?->electricity_bill_no ?: 'ELEC-99304128') }}</strong>
                                     </div>
-                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'electricity']) }}', 'Electricity / Utility Bill Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'electricity']) }}', 'Electricity / Utility Bill Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
                                         👁️ View Bill
                                     </button>
                                 </div>

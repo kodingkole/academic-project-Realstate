@@ -175,15 +175,15 @@
 </section>
 
 {{-- Inline Document Preview Modal --}}
-<dialog id="docViewerModal" style="border: none; border-radius: 16px; padding: 0; width: 90vw; max-width: 900px; background: #0f172a; color: #fff; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
-    <div style="padding: 16px 20px; background: #1e293b; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #334155;">
-        <h4 id="docModalTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #38bdf8;">Document Preview</h4>
-        <button type="button" onclick="document.getElementById('docViewerModal').close()" style="background: rgba(255,255,255,0.1); border: none; color: #fff; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-weight: 700;">
+<dialog id="docViewerModal" style="border: 1px solid #cbd5e1; border-radius: 16px; padding: 0; width: 90vw; max-width: 900px; background: #ffffff; color: #0f172a; box-shadow: 0 25px 50px rgba(0,0,0,0.25);">
+    <div style="padding: 16px 20px; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
+        <h4 id="docModalTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #0f172a;">Document Preview</h4>
+        <button type="button" onclick="document.getElementById('docViewerModal').close()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #334155; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-weight: 700;">
             ✕ Close
         </button>
     </div>
-    <div style="padding: 0; height: 75vh; background: #0f172a; overflow: hidden;">
-        <iframe id="docFrame" style="width: 100%; height: 100%; border: none;"></iframe>
+    <div style="padding: 0; height: 75vh; background: #ffffff; overflow: hidden;">
+        <iframe id="docFrame" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
     </div>
 </dialog>
 

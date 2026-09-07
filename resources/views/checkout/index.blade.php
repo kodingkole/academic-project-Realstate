@@ -37,8 +37,8 @@
                         </div>
                         
                         <div style="margin-bottom: 18px;">
-                            <label style="color: #cbd5e1; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Choose Investment Project:</label>
-                            <select id="projectSelector" class="form-control" style="background: #0f172a; border: 1px solid rgba(148,163,184,0.3); border-radius: 10px; color: #fff; width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 600;" onchange="onProjectChange(this)">
+                            <label style="color: #334155; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Choose Investment Project:</label>
+                            <select id="projectSelector" class="form-control" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; color: #0f172a; width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 600;" onchange="onProjectChange(this)">
                                 @foreach($availableProjects as $p)
                                     @php
                                         $unitCost = $p->total_budget > 0 ? (int) ($p->total_budget / 20) : 6000000;
@@ -50,10 +50,10 @@
                             </select>
                         </div>
 
-                        <div class="property-summary-body" style="background: rgba(15, 23, 42, 0.6); padding: 16px; border-radius: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">
+                        <div class="property-summary-body" style="background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0;">
                             <div class="property-details">
-                                <h2 id="displayProjectTitle">{{ $title }}</h2>
-                                <p id="displayProjectLocation">Location: {{ $location }}</p>
+                                <h2 id="displayProjectTitle" style="color: #0f172a;">{{ $title }}</h2>
+                                <p id="displayProjectLocation" style="color: #64748b;">Location: {{ $location }}</p>
                                 <div class="property-price-tag">
                                     <span>Total Share Valuation:</span>
                                     <strong id="displayProjectPrice">BDT {{ number_format($price) }}</strong>
@@ -72,31 +72,31 @@
 
                         <div style="display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin-bottom: 20px;">
                             {{-- Full Payment --}}
-                            <div class="plan-card active" id="planCard_full" onclick="selectPlan('full')" style="background: rgba(15,23,42,0.8); border: 2px solid #10b981; border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
-                                <strong style="display: block; font-size: 14px; color: #fff;">Full Payment</strong>
-                                <span style="font-size: 11px; color: #34d399; font-weight: 700;">100% Upfront</span>
-                                <p style="font-size: 10px; color: #94a3b8; margin-top: 6px;">Single Payment</p>
+                            <div class="plan-card active" id="planCard_full" onclick="selectPlan('full')" style="background: #ffffff; border: 2px solid #10b981; border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                                <strong style="display: block; font-size: 14px; color: #0f172a;">Full Payment</strong>
+                                <span style="font-size: 11px; color: #059669; font-weight: 700;">100% Upfront</span>
+                                <p style="font-size: 10px; color: #64748b; margin-top: 6px;">Single Payment</p>
                             </div>
 
                             {{-- 1 Year EMI --}}
-                            <div class="plan-card" id="planCard_1_year" onclick="selectPlan('1_year')" style="background: rgba(15,23,42,0.8); border: 2px solid rgba(148,163,184,0.2); border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
-                                <strong style="display: block; font-size: 14px; color: #fff;">1 Year (12 Mo)</strong>
-                                <span style="font-size: 11px; color: #38bdf8; font-weight: 700;" id="emiPrice_1_year">BDT {{ number_format((int)($price/12)) }}/mo</span>
-                                <p style="font-size: 10px; color: #94a3b8; margin-top: 6px;">12 Installments</p>
+                            <div class="plan-card" id="planCard_1_year" onclick="selectPlan('1_year')" style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                <strong style="display: block; font-size: 14px; color: #0f172a;">1 Year (12 Mo)</strong>
+                                <span style="font-size: 11px; color: #0284c7; font-weight: 700;" id="emiPrice_1_year">BDT {{ number_format((int)($price/12)) }}/mo</span>
+                                <p style="font-size: 10px; color: #64748b; margin-top: 6px;">12 Installments</p>
                             </div>
 
                             {{-- 2 Years EMI --}}
-                            <div class="plan-card" id="planCard_2_year" onclick="selectPlan('2_year')" style="background: rgba(15,23,42,0.8); border: 2px solid rgba(148,163,184,0.2); border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
-                                <strong style="display: block; font-size: 14px; color: #fff;">2 Years (24 Mo)</strong>
-                                <span style="font-size: 11px; color: #38bdf8; font-weight: 700;" id="emiPrice_2_year">BDT {{ number_format((int)($price/24)) }}/mo</span>
-                                <p style="font-size: 10px; color: #94a3b8; margin-top: 6px;">24 Installments</p>
+                            <div class="plan-card" id="planCard_2_year" onclick="selectPlan('2_year')" style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                <strong style="display: block; font-size: 14px; color: #0f172a;">2 Years (24 Mo)</strong>
+                                <span style="font-size: 11px; color: #0284c7; font-weight: 700;" id="emiPrice_2_year">BDT {{ number_format((int)($price/24)) }}/mo</span>
+                                <p style="font-size: 10px; color: #64748b; margin-top: 6px;">24 Installments</p>
                             </div>
 
                             {{-- 3 Years EMI --}}
-                            <div class="plan-card" id="planCard_3_year" onclick="selectPlan('3_year')" style="background: rgba(15,23,42,0.8); border: 2px solid rgba(148,163,184,0.2); border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
-                                <strong style="display: block; font-size: 14px; color: #fff;">3 Years (36 Mo)</strong>
-                                <span style="font-size: 11px; color: #38bdf8; font-weight: 700;" id="emiPrice_3_year">BDT {{ number_format((int)($price/36)) }}/mo</span>
-                                <p style="font-size: 10px; color: #94a3b8; margin-top: 6px;">36 Installments</p>
+                            <div class="plan-card" id="planCard_3_year" onclick="selectPlan('3_year')" style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                <strong style="display: block; font-size: 14px; color: #0f172a;">3 Years (36 Mo)</strong>
+                                <span style="font-size: 11px; color: #0284c7; font-weight: 700;" id="emiPrice_3_year">BDT {{ number_format((int)($price/36)) }}/mo</span>
+                                <p style="font-size: 10px; color: #64748b; margin-top: 6px;">36 Installments</p>
                             </div>
                         </div>
 
@@ -114,8 +114,8 @@
 
                             <div style="display: grid; gap: 14px; grid-template-columns: 1fr 1fr;">
                                 <div class="input-group">
-                                    <label>Issuing Partner Bank *</label>
-                                    <select name="card_bank" id="cardBankSelect" style="background: #0f172a; border: 1px solid rgba(148,163,184,0.3); border-radius: 8px; color: #fff; padding: 10px;">
+                                    <label style="color: #334155;">Issuing Partner Bank *</label>
+                                    <select name="card_bank" id="cardBankSelect" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; color: #0f172a; padding: 10px;">
                                         <option value="City Bank (American Express)">City Bank PLC (Amex / Visa / Mastercard)</option>
                                         <option value="BRAC Bank PLC">BRAC Bank PLC (Visa / Mastercard)</option>
                                         <option value="Eastern Bank Ltd (EBL)">Eastern Bank Ltd (EBL Titanium / Platinum)</option>
@@ -425,8 +425,8 @@
                                 <div id="sslCardsView">
                                     <div style="display: grid; gap: 14px; grid-template-columns: 1fr 1fr; margin-bottom: 14px;">
                                         <div class="input-group">
-                                            <label>Issuing Card Bank *</label>
-                                            <select id="sslCardBankSelect" style="background: #0f172a; border-color: rgba(148,163,184,0.3); color: #fff;">
+                                            <label style="color: #334155;">Issuing Card Bank *</label>
+                                            <select id="sslCardBankSelect" style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #0f172a;">
                                                 <option value="City Bank (American Express)">City Bank PLC (Amex / Visa / Mastercard)</option>
                                                 <option value="BRAC Bank PLC">BRAC Bank PLC (Visa / Mastercard)</option>
                                                 <option value="Eastern Bank Ltd (EBL)">Eastern Bank Ltd (EBL Titanium / Platinum)</option>
@@ -517,8 +517,8 @@
                             <div class="gw-body">
                                 <div style="display: grid; gap: 14px; grid-template-columns: 1fr 1fr; margin-bottom: 14px;">
                                     <div class="input-group">
-                                        <label style="color: #cbd5e1;">Select Bank *</label>
-                                        <select name="bank_name" id="bankSelect" style="background: #0f172a; border-color: rgba(148,163,184,0.3); color: #fff;">
+                                        <label style="color: #334155;">Select Bank *</label>
+                                        <select name="bank_name" id="bankSelect" style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #0f172a;">
                                             <option value="City Bank Ltd">City Bank Ltd</option>
                                             <option value="Dutch-Bangla Bank (DBBL)">Dutch-Bangla Bank (DBBL)</option>
                                             <option value="BRAC Bank">BRAC Bank PLC</option>
