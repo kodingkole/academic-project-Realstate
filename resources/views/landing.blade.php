@@ -91,14 +91,24 @@
                         ></div>
                     </div>
 
-                    <div style="margin-top: 15px;">
+                    <div style="margin-top: 18px;">
                         @auth
-                            <a href="{{ route('checkout.show', ['type' => 'project', 'id' => 1]) }}" class="button button-primary" style="padding: 10px 20px; font-size: 14px; font-weight: 700;">
-                                🛒 Buy / Invest Now
+                            <a href="{{ route('checkout.show', ['type' => 'project', 'id' => 1]) }}" class="btn-card-invest" style="height: 42px; padding: 0 20px; font-size: 14px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Buy / Invest Now
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="button button-primary" style="padding: 10px 20px; font-size: 14px; font-weight: 700;">
-                                🛒 Buy / Invest Now
+                            <a href="{{ route('login') }}" class="btn-card-invest" style="height: 42px; padding: 0 20px; font-size: 14px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Buy / Invest Now
                             </a>
                         @endauth
                     </div>
@@ -211,17 +221,27 @@
                                 ></div>
                             </div>
 
-                            <div style="display: flex; gap: 10px; margin-top: 15px; align-items: center;">
+                            <div class="project-card-footer">
                                 @auth
-                                    <a href="{{ route('checkout.show', ['type' => 'project', 'id' => $project['id']]) }}" class="button button-primary" style="padding: 8px 16px; font-size: 13px; font-weight: 700;">
-                                        🛒 Buy / Invest Now
+                                    <a href="{{ route('checkout.show', ['type' => 'project', 'id' => $project['id']]) }}" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
                                     </a>
                                 @else
-                                    <a href="{{ route('login') }}" class="button button-primary" style="padding: 8px 16px; font-size: 13px; font-weight: 700;">
-                                        🛒 Buy / Invest Now
+                                    <a href="{{ route('login') }}" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
                                     </a>
                                 @endauth
-                                <a href="{{ route('login') }}" class="project-link" style="align-self: center;">
+                                <a href="{{ route('login') }}" class="btn-card-details">
                                     View details →
                                 </a>
                             </div>

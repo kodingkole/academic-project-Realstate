@@ -16,7 +16,58 @@
 @elseif($module==='documents')<label>Project<select name="project_id" required>@foreach($projects as $p)<option value="{{ $p->id }}">{{ $p->title }}</option>@endforeach</select></label><label>Title<input name="title" required></label><label>Category<select name="category"><option>Drawing</option><option>Architectural</option><option>Structural</option><option>Legal</option></select></label><label>File path<input name="file_path" required></label><label>Version<input name="version" value="1.0"></label><label>Approval status<input name="approval_status" value="pending"></label>@endif
 </div><div class="erp-modal-actions"><button type="button" data-modal-close>Cancel</button><button class="erp-button">Save record</button></div></form></dialog>
 @if($module==='projects')
-<section class="erp-panel"><div class="erp-panel-head"><div><h3>Project status controls</h3><p>Updates are reflected in both Landowner and Investor portals.</p></div></div>@foreach($records as $record)<form method="POST" action="{{ route('erp.projects.update', $record->id) }}" class="erp-row-form">@csrf @method('PATCH')<b>{{ $record->title }}</b><select name="status">@foreach(['planned','active','delayed','completed'] as $status)<option value="{{ $status }}" @selected($record->status === $status)>{{ ucfirst($status) }}</option>@endforeach</select><input type="number" name="progress_percentage" min="0" max="100" value="{{ $record->progress_percentage }}"><input type="date" name="end_date" value="{{ $record->end_date }}"><button type="submit">Update portal status</button></form>@endforeach</section>
+<section class="erp-panel" style="margin-top: 24px;">
+    <div class="erp-panel-head">
+        <div>
+            <h3>Project Status & Live Sync Controls</h3>
+            <p>Real-time updates sync directly to Landowner & Investor dashboards.</p>
+        </div>
+    </div>
+    <div class="erp-table-wrap">
+        <table class="erp-table">
+            <thead>
+                <tr>
+                    <th style="min-width: 200px;">Project Title</th>
+                    <th style="width: 140px;">Status</th>
+                    <th style="width: 140px;">Progress (%)</th>
+                    <th style="width: 170px;">Target Completion</th>
+                    <th style="width: 150px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($records as $record)
+                <tr>
+                    <td style="vertical-align: middle;">
+                        <b style="color: #0f172a; font-size: 14px;">{{ $record->title }}</b>
+                    </td>
+                    <td colspan="4" style="padding: 0; vertical-align: middle;">
+                        <form method="POST" action="{{ route('erp.projects.update', $record->id) }}" style="display: grid; grid-template-columns: 140px 140px 170px auto; gap: 12px; align-items: center; padding: 12px 10px;">
+                            @csrf @method('PATCH')
+                            <div>
+                                <select name="status" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; background: #ffffff; color: #0f172a;">
+                                    @foreach(['planned','active','delayed','completed'] as $status)
+                                        <option value="{{ $status }}" @selected($record->status === $status)>{{ ucfirst($status) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <input type="number" name="progress_percentage" min="0" max="100" value="{{ $record->progress_percentage }}" style="width: 75px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; text-align: center; background: #ffffff; color: #0f172a;">
+                                <span style="font-size: 12px; color: #64748b; font-weight: 700;">%</span>
+                            </div>
+                            <div>
+                                <input type="date" name="end_date" value="{{ $record->end_date }}" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; background: #ffffff; color: #0f172a;">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-admin-action approve" style="padding: 8px 14px; font-size: 12px;">Update Status</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</section>
 @endif
 @if($module==='tasks')
 @foreach($records as $record)<dialog class="erp-modal" id="editTasksModal-{{ $record->id }}"><form method="POST" action="{{ route('erp.tasks.update',$record->id) }}">@csrf @method('PUT')<div class="erp-modal-head"><div><span class="erp-kicker">ADMIN CONTROL</span><h3>Edit task</h3></div><button type="button" data-modal-close>Close</button></div><div class="erp-form"><label>Project<select name="project_id">@foreach($projects as $p)<option value="{{ $p->id }}" @selected($record->project_id==$p->id)>{{ $p->title }}</option>@endforeach</select></label><label>Task title<input name="title" value="{{ $record->title }}" required></label><label>Assigned to<select name="assigned_to"><option value="">Unassigned</option>@foreach($users as $u)<option value="{{ $u->id }}" @selected($record->assigned_to==$u->id)>{{ $u->name }}</option>@endforeach</select></label><label>Priority<select name="priority">@foreach(['low','medium','high','critical'] as $priority)<option value="{{ $priority }}" @selected($record->priority===$priority)>{{ $priority }}</option>@endforeach</select></label><label>Start date<input type="date" name="start_date" value="{{ $record->start_date }}"></label><label>End date<input type="date" name="end_date" value="{{ $record->end_date }}"></label><label>Progress<input type="number" name="progress" min="0" max="100" value="{{ $record->progress }}"></label><label>Status<input name="status" value="{{ $record->status }}" required></label></div><div class="erp-modal-actions"><button type="button" data-modal-close>Cancel</button><button class="erp-button">Save changes</button></div></form></dialog>@endforeach

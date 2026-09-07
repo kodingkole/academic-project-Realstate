@@ -77,6 +77,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/portal/admin/erp', [PortalController::class, 'adminErpHub'])->name('admin.erp');
     Route::get('/portal/admin/projects', [PortalController::class, 'adminProjects'])->name('admin.projects');
     Route::get('/portal/admin/lawyers', [PortalController::class, 'adminLawyers'])->name('admin.lawyers');
+    Route::post('/portal/admin/lawyers', [PortalController::class, 'storeLawyer'])->name('admin.lawyers.store');
     Route::post('/portal/admin/land-submissions/{submission}/assign-lawyer', [PortalController::class, 'assignLawyer'])->name('admin.submissions.assign');
     Route::post('/portal/admin/land-submissions/{submission}/approve', [PortalController::class, 'approveSubmission'])->name('admin.submissions.approve');
     Route::post('/portal/admin/land-submissions/{submission}/reject', [PortalController::class, 'rejectSubmission'])->name('admin.submissions.reject');
@@ -144,6 +145,7 @@ Route::middleware(['auth', 'role:investor'])->group(function () {
     Route::patch('/portal/investor/notifications/read-all', [InvestorDashboardController::class, 'markAllNotificationsRead'])->name('investor.notifications.read-all');
     Route::patch('/portal/investor/notifications/{notification}/read', [InvestorDashboardController::class, 'markNotificationRead'])->name('investor.notifications.read');
     Route::get('/portal/investor/documents/{document}/download', [InvestorDocumentController::class, 'download'])->name('investor.documents.download');
+    Route::get('/portal/investor/documents/{document}/preview', [InvestorDocumentController::class, 'preview'])->name('investor.documents.preview');
     Route::post('/portal/investor/bookings/reserve', [InvestorDashboardController::class, 'reserve'])->name('investor.reserve');
     Route::post('/portal/investor/payments/initiate', [InvestorDashboardController::class, 'pay'])->name('investor.pay');
     Route::get('/portal/investor/payments/{payment}/invoice', [InvestorDashboardController::class, 'invoice'])->name('investor.invoice');

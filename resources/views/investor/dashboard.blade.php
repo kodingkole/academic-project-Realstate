@@ -508,15 +508,16 @@
                                     </div>
                                 </label>
 
-                                <label class="mode-card-option">
+                                <div class="mode-card-option" onclick="activateCustomAmountMode(event)" style="cursor: pointer;">
                                     <input type="radio" name="payment_type" value="custom" class="mode-radio" id="modeCustom">
                                     <div class="mode-card-content">
                                         <div class="mode-title">Custom Amount</div>
-                                        <div class="custom-amount-input-wrap">
-                                            <input type="number" min="1000" name="amount" id="customAmountInput" placeholder="Enter custom amount (BDT)" disabled class="portal-input">
+                                        <div class="custom-amount-input-wrap" style="margin-top: 6px;">
+                                            <input type="number" min="1000" name="amount" id="customAmountInput" placeholder="Enter custom amount (BDT)" class="portal-input" onclick="activateCustomAmountMode(event)" onfocus="activateCustomAmountMode(event)" oninput="validateCustomAmountLimits()" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; color: #0f172a; font-size: 14px; font-weight: 700; padding: 10px 14px; width: 100%;">
+                                            <small id="customLimitNotice" style="font-size: 11px; color: #059669; font-weight: 700; display: block; margin-top: 4px;">Min: Monthly Installment | Max: Remaining Balance</small>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -528,33 +529,160 @@
                     <div class="portal-card compact">
                         <div class="portal-card-head">
                             <span class="step-num">3</span>
-                            <h3>Gateway & Reference</h3>
+                            <h3>Select Payment Gateway</h3>
                         </div>
 
                         <div class="form-group wide">
                             <div class="channel-selector-grid">
                                 <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="bKash" checked>
-                                    <span>bKash Online</span>
+                                    <input type="radio" name="payment_method" value="bKash" checked onchange="switchModalGateway('bKash')">
+                                    <span>bKash</span>
                                 </label>
                                 <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="Nagad">
-                                    <span>Nagad Pay</span>
+                                    <input type="radio" name="payment_method" value="Nagad" onchange="switchModalGateway('Nagad')">
+                                    <span>Nagad</span>
                                 </label>
                                 <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="Bank Transfer">
+                                    <input type="radio" name="payment_method" value="SSLCommerz" onchange="switchModalGateway('SSLCommerz')">
+                                    <span>SSLCommerz</span>
+                                </label>
+                                <label class="channel-card">
+                                    <input type="radio" name="payment_method" value="Bank Transfer" onchange="switchModalGateway('Bank')">
                                     <span>Bank Wire</span>
-                                </label>
-                                <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="SSLCommerz">
-                                    <span>Card</span>
                                 </label>
                             </div>
                         </div>
 
+                        {{-- Modal bKash Panel --}}
+                        <div id="modalBkashBox" class="payment-gateway-panel bkash-gateway-box" style="margin-bottom: 15px;">
+                            <div class="gw-header" style="padding: 12px 16px;">
+                                <div class="gw-brand-title">
+                                    <span class="gw-logo-pill" style="font-size: 14px;">bKash</span>
+                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">bKash Online Payment</h5>
+                                </div>
+                            </div>
+                            <div class="gw-body" style="padding: 14px;">
+                                <div style="margin-bottom: 10px;">
+                                    <label>bKash Account Number *</label>
+                                    <input type="text" id="modalBkashPhone" placeholder="01711223344" value="01711223344" class="portal-input">
+                                </div>
+                                <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
+                                    <div>
+                                        <label>6-Digit OTP *</label>
+                                        <input type="text" id="modalBkashOtp" placeholder="123456" value="123456" class="portal-input">
+                                    </div>
+                                    <div>
+                                        <label>5-Digit PIN *</label>
+                                        <input type="password" id="modalBkashPin" placeholder="•••••" value="12345" class="portal-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Modal Nagad Panel --}}
+                        <div id="modalNagadBox" class="payment-gateway-panel nagad-gateway-box" style="margin-bottom: 15px; display: none;">
+                            <div class="gw-header" style="padding: 12px 16px;">
+                                <div class="gw-brand-title">
+                                    <span class="gw-logo-pill" style="font-size: 14px;">Nagad</span>
+                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Nagad Pay Gateway</h5>
+                                </div>
+                            </div>
+                            <div class="gw-body" style="padding: 14px;">
+                                <div style="margin-bottom: 10px;">
+                                    <label>Nagad Account Mobile No *</label>
+                                    <input type="text" id="modalNagadPhone" placeholder="01819876543" value="01819876543" class="portal-input">
+                                </div>
+                                <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
+                                    <div>
+                                        <label>6-Digit OTP *</label>
+                                        <input type="text" id="modalNagadOtp" placeholder="654321" value="654321" class="portal-input">
+                                    </div>
+                                    <div>
+                                        <label>4-Digit PIN *</label>
+                                        <input type="password" id="modalNagadPin" placeholder="••••" value="1234" class="portal-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Modal SSLCommerz Panel --}}
+                        <div id="modalSSLBox" class="payment-gateway-panel ssl-gateway-box" style="margin-bottom: 15px; display: none;">
+                            <div class="gw-header" style="padding: 12px 16px;">
+                                <div class="gw-brand-title">
+                                    <span class="gw-logo-pill" style="font-size: 13px;">SSLCommerz</span>
+                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Secured Cards & NetBanking</h5>
+                                </div>
+                            </div>
+                            <div class="gw-body" style="padding: 14px;">
+                                <div class="ssl-sub-tabs" style="margin-bottom: 10px;">
+                                    <button type="button" class="ssl-sub-btn active" id="modalSslCardBtn" onclick="toggleModalSSLSubTab('cards')" style="font-size: 11px; padding: 6px 10px;">💳 Cards</button>
+                                    <button type="button" class="ssl-sub-btn" id="modalSslNetBtn" onclick="toggleModalSSLSubTab('net')" style="font-size: 11px; padding: 6px 10px;">🏦 Net Banking</button>
+                                </div>
+
+                                <div id="modalSslCardView">
+                                    <div style="margin-bottom: 8px;">
+                                        <label>16-Digit Card Number *</label>
+                                        <input type="text" id="modalSslCardNum" value="4222 8899 4411 9812" placeholder="4222 •••• •••• 9812" class="portal-input">
+                                    </div>
+                                    <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
+                                        <div>
+                                            <label>Expiry (MM/YY)</label>
+                                            <input type="text" id="modalSslExpiry" value="08/29" placeholder="08/29" class="portal-input">
+                                        </div>
+                                        <div>
+                                            <label>CVV / CVC</label>
+                                            <input type="password" id="modalSslCvv" value="882" placeholder="882" class="portal-input">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modalSslNetView" style="display: none;">
+                                    <label style="font-size: 11px; color: #cbd5e1; font-weight: 700; margin-bottom: 4px; display: block;">Select Net Banking Partner *</label>
+                                    <select id="modalSslNetBank" class="portal-select" style="margin-bottom: 8px;">
+                                        <option value="City Touch (City Bank)">🏛️ City Touch (City Bank)</option>
+                                        <option value="EBL Skybanking">🏛️ EBL Skybanking (Eastern Bank)</option>
+                                        <option value="BRAC Bank iBanking">🏛️ BRAC Bank iBanking</option>
+                                        <option value="DBBL NexusPay">🏛️ DBBL NexusPay</option>
+                                        <option value="CellFin (Islami Bank)">🏛️ CellFin (IBBL)</option>
+                                        <option value="Bank Asia Smart App">🏛️ Bank Asia Smart App</option>
+                                    </select>
+                                    <div>
+                                        <label>Customer User ID *</label>
+                                        <input type="text" id="modalSslNetUser" value="USER-9920192" placeholder="USER-9920192" class="portal-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Modal Bank Wire Panel --}}
+                        <div id="modalBankBox" class="payment-gateway-panel bank-gateway-box" style="margin-bottom: 15px; display: none;">
+                            <div class="gw-header" style="padding: 12px 16px;">
+                                <div class="gw-brand-title">
+                                    <span class="gw-logo-pill" style="font-size: 13px; background:#fff; color:#064e3b;">Bank</span>
+                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Bank Wire & Escrow Clearance</h5>
+                                </div>
+                            </div>
+                            <div class="gw-body" style="padding: 14px;">
+                                <div style="margin-bottom: 8px;">
+                                    <label style="color: #cbd5e1;">Selected Bank *</label>
+                                    <select id="modalBankName" class="portal-select">
+                                        <option value="City Bank Ltd">City Bank Ltd</option>
+                                        <option value="Dutch-Bangla Bank (DBBL)">Dutch-Bangla Bank (DBBL)</option>
+                                        <option value="BRAC Bank PLC">BRAC Bank PLC</option>
+                                        <option value="Eastern Bank Ltd (EBL)">Eastern Bank Ltd (EBL)</option>
+                                        <option value="Islami Bank Bangladesh">Islami Bank Bangladesh</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="color: #cbd5e1;">Deposit Slip / Ref No *</label>
+                                    <input type="text" id="modalBankRef" value="DEP-2026-981245" placeholder="e.g. DEP-2026-981245" class="portal-input">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group wide">
-                            <label for="payerReferenceInput">Transaction / Reference No:</label>
-                            <input type="text" name="payer_reference" id="payerReferenceInput" placeholder="e.g. TrxID 9A82B3C7" class="portal-input">
+                            <label for="payerReferenceInput">Transaction / Payer Reference (Auto-Generated):</label>
+                            <input type="text" name="payer_reference" id="payerReferenceInput" value="01711223344" placeholder="e.g. TrxID 9A82B3C7" class="portal-input">
                         </div>
                     </div>
 
@@ -571,7 +699,7 @@
                     <!-- Submit Button -->
                     <div class="portal-submit-area">
                         <button type="submit" class="btn-confirm-secure-payment">
-                            Confirm Payment
+                            Confirm Payment Request
                         </button>
                     </div>
                 </div>
@@ -702,6 +830,21 @@ const calcInstallmentDisplay = document.getElementById('calcInstallmentDisplay')
 const calcFullDisplay = document.getElementById('calcFullDisplay');
 const savedTenureDisplay = document.getElementById('savedTenureDisplay');
 
+window.activateCustomAmountMode = function(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    let modeRadio = document.getElementById('modeCustom');
+    if (modeRadio) modeRadio.checked = true;
+    let customInput = document.getElementById('customAmountInput');
+    if (customInput) {
+        customInput.disabled = false;
+        customInput.focus();
+    }
+    updatePaymentPortalCalculations();
+};
+
+let currentMinCustom = 1000;
+let currentMaxCustom = 10000000;
+
 function updatePaymentPortalCalculations() {
     if (!bookingSelect || !bookingSelect.options.length) return;
     const opt = bookingSelect.options[bookingSelect.selectedIndex];
@@ -713,6 +856,9 @@ function updatePaymentPortalCalculations() {
     const months = parseInt(opt.getAttribute('data-installment-months') || opt.dataset.installmentMonths || 24);
     const monthlyInstallment = parseFloat(opt.getAttribute('data-monthly-installment') || opt.dataset.monthlyInstallment || Math.round(remaining / months));
 
+    currentMinCustom = Math.min(monthlyInstallment, remaining);
+    currentMaxCustom = remaining;
+
     if (summaryTotalPrice) summaryTotalPrice.textContent = `BDT ${total.toLocaleString()}`;
     if (summaryPaidPrice) summaryPaidPrice.textContent = `BDT ${paid.toLocaleString()}`;
     if (summaryRemainingPrice) summaryRemainingPrice.textContent = `BDT ${remaining.toLocaleString()}`;
@@ -721,17 +867,51 @@ function updatePaymentPortalCalculations() {
     if (calcInstallmentDisplay) calcInstallmentDisplay.textContent = `BDT ${monthlyInstallment.toLocaleString()} / month`;
     if (calcFullDisplay) calcFullDisplay.textContent = `BDT ${remaining.toLocaleString()}`;
 
+    const limitNotice = document.getElementById('customLimitNotice');
+    if (limitNotice) {
+        limitNotice.textContent = `Min: BDT ${currentMinCustom.toLocaleString()} (Installment) | Max: BDT ${currentMaxCustom.toLocaleString()} (Remaining)`;
+    }
+
     // Enable/disable custom input based on mode
     const selectedMode = document.querySelector('input[name="payment_type"]:checked')?.value;
     if (customInput) {
+        customInput.min = currentMinCustom;
+        customInput.max = currentMaxCustom;
+
         if (selectedMode === 'custom') {
             customInput.disabled = false;
             customInput.required = true;
-            if (!customInput.value) customInput.value = monthlyInstallment;
+            if (!customInput.value) customInput.value = currentMinCustom;
+            validateCustomAmountLimits();
         } else {
             customInput.disabled = true;
             customInput.required = false;
         }
+    }
+}
+
+function validateCustomAmountLimits() {
+    if (!customInput) return;
+    let val = parseFloat(customInput.value);
+    let notice = document.getElementById('customLimitNotice');
+    if (!notice) return;
+
+    if (isNaN(val)) {
+        notice.textContent = `Min: BDT ${currentMinCustom.toLocaleString()} | Max: BDT ${currentMaxCustom.toLocaleString()}`;
+        notice.style.color = '#059669';
+        return;
+    }
+
+    if (val > currentMaxCustom) {
+        customInput.value = currentMaxCustom;
+        notice.textContent = `⚠️ Cannot exceed remaining balance: BDT ${currentMaxCustom.toLocaleString()}`;
+        notice.style.color = '#dc2626';
+    } else if (val < currentMinCustom) {
+        notice.textContent = `⚠️ Cannot be less than monthly installment: BDT ${currentMinCustom.toLocaleString()}`;
+        notice.style.color = '#d97706';
+    } else {
+        notice.textContent = `✓ Valid Custom Amount: BDT ${val.toLocaleString()} (Min: BDT ${currentMinCustom.toLocaleString()} | Max: BDT ${currentMaxCustom.toLocaleString()})`;
+        notice.style.color = '#059669';
     }
 }
 
@@ -754,6 +934,79 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+
+// Switch Gateway Box in Investor Payment Modal
+function switchModalGateway(method) {
+    let bkBox = document.getElementById('modalBkashBox');
+    let ngBox = document.getElementById('modalNagadBox');
+    let sslBox = document.getElementById('modalSSLBox');
+    let bankBox = document.getElementById('modalBankBox');
+
+    if (bkBox) bkBox.style.display = 'none';
+    if (ngBox) ngBox.style.display = 'none';
+    if (sslBox) sslBox.style.display = 'none';
+    if (bankBox) bankBox.style.display = 'none';
+
+    if (method === 'bKash') {
+        if (bkBox) bkBox.style.display = 'block';
+    } else if (method === 'Nagad') {
+        if (ngBox) ngBox.style.display = 'block';
+    } else if (method === 'SSLCommerz') {
+        if (sslBox) sslBox.style.display = 'block';
+    } else if (method === 'Bank') {
+        if (bankBox) bankBox.style.display = 'block';
+    }
+}
+
+function toggleModalSSLSubTab(type) {
+    let cardBtn = document.getElementById('modalSslCardBtn');
+    let netBtn = document.getElementById('modalSslNetBtn');
+    let cardView = document.getElementById('modalSslCardView');
+    let netView = document.getElementById('modalSslNetView');
+
+    if (type === 'cards') {
+        if (cardBtn) cardBtn.classList.add('active');
+        if (netBtn) netBtn.classList.remove('active');
+        if (cardView) cardView.style.display = 'block';
+        if (netView) netView.style.display = 'none';
+    } else {
+        if (netBtn) netBtn.classList.add('active');
+        if (cardBtn) cardBtn.classList.remove('active');
+        if (netView) netView.style.display = 'block';
+        if (cardView) cardView.style.display = 'none';
+    }
+}
+
+// Sync modal gateway reference before form submit
+const paymentModalForm = document.querySelector('#paymentModal form');
+if (paymentModalForm) {
+    paymentModalForm.addEventListener('submit', function() {
+        const method = document.querySelector('input[name="payment_method"]:checked')?.value;
+        const refInput = document.getElementById('payerReferenceInput');
+
+        if (method === 'bKash') {
+            const phone = document.getElementById('modalBkashPhone')?.value.trim() || '01711223344';
+            if (refInput) refInput.value = phone;
+        } else if (method === 'Nagad') {
+            const phone = document.getElementById('modalNagadPhone')?.value.trim() || '01819876543';
+            if (refInput) refInput.value = phone;
+        } else if (method === 'SSLCommerz') {
+            const isNet = document.getElementById('modalSslNetView')?.style.display !== 'none';
+            if (isNet) {
+                const bank = document.getElementById('modalSslNetBank')?.value || 'City Touch';
+                const user = document.getElementById('modalSslNetUser')?.value.trim() || 'USER-9920192';
+                if (refInput) refInput.value = 'SSLCommerz NetBanking: ' + bank + ' (' + user + ')';
+            } else {
+                const cardNum = document.getElementById('modalSslCardNum')?.value.trim() || '4222 8899 4411 9812';
+                if (refInput) refInput.value = 'SSLCommerz Card (' + cardNum.slice(-4) + ')';
+            }
+        } else if (method === 'Bank Transfer') {
+            const bank = document.getElementById('modalBankName')?.value || 'City Bank';
+            const ref = document.getElementById('modalBankRef')?.value.trim() || 'DEP-2026-981245';
+            if (refInput) refInput.value = bank + ' (Ref: ' + ref + ')';
+        }
+    });
+}
 
 // Notifications Realtime Sync
 setInterval(() => fetch('{{ route('api.notifications') }}', {headers:{Accept:'application/json'}}).then(r=>r.json()).then(data=>{const badge=document.getElementById('liveNotificationCount');if(badge&&data.status==='success')badge.textContent=data.unread_count;}).catch(()=>{}), 5000);

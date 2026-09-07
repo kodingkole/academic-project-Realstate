@@ -128,12 +128,16 @@ class InvestorDashboardController extends Controller
         }
 
         $paymentType = $data['payment_type'] ?? 'installment';
+        $monthlyInstallment = (float) ($booking->monthly_installment_amount ?: round($booking->investment_amount / ($booking->installment_months ?: 12), 2));
+
         if ($paymentType === 'full_settlement') {
             $amount = $remaining;
-        } elseif (!empty($data['amount'])) {
-            $amount = min((float)$data['amount'], $remaining);
+        } elseif ($paymentType === 'custom' && !empty($data['amount'])) {
+            $customVal = (float) $data['amount'];
+            $minAmount = min($monthlyInstallment, $remaining);
+            $amount = max($minAmount, min($customVal, $remaining));
         } else {
-            $amount = min((float) ($booking->monthly_installment_amount ?: ($remaining / ($booking->installment_months ?: 12))), $remaining);
+            $amount = min($monthlyInstallment, $remaining);
         }
 
         unset($data['project_id'], $data['amount'], $data['installment_months']);

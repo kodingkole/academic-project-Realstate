@@ -2,18 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 :root {
-    --primary: #1f5f4a;
-    --primary-dark: #143f32;
-    --primary-light: #dff0e9;
-    --secondary: #d39b45;
-    --secondary-light: #f7ead5;
-    --dark: #16211d;
-    --muted: #66736d;
-    --border: #dfe7e3;
-    --background: #f6f8f7;
+    --primary: #0f766e;
+    --primary-dark: #0f5147;
+    --primary-light: #e6f4f1;
+    --secondary: #d97706;
+    --secondary-light: #fef3c7;
+    --dark: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --background: #f8fafc;
     --white: #ffffff;
-    --danger: #c43d3d;
-    --shadow: 0 20px 50px rgba(24, 56, 44, 0.1);
+    --danger: #dc2626;
+    --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -625,14 +625,66 @@ img {
     font-size: 14px;
 }
 
-.project-link {
+.project-card-footer {
+    align-items: center;
     border-top: 1px solid var(--border);
-    color: var(--primary);
-    display: block;
-    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 16px;
+}
+
+.btn-card-invest {
+    align-items: center;
+    background: var(--primary);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.18);
+    color: var(--white);
+    display: inline-flex;
+    font-size: 13px;
     font-weight: 700;
-    margin-top: 22px;
-    padding-top: 17px;
+    gap: 6px;
+    height: 38px;
+    justify-content: center;
+    padding: 0 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-card-invest:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.28);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.btn-card-invest svg {
+    flex-shrink: 0;
+    stroke: currentColor;
+}
+
+.btn-card-details {
+    align-items: center;
+    color: var(--primary);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-card-details:hover {
+    color: var(--primary-dark);
+    transform: translateX(2px);
+}
+
+.project-link {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
 }
 
 /* Services */
@@ -2220,6 +2272,227 @@ img {
 .admin-portal .erp-topbar{background:rgba(255,255,255,.88);border-color:#e2e8f0;box-shadow:0 2px 12px rgba(15,23,42,.03)}.admin-portal .erp-menu{color:#162033}.admin-portal .erp-hero{background:linear-gradient(125deg,#ecfdf5,#eef2ff);border-color:#bbf7d0}.admin-portal .erp-hero:after{border-color:rgba(5,150,105,.12)}.admin-portal .erp-kicker,.admin-portal .erp-panel-head a,.admin-portal .erp-module-grid b{color:#047857}
 .admin-portal .erp-kpis article,.admin-portal .erp-panel,.admin-portal .erp-module-grid a{box-shadow:0 4px 16px rgba(15,23,42,.045)}.admin-portal .erp-module-grid a:hover{border-color:#6ee7b7}.admin-portal .erp-table th{color:#64748b}.admin-portal .erp-table td{border-color:#edf2f7}.admin-portal .erp-form label{color:#475569}
 .admin-portal .erp-modal{background:#fff;border-color:#dbe3ee}.admin-portal .erp-modal::backdrop{background:rgba(15,23,42,.35)}.admin-portal .erp-modal-head>button{color:#64748b}.admin-portal .erp-form input,.admin-portal .erp-form select,.admin-portal .erp-form textarea,.admin-portal .erp-filters input,.admin-portal .erp-row-form select,.admin-portal .cms-preview-grid article,.admin-portal .jv-admin-actions input{background:#fff;border-color:#cbd5e1;color:#162033}.admin-portal .erp-secondary{background:#f8fafc;border-color:#cbd5e1;color:#334155}.admin-portal .erp-notice{color:#047857}.admin-portal .erp-error{color:#be123c}
+
+/* Admin Action Buttons */
+.btn-admin-action {
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 700;
+    justify-content: center;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.btn-admin-action.assign {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+}
+.btn-admin-action.assign:hover {
+    background: #0369a1 !important;
+    transform: translateY(-1px);
+}
+.btn-admin-action.approve {
+    background: #0f766e !important;
+    color: #ffffff !important;
+}
+.btn-admin-action.approve:hover {
+    background: #0f5147 !important;
+    transform: translateY(-1px);
+}
+.btn-admin-action.reject {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+}
+.btn-admin-action.reject:hover {
+    background: #b91c1c !important;
+    transform: translateY(-1px);
+}
+
+/* Landowner Portal Light Theme */
+.landowner-portal {
+    --erp-bg: #f8fafc;
+    --erp-surface: #ffffff;
+    --erp-card: #ffffff;
+    --erp-line: #e2e8f0;
+    --erp-text: #0f172a;
+    --erp-muted: #64748b;
+    --erp-green: #0f766e;
+    --erp-amber: #d97706;
+    --erp-indigo: #4338ca;
+    background: #f8fafc !important;
+    color: #0f172a !important;
+}
+.landowner-portal .erp-sidebar {
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 4px 0 18px rgba(15, 23, 42, 0.04) !important;
+}
+.landowner-portal .erp-brand {
+    color: #0f172a !important;
+}
+.landowner-portal .erp-brand small {
+    color: #0f766e !important;
+}
+.landowner-portal .erp-sidebar nav p {
+    color: #94a3b8 !important;
+}
+.landowner-portal .erp-sidebar nav a {
+    color: #475569 !important;
+}
+.landowner-portal .erp-sidebar nav a:hover,
+.landowner-portal .erp-sidebar nav a.active {
+    background: #e6f4f1 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f766e !important;
+    font-weight: 700;
+}
+.landowner-portal .erp-sidebar-foot a,
+.landowner-portal .erp-sidebar-foot button {
+    color: #64748b !important;
+}
+.landowner-portal .erp-topbar {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.03) !important;
+}
+.landowner-portal .erp-topbar h1,
+.landowner-portal .erp-topbar h2,
+.landowner-portal .erp-topbar h3 {
+    color: #0f172a !important;
+}
+.landowner-portal .erp-topbar small {
+    color: #64748b !important;
+}
+.landowner-portal .erp-user span {
+    background: linear-gradient(135deg, #0f766e, #0f5147) !important;
+    color: #ffffff !important;
+}
+.landowner-portal .erp-user b {
+    color: #0f172a !important;
+}
+.landowner-portal .erp-user small {
+    color: #64748b !important;
+}
+.landowner-portal .erp-hero {
+    background: linear-gradient(135deg, #e6f4f1 0%, #ffffff 60%, #fef3c7 100%) !important;
+    border-color: #cbd5e1 !important;
+}
+.landowner-portal .erp-hero h2 {
+    color: #0f172a !important;
+}
+.landowner-portal .erp-hero p {
+    color: #475569 !important;
+}
+.landowner-portal .erp-kicker,
+.landowner-portal .erp-panel-head a {
+    color: #0f766e !important;
+}
+.landowner-portal .erp-button {
+    background: #0f766e !important;
+    color: #ffffff !important;
+}
+.landowner-portal .erp-kpis article,
+.landowner-portal .erp-panel {
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.045) !important;
+}
+.landowner-portal .erp-kpis span,
+.landowner-portal .erp-kpis small,
+.landowner-portal .erp-panel-head p {
+    color: #64748b !important;
+}
+.landowner-portal .erp-kpis b,
+.landowner-portal .erp-panel-head h3 {
+    color: #0f172a !important;
+}
+.landowner-portal .landowner-kpis article:first-child b,
+.landowner-portal .landowner-kpis .growth {
+    color: #0f766e !important;
+}
+.landowner-portal .erp-table th {
+    border-color: #e2e8f0 !important;
+    color: #64748b !important;
+}
+.landowner-portal .erp-table td {
+    border-color: #edf2f7 !important;
+    color: #0f172a !important;
+}
+.landowner-portal .land-progress {
+    background: #e2e8f0 !important;
+}
+.landowner-portal .land-progress i {
+    background: linear-gradient(90deg, #0f766e, #14b8a6) !important;
+}
+.landowner-portal .health-row {
+    border-color: #e2e8f0 !important;
+}
+.landowner-portal .health-row b {
+    color: #0f766e !important;
+}
+.landowner-portal .health-row small {
+    color: #64748b !important;
+}
+.landowner-portal .erp-pill {
+    background: #e6f4f1 !important;
+    color: #0f766e !important;
+    border: 1px solid #b9e6dc !important;
+}
+.landowner-portal .legal-timeline b {
+    background: #e2e8f0 !important;
+    color: #64748b !important;
+}
+.landowner-portal .legal-timeline span {
+    color: #64748b !important;
+}
+.landowner-portal .legal-timeline i {
+    background: #e2e8f0 !important;
+}
+.landowner-portal .legal-timeline .done b {
+    background: #0f766e !important;
+    color: #ffffff !important;
+}
+.landowner-portal .legal-timeline i.done {
+    background: #0f766e !important;
+}
+.landowner-portal .legal-timeline div.done span {
+    color: #0f766e !important;
+    font-weight: 700;
+}
+.landowner-portal .land-track-details div {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+}
+.landowner-portal .land-track-details span,
+.landowner-portal .land-track-details small {
+    color: #64748b !important;
+}
+.landowner-portal .land-track-details b {
+    color: #0f172a !important;
+}
+.landowner-portal .jv-terms {
+    border-color: #e2e8f0 !important;
+}
+.landowner-portal .jv-terms summary {
+    color: #0f766e !important;
+}
+.landowner-portal .jv-terms p {
+    color: #475569 !important;
+}
+.landowner-portal .erp-notice {
+    background: #e6f4f1 !important;
+    border-color: #b9e6dc !important;
+    color: #0f766e !important;
+}
+.landowner-portal .erp-error {
+    background: #fff1f2 !important;
+    border-color: #fecdd3 !important;
+    color: #be123c !important;
+}
 .land-wizard-page{background:linear-gradient(135deg,#f7f4ed,#fff 55%,#f2ede2);color:#1a1a1a;min-height:85vh;padding:70px 20px}.land-wizard-shell{margin:auto;max-width:920px}.land-wizard-intro{text-align:center}.land-wizard-intro>span{color:#a37a2e;font-size:10px;font-weight:900;letter-spacing:.2em}.land-wizard-intro h1{font-family:Georgia,serif;font-size:42px;font-weight:500;margin:12px 0}.land-wizard-intro p{color:#676258;line-height:1.7;margin:0 auto;max-width:650px}.wizard-steps{align-items:center;display:flex;justify-content:center;margin:42px auto 25px;max-width:650px}.wizard-steps button{align-items:center;background:none;border:0;color:#8a857d;display:flex;flex-direction:column;font-size:10px;font-weight:700;gap:7px}.wizard-steps b{align-items:center;background:#e6e1d7;border-radius:50%;display:flex;height:32px;justify-content:center;width:32px}.wizard-steps button.active b,.wizard-steps button.done b{background:#1a1a1a;color:#fff}.wizard-steps button.active span{color:#1a1a1a}.wizard-steps i{background:#ddd6c8;height:1px;margin:0 8px;width:90px}.land-wizard-card{background:#fff;border:1px solid #e5dfd3;border-radius:18px;box-shadow:0 24px 70px rgba(83,65,33,.1);overflow:hidden}.wizard-panel{display:none;padding:38px}.wizard-panel.active{display:block}.wizard-heading{align-items:center;border-bottom:1px solid #ece7dd;display:flex;gap:16px;margin-bottom:26px;padding-bottom:20px}.wizard-heading>span{color:#c5a059;font-family:Georgia,serif;font-size:30px}.wizard-heading h2{font-family:Georgia,serif;font-size:23px;font-weight:500;margin:0}.wizard-heading p{color:#8a857d;font-size:11px;margin:5px 0}.land-form-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr}.land-form-grid label{display:grid;font-size:11px;font-weight:800;gap:8px}.land-form-grid input,.land-form-grid select,.land-form-grid textarea{background:#fbfaf7;border:1px solid #ddd7ca;border-radius:8px;color:#1a1a1a;font:inherit;padding:12px}.land-form-grid textarea{min-height:80px;resize:vertical}.land-form-grid .wide{grid-column:1/-1}.file-field{background:#fbfaf7;border:1px dashed #c5a059;border-radius:10px;padding:18px}.file-field input{background:transparent;border:0;padding:8px 0}.file-field small{color:#8a857d;font-weight:400}.wizard-actions{align-items:center;background:#faf8f3;border-top:1px solid #ece7dd;display:flex;justify-content:flex-end;padding:18px 38px}.wizard-back{background:none;border:0;color:#6f685e;cursor:pointer;margin-right:auto}.wizard-next{background:#1a1a1a;border:0;border-radius:8px;color:#fff;cursor:pointer;font-weight:800;padding:12px 20px}.land-review{display:grid;gap:0;grid-template-columns:1fr 1fr}.land-review div{border-bottom:1px solid #ece7dd;display:flex;flex-direction:column;gap:5px;padding:14px}.land-review span{color:#8a857d;font-size:9px;text-transform:uppercase}.land-review b{font-size:12px}.land-consent{align-items:center;display:flex;font-size:11px;gap:9px;margin:25px 14px}.land-errors{background:#fff1f2;color:#be123c;font-size:11px;padding:12px 38px}.land-assurance{display:grid;gap:15px;grid-template-columns:repeat(3,1fr);margin-top:25px;text-align:center}.land-assurance b,.land-assurance span{display:block}.land-assurance b{font-family:Georgia,serif;font-size:13px}.land-assurance span{color:#8a857d;font-size:9px;margin-top:5px}.land-success{align-items:center;background:#fff;border:1px solid #e5dfd3;border-radius:18px;display:flex;gap:24px;margin:40px auto;padding:38px;max-width:620px}.land-success>span{align-items:center;background:#ecfdf5;border-radius:50%;color:#059669;display:flex;font-size:25px;height:65px;justify-content:center;width:65px}.land-success h2{font-family:Georgia,serif;margin:0}.land-success p,.land-success small{color:#777168;display:block;font-size:11px}.land-success strong{color:#a37a2e;display:block;font-size:25px;letter-spacing:.08em;margin:8px 0}.landowner-kpis .growth{color:#6ee7b7}.land-progress{background:#253247;border-radius:99px;height:6px;overflow:hidden;width:120px}.land-progress i{background:linear-gradient(90deg,#10b981,#34d399);display:block;height:100%}.land-track-card{margin-bottom:18px}.legal-timeline{align-items:flex-start;display:flex;margin:28px 0}.legal-timeline>div{align-items:center;color:#68798f;display:flex;flex:0 0 100px;flex-direction:column;text-align:center}.legal-timeline b{align-items:center;background:#253247;border-radius:50%;display:flex;height:30px;justify-content:center;width:30px}.legal-timeline span{font-size:9px;margin-top:8px}.legal-timeline i{background:#253247;flex:1;height:2px;margin-top:14px}.legal-timeline .done b{background:#10b981;color:#03140e}.legal-timeline i.done{background:#10b981}.legal-timeline div.done span{color:#6ee7b7}.land-track-details{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}.land-track-details>div{background:#111d31;border-radius:9px;padding:14px}.land-track-details span,.land-track-details small{color:#8fa0b7;display:block;font-size:9px}.land-track-details b{display:block;font-size:11px;margin:6px 0}.jv-terms{border-top:1px solid var(--erp-line);margin-top:18px;padding-top:15px}.jv-terms summary{color:#6ee7b7;cursor:pointer;font-size:11px;font-weight:700}.jv-terms p{color:var(--erp-muted);font-size:11px;line-height:1.7}
 @media(max-width:1000px){.erp-kpis{grid-template-columns:1fr 1fr}.erp-two{grid-template-columns:1fr}}@media(max-width:760px){.erp-sidebar{transform:translateX(-100%);transition:.2s}.erp-sidebar.open{transform:none}.erp-main{margin-left:0}.erp-menu{display:block}.erp-content{padding:18px}.erp-topbar{padding:14px 18px}.erp-user div{display:none}.erp-kpis,.erp-module-grid,.erp-form,.cms-preview-grid{grid-template-columns:1fr}.erp-hero{align-items:flex-start;flex-direction:column;gap:18px}.erp-form .wide{grid-column:auto}}
 @media(max-width:640px){.land-wizard-intro h1{font-size:32px}.land-form-grid,.land-review,.land-assurance,.land-track-details{grid-template-columns:1fr}.land-form-grid .wide{grid-column:auto}.wizard-panel{padding:24px 20px}.wizard-actions{padding:16px 20px}.wizard-steps i{width:25px}.legal-timeline{overflow-x:auto}.legal-timeline>div{flex-basis:85px}}
@@ -3915,6 +4188,364 @@ dialog.fullpage-booking-portal[open] {
 
 .payment-terms-box.compact li {
     font-size: 11px;
+}
+
+/* ==========================================================================
+   AUTHENTIC PAYMENT GATEWAYS: SSLCOMMERZ, BKASH, NAGAD & NET BANKING
+   ========================================================================== */
+
+/* Gateway Tabs Navigation */
+.payment-tabs-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 22px;
+}
+@media (max-width: 768px) {
+    .payment-tabs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.payment-tab-btn {
+    align-items: center;
+    background: rgba(15, 23, 42, 0.7);
+    border: 2px solid rgba(148, 163, 184, 0.2);
+    border-radius: 14px;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    font-weight: 700;
+    gap: 6px;
+    padding: 14px 10px;
+    text-align: center;
+    transition: all 0.25s ease;
+}
+.payment-tab-btn:hover {
+    transform: translateY(-2px);
+}
+.payment-tab-btn.active {
+    background: rgba(15, 23, 42, 0.95);
+}
+/* Tab Theme Borders */
+.payment-tab-btn.bkash-tab.active {
+    border-color: #e2136e;
+    box-shadow: 0 0 20px rgba(226, 19, 110, 0.35);
+    color: #ff69b4;
+}
+.payment-tab-btn.nagad-tab.active {
+    border-color: #f7941d;
+    box-shadow: 0 0 20px rgba(247, 148, 29, 0.35);
+    color: #ffaa44;
+}
+.payment-tab-btn.ssl-tab.active {
+    border-color: #0077b6;
+    box-shadow: 0 0 20px rgba(0, 119, 182, 0.4);
+    color: #38bdf8;
+}
+.payment-tab-btn.bank-tab.active {
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+    color: #34d399;
+}
+
+.tab-badge {
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+}
+.bkash-badge { background: #e2136e; color: #fff; }
+.nagad-badge { background: #f7941d; color: #fff; }
+.ssl-badge { background: #0077b6; color: #fff; }
+.bank-badge { background: #059669; color: #fff; }
+
+/* Branded Payment Panels */
+.payment-gateway-panel {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* bKash Theme Header & Box */
+.bkash-gateway-box {
+    background: #ffffff;
+    border: 2px solid #e2136e;
+    border-radius: 16px;
+    color: #333333;
+}
+.bkash-gateway-box .gw-header {
+    align-items: center;
+    background: #e2136e;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+.bkash-gateway-box .gw-brand-title {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+.bkash-gateway-box .gw-logo-pill {
+    background: #ffffff;
+    border-radius: 8px;
+    color: #e2136e;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 4px 10px;
+}
+.bkash-gateway-box .gw-body {
+    padding: 20px;
+}
+
+/* Nagad Theme Header & Box */
+.nagad-gateway-box {
+    background: #ffffff;
+    border: 2px solid #f7941d;
+    border-radius: 16px;
+    color: #333333;
+}
+.nagad-gateway-box .gw-header {
+    align-items: center;
+    background: linear-gradient(135deg, #f7941d 0%, #d9381e 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+.nagad-gateway-box .gw-logo-pill {
+    background: #ffffff;
+    border-radius: 8px;
+    color: #d9381e;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 4px 10px;
+}
+.nagad-gateway-box .gw-body {
+    padding: 20px;
+}
+
+/* SSLCommerz Theme Header & Box */
+.ssl-gateway-box {
+    background: #0b2545;
+    border: 2px solid #0077b6;
+    border-radius: 16px;
+    color: #ffffff;
+}
+.ssl-gateway-box .gw-header {
+    align-items: center;
+    background: linear-gradient(135deg, #0b2545 0%, #134074 100%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 22px;
+}
+.ssl-gateway-box .gw-logo-pill {
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 900;
+    padding: 5px 12px;
+}
+.ssl-gateway-box .gw-body {
+    padding: 22px;
+}
+
+/* Bank Theme Box */
+.bank-gateway-box {
+    background: #0f172a;
+    border: 2px solid #10b981;
+    border-radius: 16px;
+    color: #ffffff;
+}
+.bank-gateway-box .gw-header {
+    align-items: center;
+    background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+.bank-gateway-box .gw-body {
+    padding: 20px;
+}
+
+/* Gateway Step Steppers */
+.gw-step-nav {
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+}
+.ssl-gateway-box .gw-step-nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.gw-step-item {
+    align-items: center;
+    border-radius: 20px;
+    color: #888888;
+    display: flex;
+    font-size: 12px;
+    font-weight: 700;
+    gap: 6px;
+    padding: 6px 12px;
+}
+.gw-step-item.active {
+    background: rgba(0, 0, 0, 0.06);
+    color: #111111;
+}
+.bkash-gateway-box .gw-step-item.active { background: rgba(226, 19, 110, 0.1); color: #e2136e; }
+.nagad-gateway-box .gw-step-item.active { background: rgba(247, 148, 29, 0.1); color: #d9381e; }
+.ssl-gateway-box .gw-step-item { color: #94a3b8; }
+.ssl-gateway-box .gw-step-item.active { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+
+.gw-step-num {
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 11px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    width: 18px;
+}
+
+/* Net Banking Selector Chips */
+.netbanking-options-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+    margin-bottom: 16px;
+}
+.netbank-chip {
+    align-items: center;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    font-weight: 700;
+    gap: 8px;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+.netbank-chip:hover, .netbank-chip.selected {
+    background: rgba(0, 119, 182, 0.2);
+    border-color: #38bdf8;
+    color: #38bdf8;
+}
+
+/* Input Fields inside Light vs Dark Gateways */
+.bkash-gateway-box label, .nagad-gateway-box label {
+    color: #444444;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.bkash-gateway-box input, .nagad-gateway-box input, .bkash-gateway-box select, .nagad-gateway-box select {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 14px;
+    width: 100%;
+}
+.bkash-gateway-box input:focus { border-color: #e2136e; outline: none; }
+.nagad-gateway-box input:focus { border-color: #f7941d; outline: none; }
+
+.ssl-gateway-box label {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.ssl-gateway-box input, .ssl-gateway-box select {
+    background: #0f172a;
+    border: 1.5px solid rgba(148, 163, 184, 0.3);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 14px;
+    width: 100%;
+}
+.ssl-gateway-box input:focus, .ssl-gateway-box select:focus { border-color: #38bdf8; outline: none; }
+
+/* Sub-Tab Buttons inside SSLCommerz */
+.ssl-sub-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.ssl-sub-btn {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 10px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+}
+.ssl-sub-btn.active {
+    background: #0077b6;
+    border-color: #38bdf8;
+    color: #ffffff;
+}
+
+/* Action Buttons inside Gateways */
+.btn-gw-primary {
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    padding: 12px 20px;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+.btn-gw-primary.bkash-btn { background: #e2136e; }
+.btn-gw-primary.bkash-btn:hover { background: #c2185b; }
+
+.btn-gw-primary.nagad-btn { background: linear-gradient(135deg, #f7941d 0%, #d9381e 100%); }
+.btn-gw-primary.nagad-btn:hover { opacity: 0.95; }
+
+.btn-gw-primary.ssl-btn { background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%); }
+.btn-gw-primary.ssl-btn:hover { opacity: 0.95; }
+
+.btn-gw-secondary {
+    background: #e2e8f0;
+    border: none;
+    border-radius: 10px;
+    color: #475569;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 16px;
+}
+.ssl-gateway-box .btn-gw-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #cbd5e1;
+}
+
+.otp-timer-text {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
 }
 
 

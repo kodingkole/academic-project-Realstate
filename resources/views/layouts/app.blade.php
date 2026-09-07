@@ -2,20 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Intern Real Estate and Construction ERP platform">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>@yield('title', 'Intern Real Estate')</title>
 
-    <meta
-        name="description"
-        content="Intern Real Estate and Construction ERP platform"
-    >
-
-    <title>
-        @yield('title', 'Intern Real Estate')
-    </title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="alternate icon" href="{{ asset('favicon.ico') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

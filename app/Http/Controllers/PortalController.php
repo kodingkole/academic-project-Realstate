@@ -37,7 +37,26 @@ class PortalController extends Controller
         $insights = Project::with(['milestones','tasks'])->get()->mapWithKeys(fn ($project) => [$project->id => $ai->projectRisk($project)]);
         return view('erp.module', compact('module','records','projects','materials','users','insights'));
     }
-    public function adminLawyers(): View { return view('admin.lawyers', ['lawyers'=>Lawyer::latest()->get(), 'submissions'=>LandSubmission::latest()->get()]); }
+    public function adminLawyers(): View {
+        return view('admin.lawyers', [
+            'lawyers' => Lawyer::latest()->get(),
+            'submissions' => LandSubmission::with(['agreement','lawyer','project'])->latest()->get(),
+            'pendingSubmissions' => LandSubmission::with(['agreement','lawyer','project'])->whereNotIn('status', ['approved','rejected'])->latest()->get(),
+            'approvedSubmissions' => LandSubmission::with(['agreement','lawyer','project'])->where('status', 'approved')->latest()->get(),
+        ]);
+    }
+    public function storeLawyer(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:lawyers,email',
+            'phone' => 'required|string|max:30',
+            'specialization' => 'required|string|max:255',
+        ]);
+        Lawyer::create(array_merge($data, ['active_cases_count' => 0]));
+        $this->log('create', 'legal', 'Added new lawyer ' . $data['name'], $request);
+        return back()->with('success', 'New lawyer added successfully to the directory.');
+    }
     public function assignLawyer(Request $request, LandSubmission $submission): RedirectResponse { $data=$request->validate(['lawyer_id'=>'required|exists:lawyers,id']); $submission->update(['assigned_lawyer_id'=>$data['lawyer_id'],'status'=>'under_review','stage'=>'Lawyer Assigned']); Lawyer::whereKey($data['lawyer_id'])->increment('active_cases_count'); $this->log('assign','legal','Assigned lawyer to '.$submission->title,$request); return back()->with('success','Lawyer assigned and legal vetting started.'); }
     public function approveSubmission(Request $request, LandSubmission $submission): RedirectResponse
     {
@@ -60,7 +79,15 @@ class PortalController extends Controller
                 $project->update(['status' => 'active']);
             }
 
-            $flats=collect(explode(',',$data['allocated_flats']??''))->map(fn($v)=>trim($v))->filter()->values()->all();
+            $rawFlats = collect(explode(',', $data['allocated_flats'] ?? ''))->map(fn($v) => trim($v))->filter()->values()->all();
+            if (empty($rawFlats)) {
+                $flats = [
+                    ['code' => 'Unit A-4', 'size' => 1450],
+                    ['code' => 'Unit B-6', 'size' => 1320]
+                ];
+            } else {
+                $flats = $rawFlats;
+            }
             JvAgreement::updateOrCreate(['land_submission_id'=>$submission->id],['landowner_share_pct'=>$ownerShare,'developer_share_pct'=>100-$ownerShare,'allocated_flats_json'=>$flats,'terms'=>'The landowner contributes the scheduled land and receives the agreed share of completed saleable area. The developer finances, constructs and delivers the project subject to approved plans and statutory clearance.','status'=>'draft']);
             $submission->update(['status'=>'approved','stage'=>'JV Agreement Drafted','project_id'=>$project->id,'rejection_reason'=>null]);
 

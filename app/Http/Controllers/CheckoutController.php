@@ -75,7 +75,7 @@ class CheckoutController extends Controller
             'unit_no' => 'nullable|string|max:50',
             'amount' => 'required|numeric|min:10',
             'payment_plan' => 'required|in:full,1_year,2_year,3_year',
-            'payment_method' => 'required|in:bKash,Nagad,Bank,CreditCard',
+            'payment_method' => 'required|in:SSLCommerz,bKash,Nagad,Bank,CreditCard',
             'payer_reference' => 'required|string|max:100',
             'pin_or_ref' => 'nullable|string|max:100',
             'bank_name' => 'nullable|string|max:100',

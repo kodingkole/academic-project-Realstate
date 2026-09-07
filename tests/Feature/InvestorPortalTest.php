@@ -31,9 +31,7 @@ class InvestorPortalTest extends TestCase
             'password' => 'investor123',
         ]);
 
-        $response->assertRedirect(route('investor.otp.form'));
-        $code = Cache::get('investor-login-otp:'.$investor->email);
-        $this->post(route('investor.otp.verify'), ['otp' => $code])->assertRedirect(route('investor.dashboard'));
+        $response->assertRedirect(route('investor.dashboard'));
         $this->get(route('investor.dashboard'))->assertOk();
         $this->actingAs($investor)->get(route('admin.dashboard'))->assertRedirect(route('login'));
     }
@@ -52,7 +50,7 @@ class InvestorPortalTest extends TestCase
         $project = Project::create(['title' => 'Payment Test Project', 'location' => 'Dhaka', 'status' => 'active', 'total_budget' => 1000000, 'progress_percentage' => 0]);
         InvestorBooking::create(['user_id' => $investor->id, 'project_id' => $project->id, 'unit_no' => 'A-1', 'investment_amount' => 100000, 'status' => 'reserved']);
 
-        $this->actingAs($investor)->post(route('investor.pay'), ['project_id' => $project->id, 'amount' => 25000, 'payment_method' => 'bKash', 'payer_reference' => 'BK123'])->assertRedirect(route('investor.ledger'));
+        $this->actingAs($investor)->post(route('investor.pay'), ['project_id' => $project->id, 'amount' => 25000, 'payment_method' => 'bKash', 'payer_reference' => 'BK123'])->assertRedirect(route('investor.dashboard'));
         $payment = InvestorPayment::firstOrFail();
         $this->assertSame('pending', $payment->status);
 

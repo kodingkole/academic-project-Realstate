@@ -99,9 +99,9 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">National ID</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->nid_number ?: ($payment->investor?->nid_number ?: '1992269123456') }}</strong>
                                     </div>
-                                    <a href="{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'nid']) }}" target="_blank" style="background: #0f172a; color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; transition: all 0.2s;">
-                                        View NID
-                                    </a>
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'nid']) }}', 'National ID (NID) Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                        👁️ View NID
+                                    </button>
                                 </div>
 
                                 {{-- Tax Cert Item --}}
@@ -110,9 +110,9 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">TIN / Tax Certificate</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->tax_cert_no ?: ($payment->investor?->tin_number ?: 'TIN-8829401928') }}</strong>
                                     </div>
-                                    <a href="{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'tax']) }}" target="_blank" style="background: #0f172a; color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; transition: all 0.2s;">
-                                        View Tax
-                                    </a>
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'tax']) }}', 'TIN / Tax Certificate Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                        👁️ View Tax
+                                    </button>
                                 </div>
 
                                 {{-- Electricity Bill Item --}}
@@ -121,9 +121,9 @@
                                         <span style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block;">Electricity / Utility Bill</span>
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->electricity_bill_no ?: ($payment->investor?->electricity_bill_no ?: 'ELEC-99304128') }}</strong>
                                     </div>
-                                    <a href="{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'electricity']) }}" target="_blank" style="background: #0f172a; color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; transition: all 0.2s;">
-                                        View Bill
-                                    </a>
+                                    <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'electricity']) }}', 'Electricity / Utility Bill Document')" style="background: #0f172a; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center;">
+                                        👁️ View Bill
+                                    </button>
                                 </div>
 
                             </div>
@@ -184,5 +184,32 @@
     </div>
     {{ $payments->links() }}
 </section>
+
+{{-- Inline KYC Document Preview Modal --}}
+<dialog id="kycViewerModal" style="border: none; border-radius: 16px; padding: 0; width: 90vw; max-width: 900px; background: #0f172a; color: #fff; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
+    <div style="padding: 16px 20px; background: #1e293b; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #334155;">
+        <h4 id="kycModalTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #38bdf8;">KYC Document Preview</h4>
+        <button type="button" onclick="document.getElementById('kycViewerModal').close()" style="background: rgba(255,255,255,0.1); border: none; color: #fff; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-weight: 700;">
+            ✕ Close
+        </button>
+    </div>
+    <div style="padding: 0; height: 75vh; background: #0f172a; overflow: hidden;">
+        <iframe id="kycFrame" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+</dialog>
+
+@push('scripts')
+<script>
+function previewKycDoc(url, title) {
+    let modal = document.getElementById('kycViewerModal');
+    let frame = document.getElementById('kycFrame');
+    let titleElem = document.getElementById('kycModalTitle');
+
+    if (titleElem) titleElem.textContent = title || 'KYC Document Preview';
+    if (frame) frame.src = url;
+    if (modal) modal.showModal();
+}
+</script>
+@endpush
 
 @endsection
