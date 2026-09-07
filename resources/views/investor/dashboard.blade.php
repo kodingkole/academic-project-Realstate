@@ -615,8 +615,8 @@
                             </div>
                             <div class="gw-body" style="padding: 14px;">
                                 <div class="ssl-sub-tabs" style="margin-bottom: 10px;">
-                                    <button type="button" class="ssl-sub-btn active" id="modalSslCardBtn" onclick="toggleModalSSLSubTab('cards')" style="font-size: 11px; padding: 6px 10px;">💳 Cards</button>
-                                    <button type="button" class="ssl-sub-btn" id="modalSslNetBtn" onclick="toggleModalSSLSubTab('net')" style="font-size: 11px; padding: 6px 10px;">🏦 Net Banking</button>
+                                    <button type="button" class="ssl-sub-btn active" id="modalSslCardBtn" onclick="toggleModalSSLSubTab('cards')" style="font-size: 11px; padding: 6px 10px;">Cards</button>
+                                    <button type="button" class="ssl-sub-btn" id="modalSslNetBtn" onclick="toggleModalSSLSubTab('net')" style="font-size: 11px; padding: 6px 10px;">Net Banking</button>
                                 </div>
 
                                 <div id="modalSslCardView">
@@ -639,12 +639,12 @@
                                 <div id="modalSslNetView" style="display: none;">
                                     <label style="font-size: 11px; color: #cbd5e1; font-weight: 700; margin-bottom: 4px; display: block;">Select Net Banking Partner *</label>
                                     <select id="modalSslNetBank" class="portal-select" style="margin-bottom: 8px;">
-                                        <option value="City Touch (City Bank)">🏛️ City Touch (City Bank)</option>
-                                        <option value="EBL Skybanking">🏛️ EBL Skybanking (Eastern Bank)</option>
-                                        <option value="BRAC Bank iBanking">🏛️ BRAC Bank iBanking</option>
-                                        <option value="DBBL NexusPay">🏛️ DBBL NexusPay</option>
-                                        <option value="CellFin (Islami Bank)">🏛️ CellFin (IBBL)</option>
-                                        <option value="Bank Asia Smart App">🏛️ Bank Asia Smart App</option>
+                                        <option value="City Touch (City Bank)">City Touch (City Bank)</option>
+                                        <option value="EBL Skybanking">EBL Skybanking (Eastern Bank)</option>
+                                        <option value="BRAC Bank iBanking">BRAC Bank iBanking</option>
+                                        <option value="DBBL NexusPay">DBBL NexusPay</option>
+                                        <option value="CellFin (Islami Bank)">CellFin (IBBL)</option>
+                                        <option value="Bank Asia Smart App">Bank Asia Smart App</option>
                                     </select>
                                     <div>
                                         <label>Customer User ID *</label>
@@ -904,13 +904,13 @@ function validateCustomAmountLimits() {
 
     if (val > currentMaxCustom) {
         customInput.value = currentMaxCustom;
-        notice.textContent = `⚠️ Cannot exceed remaining balance: BDT ${currentMaxCustom.toLocaleString()}`;
+        notice.textContent = `Cannot exceed remaining balance: BDT ${currentMaxCustom.toLocaleString()}`;
         notice.style.color = '#dc2626';
     } else if (val < currentMinCustom) {
-        notice.textContent = `⚠️ Cannot be less than monthly installment: BDT ${currentMinCustom.toLocaleString()}`;
+        notice.textContent = `Cannot be less than monthly installment: BDT ${currentMinCustom.toLocaleString()}`;
         notice.style.color = '#d97706';
     } else {
-        notice.textContent = `✓ Valid Custom Amount: BDT ${val.toLocaleString()} (Min: BDT ${currentMinCustom.toLocaleString()} | Max: BDT ${currentMaxCustom.toLocaleString()})`;
+        notice.textContent = `Valid Custom Amount: BDT ${val.toLocaleString()} (Min: BDT ${currentMinCustom.toLocaleString()} | Max: BDT ${currentMaxCustom.toLocaleString()})`;
         notice.style.color = '#059669';
     }
 }

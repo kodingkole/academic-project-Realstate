@@ -1697,6 +1697,24 @@ img {
     margin-top: 4px;
     max-width: 340px;
 }
+.investor-documents-panel { background:#fff; border:1px solid #e2e8f0; border-radius:20px; box-shadow:0 10px 30px rgba(15,23,42,.03); color:#0f172a; padding:28px; }
+.investor-documents-header { border-bottom:1px solid #e2e8f0; margin-bottom:20px; padding-bottom:20px; }
+.investor-documents-kicker { color:#0f766e; font-size:10px; font-weight:800; letter-spacing:.12em; }
+.investor-documents-header h3 { color:#0f172a; font-family:'Manrope',sans-serif; font-size:20px; margin:6px 0; }
+.investor-documents-header p { color:#64748b; font-size:13px; margin:0; }
+.investor-document-list { display:grid; gap:12px; }
+.investor-document-card { align-items:center; background:#fff; border:1px solid #e2e8f0; border-radius:14px; display:flex; gap:20px; justify-content:space-between; min-height:106px; padding:20px; transition:border-color .2s,box-shadow .2s,transform .2s; }
+.investor-document-card:hover { border-color:#99f6e4; box-shadow:0 8px 20px rgba(15,23,42,.06); transform:translateY(-1px); }
+.investor-document-details h4 { color:#0f172a; font-family:'Manrope',sans-serif; font-size:16px; margin:0 0 10px; overflow-wrap:anywhere; }
+.investor-document-details > span { color:#64748b !important; font-size:12px !important; margin-left:8px; }
+.investor-document-details > span:first-of-type { background:#ccfbf1 !important; border-radius:999px; color:#0f766e !important; font-size:10px !important; font-weight:800 !important; letter-spacing:.04em; margin-left:0; padding:5px 9px !important; text-transform:uppercase; }
+.investor-document-actions { align-items:center; display:flex; flex:0 0 auto; gap:10px; }
+.investor-document-actions a,.investor-document-actions button { border-radius:8px; cursor:pointer; font:inherit; font-size:12px; font-weight:800; padding:10px 15px; text-decoration:none; white-space:nowrap; }
+.investor-document-preview { background:#0f766e; border:1px solid #0f766e; box-shadow:0 4px 10px rgba(15,118,110,.18); color:#fff; }
+.investor-document-preview:hover { background:#115e59; }
+.investor-document-download { background:#fff; border:1px solid #cbd5e1; color:#334155; }
+.investor-document-download:hover { background:#f8fafc; }
+@media (max-width:640px) { .investor-documents-panel { padding:20px; } .investor-document-card { align-items:flex-start; flex-direction:column; gap:16px; } .investor-document-actions { width:100%; } .investor-document-actions a,.investor-document-actions button { flex:1; text-align:center; } }
 .investor-profile-row {
     border-bottom: 1px solid #e2e8f0;
     display: flex;
@@ -4547,7 +4565,6 @@ dialog.fullpage-booking-portal[open] {
     font-weight: 700;
     text-align: center;
 }
-
 
 
 

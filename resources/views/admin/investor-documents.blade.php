@@ -157,7 +157,7 @@
                         <td style="padding: 14px 12px;">
                             <div style="display: flex; gap: 8px;">
                                 <button type="button" onclick="previewDocModal('{{ route('investor.documents.preview', $document) }}', '{{ $document->title }}')" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">
-                                    👁️ View PDF / Picture
+                                    View PDF / Picture
                                 </button>
                                 <a href="{{ route('investor.documents.download', $document) }}" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;">
                                     Download
@@ -178,11 +178,10 @@
 <dialog id="docViewerModal" style="border: none; border-radius: 0; padding: 0; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; margin: 0; background: #ffffff; color: #0f172a; position: fixed; inset: 0; z-index: 99999;">
     <div style="padding: 12px 24px; height: 56px; box-sizing: border-box; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 18px;">📄</span>
             <h4 id="docModalTitle" style="margin: 0; font-size: 17px; font-weight: 800; color: #0f172a;">Document Preview</h4>
         </div>
         <button type="button" onclick="document.getElementById('docViewerModal').close()" style="background: #0f172a; border: none; color: #ffffff; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-weight: 800; font-size: 13px; box-shadow: 0 2px 6px rgba(15,23,42,0.15);">
-            ✕ Close Fullscreen Viewer
+            Close Fullscreen Viewer
         </button>
     </div>
     <div style="padding: 0; height: calc(100vh - 56px); width: 100vw; background: #ffffff; overflow: hidden;">

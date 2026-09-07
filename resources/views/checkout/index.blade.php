@@ -414,10 +414,10 @@
                                 {{-- SSLCommerz Sub-Tabs Choice: Cards vs Net Banking --}}
                                 <div class="ssl-sub-tabs">
                                     <button type="button" class="ssl-sub-btn active" id="sslCardTabBtn" onclick="toggleSSLSubTab('cards')">
-                                        💳 Debit & Credit Cards
+                                        Debit & Credit Cards
                                     </button>
                                     <button type="button" class="ssl-sub-btn" id="sslNetTabBtn" onclick="toggleSSLSubTab('netbank')">
-                                        🏦 Internet / Net Banking
+                                        Internet / Net Banking
                                     </button>
                                 </div>
 
@@ -463,25 +463,25 @@
                                     <label style="color: #cbd5e1; font-size: 12px; font-weight: 700; display: block; margin-bottom: 8px;">Select Bangladeshi Net Banking Partner *</label>
                                     <div class="netbanking-options-grid">
                                         <div class="netbank-chip selected" onclick="selectNetBankChip(this, 'City Touch (City Bank)')">
-                                            <span>🏛️ City Touch</span>
+                                            <span>City Touch</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'EBL Skybanking')">
-                                            <span>🏛️ EBL Skybanking</span>
+                                            <span>EBL Skybanking</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'BRAC Bank iBanking')">
-                                            <span>🏛️ BRAC iBank</span>
+                                            <span>BRAC iBank</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'DBBL NexusPay')">
-                                            <span>🏛️ DBBL Nexus</span>
+                                            <span>DBBL Nexus</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'CellFin (Islami Bank)')">
-                                            <span>🏛️ CellFin (IBBL)</span>
+                                            <span>CellFin (IBBL)</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'Bank Asia Smart App')">
-                                            <span>🏛️ Bank Asia</span>
+                                            <span>Bank Asia</span>
                                         </div>
                                         <div class="netbank-chip" onclick="selectNetBankChip(this, 'MTB Smart Banking')">
-                                            <span>🏛️ MTB Smart</span>
+                                            <span>MTB Smart</span>
                                         </div>
                                     </div>
                                     <input type="hidden" id="sslNetBankSelected" value="City Touch (City Bank)">

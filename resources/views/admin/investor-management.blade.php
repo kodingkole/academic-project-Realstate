@@ -100,7 +100,7 @@
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->nid_number ?: ($payment->investor?->nid_number ?: '1992269123456') }}</strong>
                                     </div>
                                     <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'nid']) }}', 'National ID (NID) Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
-                                        👁️ View NID
+                                        View NID
                                     </button>
                                 </div>
 
@@ -111,7 +111,7 @@
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->tax_cert_no ?: ($payment->investor?->tin_number ?: 'TIN-8829401928') }}</strong>
                                     </div>
                                     <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'tax']) }}', 'TIN / Tax Certificate Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
-                                        👁️ View Tax
+                                        View Tax
                                     </button>
                                 </div>
 
@@ -122,7 +122,7 @@
                                         <strong style="color: #0f172a; font-size: 12px;">{{ $payment->electricity_bill_no ?: ($payment->investor?->electricity_bill_no ?: 'ELEC-99304128') }}</strong>
                                     </div>
                                     <button type="button" onclick="previewKycDoc('{{ route('admin.investor-payments.document', ['payment' => $payment->id, 'type' => 'electricity']) }}', 'Electricity / Utility Bill Document')" style="background: #0d9488; color: #ffffff; border: none; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 6px rgba(13,148,136,0.2);">
-                                        👁️ View Bill
+                                        View Bill
                                     </button>
                                 </div>
 
@@ -189,11 +189,10 @@
 <dialog id="kycViewerModal" style="border: none; border-radius: 0; padding: 0; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; margin: 0; background: #ffffff; color: #0f172a; position: fixed; inset: 0; z-index: 99999;">
     <div style="padding: 12px 24px; height: 56px; box-sizing: border-box; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 18px;">📄</span>
             <h4 id="kycModalTitle" style="margin: 0; font-size: 17px; font-weight: 800; color: #0f172a;">KYC Document Preview</h4>
         </div>
         <button type="button" onclick="document.getElementById('kycViewerModal').close()" style="background: #0f172a; border: none; color: #ffffff; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-weight: 800; font-size: 13px; box-shadow: 0 2px 6px rgba(15,23,42,0.15);">
-            ✕ Close Fullscreen Viewer
+            Close Fullscreen Viewer
         </button>
     </div>
     <div style="padding: 0; height: calc(100vh - 56px); width: 100vw; background: #ffffff; overflow: hidden;">

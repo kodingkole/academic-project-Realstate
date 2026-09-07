@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
+        // The original composite unique key also backed the user_id foreign key
+        // on MySQL. Add a dedicated index before replacing that unique key.
+        Schema::table('investor_bookings', function (Blueprint $table) {
+            $table->index('user_id');
+        });
+
         Schema::table('investor_bookings', function (Blueprint $table) {
             $table->dropUnique('investor_bookings_user_id_project_id_unit_no_unique');
             $table->unique(['project_id', 'unit_no']);
@@ -29,6 +35,7 @@ return new class extends Migration {
         });
         Schema::table('investor_bookings', function (Blueprint $table) {
             $table->dropUnique('investor_bookings_project_id_unit_no_unique');
+            $table->dropIndex('investor_bookings_user_id_index');
             $table->unique(['user_id', 'project_id', 'unit_no']);
         });
     }
