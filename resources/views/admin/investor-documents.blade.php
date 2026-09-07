@@ -174,15 +174,18 @@
     {{ $documents->links() }}
 </section>
 
-{{-- Inline Document Preview Modal --}}
-<dialog id="docViewerModal" style="border: 1px solid #cbd5e1; border-radius: 16px; padding: 0; width: 90vw; max-width: 900px; background: #ffffff; color: #0f172a; box-shadow: 0 25px 50px rgba(0,0,0,0.25);">
-    <div style="padding: 16px 20px; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
-        <h4 id="docModalTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #0f172a;">Document Preview</h4>
-        <button type="button" onclick="document.getElementById('docViewerModal').close()" style="background: #ffffff; border: 1px solid #cbd5e1; color: #334155; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-weight: 700;">
-            ✕ Close
+{{-- Inline Fullpage Document Preview Modal --}}
+<dialog id="docViewerModal" style="border: none; border-radius: 0; padding: 0; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; margin: 0; background: #ffffff; color: #0f172a; position: fixed; inset: 0; z-index: 99999;">
+    <div style="padding: 12px 24px; height: 56px; box-sizing: border-box; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">📄</span>
+            <h4 id="docModalTitle" style="margin: 0; font-size: 17px; font-weight: 800; color: #0f172a;">Document Preview</h4>
+        </div>
+        <button type="button" onclick="document.getElementById('docViewerModal').close()" style="background: #0f172a; border: none; color: #ffffff; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-weight: 800; font-size: 13px; box-shadow: 0 2px 6px rgba(15,23,42,0.15);">
+            ✕ Close Fullscreen Viewer
         </button>
     </div>
-    <div style="padding: 0; height: 75vh; background: #ffffff; overflow: hidden;">
+    <div style="padding: 0; height: calc(100vh - 56px); width: 100vw; background: #ffffff; overflow: hidden;">
         <iframe id="docFrame" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
     </div>
 </dialog>

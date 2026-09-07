@@ -185,16 +185,19 @@
     {{ $payments->links() }}
 </section>
 
-{{-- Inline KYC Document Preview Modal --}}
-<dialog id="kycViewerModal" style="border: none; border-radius: 16px; padding: 0; width: 90vw; max-width: 900px; background: #0f172a; color: #fff; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
-    <div style="padding: 16px 20px; background: #1e293b; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #334155;">
-        <h4 id="kycModalTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #38bdf8;">KYC Document Preview</h4>
-        <button type="button" onclick="document.getElementById('kycViewerModal').close()" style="background: rgba(255,255,255,0.1); border: none; color: #fff; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-weight: 700;">
-            ✕ Close
+{{-- Inline Fullpage KYC Document Preview Modal --}}
+<dialog id="kycViewerModal" style="border: none; border-radius: 0; padding: 0; width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; margin: 0; background: #ffffff; color: #0f172a; position: fixed; inset: 0; z-index: 99999;">
+    <div style="padding: 12px 24px; height: 56px; box-sizing: border-box; background: #f8fafc; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">📄</span>
+            <h4 id="kycModalTitle" style="margin: 0; font-size: 17px; font-weight: 800; color: #0f172a;">KYC Document Preview</h4>
+        </div>
+        <button type="button" onclick="document.getElementById('kycViewerModal').close()" style="background: #0f172a; border: none; color: #ffffff; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-weight: 800; font-size: 13px; box-shadow: 0 2px 6px rgba(15,23,42,0.15);">
+            ✕ Close Fullscreen Viewer
         </button>
     </div>
-    <div style="padding: 0; height: 75vh; background: #0f172a; overflow: hidden;">
-        <iframe id="kycFrame" style="width: 100%; height: 100%; border: none;"></iframe>
+    <div style="padding: 0; height: calc(100vh - 56px); width: 100vw; background: #ffffff; overflow: hidden;">
+        <iframe id="kycFrame" style="width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
     </div>
 </dialog>
 
