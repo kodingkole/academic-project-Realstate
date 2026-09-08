@@ -52,7 +52,7 @@
         <div class="footer-bottom">
             © {{ date('Y') }} Intern Estate. Academic Internship Project.
         </div>
-    </footer>
+    @include('partials.ai-assistant')
     @stack('scripts')
 </body>
 </html>

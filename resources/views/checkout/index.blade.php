@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="input-group">
                                     <label>Credit Cardholder Name *</label>
-                                    <input type="text" name="card_holder" id="cardHolder" placeholder="e.g. MOHAMMED RAHMAN" value="{{ auth()->user()->name }}">
+                                    <input type="text" name="card_holder" id="cardHolder" placeholder="e.g. MOHAMMED RAHMAN" value="{{ auth()->user()?->name }}">
                                 </div>
                                 <div class="input-group">
                                     <label>16-Digit Credit Card Number *</label>
@@ -438,7 +438,7 @@
                                         </div>
                                         <div class="input-group">
                                             <label>Cardholder Name *</label>
-                                            <input type="text" id="sslCardHolder" placeholder="e.g. MOHAMMED RAHMAN" value="{{ auth()->user()->name }}">
+                                            <input type="text" id="sslCardHolder" placeholder="e.g. MOHAMMED RAHMAN" value="{{ auth()->user()?->name }}">
                                         </div>
                                         <div class="input-group" style="grid-column: span 2;">
                                             <label>16-Digit Card Number *</label>

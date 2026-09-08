@@ -4566,5 +4566,796 @@ dialog.fullpage-booking-portal[open] {
     text-align: center;
 }
 
+/* ==========================================================================
+   AI Assistant Floating Chatbot Widget Styling
+   ========================================================================== */
+.ai-assistant-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
 
+.ai-launcher-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
+    color: #ffffff;
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: 50px;
+    padding: 10px 20px 10px 14px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
 
+.ai-launcher-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.5), 0 10px 12px -5px rgba(0, 0, 0, 0.4);
+    border-color: #38bdf8;
+}
+
+.ai-launcher-btn.active {
+    background: #0f172a;
+    border-color: #38bdf8;
+}
+
+.ai-launcher-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #38bdf8;
+}
+
+.ai-launcher-badge {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    color: #f8fafc;
+}
+
+.ai-pulse-dot {
+    width: 9px;
+    height: 9px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: aiPulse 1.8s infinite;
+}
+
+@keyframes aiPulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* Chat Modal Window (Clean White Theme) */
+.ai-chat-modal {
+    position: fixed;
+    bottom: 84px;
+    right: 24px;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    height: 530px;
+    max-height: calc(100vh - 120px);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.25), 0 0 20px 0 rgba(2, 132, 199, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10000;
+    animation: aiModalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes aiModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header (White/Light Slate) */
+.ai-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #ffffff;
+    border-bottom: 1.5px solid #f1f5f9;
+}
+
+.ai-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-avatar {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.ai-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.ai-status {
+    font-size: 11px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+}
+
+.ai-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ai-icon-btn {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.ai-icon-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Messages Body (Light Background) */
+.ai-messages-list {
+    flex: 1;
+    padding: 16px;
+    background: #f8fafc;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.ai-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+}
+
+.ai-message.bot {
+    align-self: flex-start;
+}
+
+.ai-message.user {
+    align-self: flex-end;
+}
+
+.ai-msg-bubble {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.55;
+    word-break: break-word;
+}
+
+.ai-message.bot .ai-msg-bubble {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    border-top-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.ai-message.user .ai-msg-bubble {
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    color: #ffffff;
+    border-top-right-radius: 4px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.ai-msg-bubble p {
+    margin: 0 0 6px 0;
+}
+
+.ai-msg-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-msg-bubble strong {
+    color: #0284c7;
+    font-weight: 800;
+}
+
+.ai-message.user .ai-msg-bubble strong {
+    color: #ffffff;
+}
+
+.ai-action-box {
+    margin-top: 10px;
+}
+
+.ai-action-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+    transition: all 0.2s ease;
+}
+
+.ai-action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
+}
+
+/* Suggestion Chips (White/Slate Pill Chips) */
+.ai-suggestions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.ai-chip {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    color: #0284c7;
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.ai-chip:hover {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+}
+
+/* Typing Indicator */
+.ai-typing-indicator {
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #f1f5f9;
+    border-top: 1px solid #e2e8f0;
+}
+
+.ai-typing-indicator .dot {
+    width: 6px;
+    height: 6px;
+    background: #0284c7;
+    border-radius: 50%;
+    animation: aiDotBounce 1.4s infinite ease-in-out both;
+}
+
+.ai-typing-indicator .dot:nth-child(1) { animation-delay: -0.32s; }
+.ai-typing-indicator .dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes aiDotBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+.typing-text {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+/* Input Footer (White Theme) */
+.ai-chat-footer {
+    padding: 12px;
+    background: #ffffff;
+    border-top: 1.5px solid #f1f5f9;
+}
+
+#aiChatForm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-input-field {
+    flex: 1;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.ai-input-field:focus {
+    background: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.ai-send-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.ai-send-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+}
+
+/* ==========================================================================
+   Services Benefits, Trust Standards & Process Timeline Styling
+   ========================================================================== */
+.benefit-card-enhanced {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit-card-enhanced:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.15);
+    border-color: #cbd5e1;
+}
+
+.trust-card-highlight {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border: 1.5px solid #bae6fd;
+}
+
+.trust-icon-badge {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+}
+
+.service-intro {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.benefit-list li {
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 22px;
+}
+
+.benefit-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #0284c7;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.benefit-list li strong {
+    color: #0f172a;
+}
+
+.service-link {
+    display: inline-block;
+    color: #0284c7;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: auto;
+}
+
+.service-link:hover {
+    color: #0369a1;
+    transform: translateX(4px);
+}
+
+/* Detailed Process Timeline Grid */
+.process-grid-detailed {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+    .process-grid-detailed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .process-grid-detailed {
+        grid-template-columns: 1fr;
+    }
+}
+
+.process-card-detailed {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.06);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.process-card-detailed:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -8px rgba(15, 23, 42, 0.12);
+    border-color: #38bdf8;
+}
+
+.process-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.workflow-step-number {
+    align-items: initial;
+    background: transparent;
+    border-radius: 0;
+    display: inline;
+    height: auto;
+    justify-content: initial;
+    font-weight: 900;
+    font-size: 18px;
+    color: #0284c7;
+    width: auto;
+}
+
+.workflow-step-badge {
+    background: #f0f9ff;
+    color: #0284c7;
+    border: 1px solid #e0f2fe;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.process-card-detailed h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 10px 0;
+}
+
+.process-card-detailed p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Public project search and pagination */
+.project-search-form {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    margin: 0 0 28px;
+}
+
+.project-search-form input {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    color: #0f172a;
+    flex: 1;
+    font: inherit;
+    max-width: 460px;
+    padding: 12px 14px;
+}
+
+.project-search-form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(14, 116, 144, .12);
+    outline: 0;
+}
+
+.project-search-form button,
+.project-search-form a {
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 18px;
+}
+
+.project-search-form button {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    color: #fff;
+    cursor: pointer;
+}
+
+.project-search-form a { color: var(--primary); }
+
+.projects-pagination,
+.projects-pagination .page-numbers {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.projects-pagination {
+    justify-content: center;
+    margin-top: 36px;
+}
+
+.projects-pagination a,
+.projects-pagination span {
+    border: 1px solid #dbe4ef;
+    border-radius: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 9px 12px;
+}
+
+.projects-pagination .is-current {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.projects-pagination .is-disabled { color: #94a3b8; }
+
+/* A simple vertical process flow: no cards or boxed layout. */
+.workflow-timeline {
+    counter-reset: workflow;
+    margin: 0 auto;
+    max-width: 850px;
+    position: relative;
+}
+
+.workflow-timeline::before {
+    background: #b9e5df;
+    bottom: 34px;
+    content: '';
+    /* 38px marker + 6px border uses a 24px visual centre. */
+    left: 24px;
+    position: absolute;
+    top: 34px;
+    width: 2px;
+}
+
+.workflow-step {
+    counter-increment: workflow;
+    padding: 0 0 38px 76px;
+    position: relative;
+}
+
+.workflow-step:last-child { padding-bottom: 0; }
+
+.workflow-step::before {
+    background: var(--primary);
+    border: 6px solid #e7f6f3;
+    border-radius: 50%;
+    align-items: center;
+    color: #fff;
+    content: counter(workflow);
+    display: flex;
+    font-size: 14px;
+    font-weight: 800;
+    height: 38px;
+    justify-content: center;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 38px;
+}
+
+.how-it-works-header .center-heading { margin-bottom: 0; }
+
+.how-it-works-section { padding: 32px 0 80px; }
+
+.workflow-step .process-step-header {
+    justify-content: flex-start;
+    gap: 14px;
+    margin: 0 0 8px;
+}
+
+.workflow-step h3 {
+    color: #102a43;
+    font-family: 'Manrope', sans-serif;
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.workflow-step p {
+    color: #52616b;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Keep the three benefits cards compact, readable, and responsive. */
+.benefits-grid {
+    align-items: stretch;
+}
+
+.benefit-card-enhanced {
+    gap: 0;
+    min-width: 0;
+}
+
+.benefit-card-enhanced .service-icon {
+    flex: 0 0 auto;
+}
+
+.benefit-card-enhanced h3,
+.benefit-card-enhanced .service-intro,
+.benefit-card-enhanced .benefit-list {
+    width: 100%;
+}
+
+.benefit-card-enhanced .benefit-list {
+    flex: 0 0 auto;
+}
+
+.benefits-grid .benefit-card-enhanced {
+    display: flex;
+    min-height: 100%;
+}
+
+.benefits-grid .service-link {
+    margin-top: auto;
+}
+
+/* Accessible form labels stay available to screen readers without taking page space. */
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.project-search-form {
+    justify-content: center;
+    width: 100%;
+}
+
+.project-search-form input {
+    flex: 0 1 720px;
+    max-width: 720px;
+}
+
+.project-search-form button { margin-left: 0; }
+
+@media (max-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .benefits-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .process-step-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .project-search-form {
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+
+    .project-search-form input {
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .projects-pagination { flex-wrap: wrap; }
+
+    .workflow-step { padding-left: 62px; }
+
+    .workflow-step h3 { font-size: 18px; }
+}

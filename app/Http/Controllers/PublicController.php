@@ -18,16 +18,21 @@ class PublicController extends Controller
     {
         $projects = [];
         if (\Illuminate\Support\Facades\Schema::hasTable('projects')) {
-            $dbProjects = \App\Models\Project::take(3)->get();
+            $dbProjects = \App\Models\Project::query()
+                ->where('status', 'active')
+                ->latest()
+                ->take(3)
+                ->get();
             if ($dbProjects->count() > 0) {
                 $projects = $dbProjects->map(function ($p) {
+                    $unitCost = $p->total_budget > 0 ? (int) ($p->total_budget / 20) : ($p->estimated_cost ?? 6000000);
                     return [
                         'id' => $p->id,
                         'name' => $p->title,
                         'location' => $p->location,
                         'type' => 'Residential & Commercial',
                         'progress' => $p->progress_percentage,
-                        'price' => 'Starting from ৳' . number_format($p->total_budget / 10) . ' BDT',
+                        'price' => 'Starting from ৳' . number_format($unitCost) . ' BDT',
                     ];
                 })->toArray();
             }
@@ -63,6 +68,39 @@ class PublicController extends Controller
         }
 
         return view('landing', compact('projects'));
+    }
+
+    /**
+     * Dedicated page showing all active projects from database.
+     */
+    public function allProjects(Request $request): View
+    {
+        $search = trim((string) $request->query('search', ''));
+
+        $dbProjects = \App\Models\Project::query()
+            ->whereRaw('LOWER(status) = ?', ['active'])
+            ->when($search !== '', fn ($query) => $query->where('title', 'like', "%{$search}%"))
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+
+        return view('public.projects', compact('dbProjects', 'search'));
+    }
+
+    /**
+     * Dedicated page showing detailed services, investor/landowner benefits & platform trust.
+     */
+    public function services(): View
+    {
+        return view('public.services');
+    }
+
+    /**
+     * Dedicated page showing detailed 4-step process timeline.
+     */
+    public function howItWorks(): View
+    {
+        return view('public.how-it-works');
     }
 
     public function submitLand(): View

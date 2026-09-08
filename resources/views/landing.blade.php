@@ -176,7 +176,7 @@
                     </p>
                 </div>
 
-                <a href="#projects" class="text-link">
+                <a href="{{ route('public.projects') }}" class="text-link">
                     View all projects →
                 </a>
             </div>
@@ -184,7 +184,7 @@
             <div class="project-grid">
                 @foreach($projects as $index => $project)
                     <article class="project-card">
-                        <div class="project-image project-image-{{ $index + 1 }}">
+                        <div class="project-image project-image-{{ ($index % 3) + 1 }}">
                             <span class="project-type">
                                 {{ $project['type'] }}
                             </span>
@@ -270,32 +270,32 @@
             <div class="service-grid">
                 <article class="service-card">
                     <div class="service-icon">01</div>
-                    <h3>Investor Portal</h3>
+                    <h3>Investor Portal & Benefits</h3>
                     <p>
                         Track investments, bookings, payment history,
-                        construction milestones and project updates.
+                        8-12% ROI, 1-3 Yrs EMI and legal title deed updates.
                     </p>
-                    <a href="{{ route('login') }}">Investor access →</a>
+                    <a href="{{ route('public.services') }}">View detailed benefits →</a>
                 </article>
 
                 <article class="service-card">
                     <div class="service-icon">02</div>
-                    <h3>Landowner Portal</h3>
+                    <h3>Landowner JV Portal</h3>
                     <p>
-                        Monitor land submissions, agreements, swap
-                        units, valuations and construction progress.
+                        Monitor land submissions, 50-50 JV agreements, unit swap,
+                        valuations and panel lawyer legal vetting.
                     </p>
-                    <a href="{{ route('login') }}">Landowner access →</a>
+                    <a href="{{ route('public.services') }}">View landowner benefits →</a>
                 </article>
 
                 <article class="service-card">
                     <div class="service-icon">03</div>
-                    <h3>Construction ERP</h3>
+                    <h3>100% Trusted & Compliance</h3>
                     <p>
-                        Manage projects, workforce, materials,
-                        procurement, finance, quality and documents.
+                        RAJUK & City Corp compliance, 256-bit SSL encrypted
+                        payments, automated KYC, and audited ERP logs.
                     </p>
-                    <a href="{{ route('login') }}">ERP access →</a>
+                    <a href="{{ route('public.services') }}">View trust & security standards →</a>
                 </article>
             </div>
         </div>
@@ -306,7 +306,7 @@
         <div class="container">
             <div class="center-heading">
                 <span class="section-badge">Simple Process</span>
-                <h2>From discovery to ownership</h2>
+                <h2>From discovery to deed ownership</h2>
             </div>
 
             <div class="process-grid">
@@ -323,8 +323,8 @@
                     <span>2</span>
                     <h3>Connect</h3>
                     <p>
-                        Submit your interest and communicate with
-                        the project management team.
+                        Submit your interest and choose full or 1-3 years
+                        Credit Card EMI plans.
                     </p>
                 </article>
 
@@ -332,8 +332,8 @@
                     <span>3</span>
                     <h3>Invest</h3>
                     <p>
-                        Reserve a property and track payment records
-                        through your secure portal.
+                        Reserve a property, upload KYC documents, and track
+                        panel lawyer legal audits.
                     </p>
                 </article>
 
@@ -341,10 +341,16 @@
                     <span>4</span>
                     <h3>Monitor</h3>
                     <p>
-                        Follow milestones, construction progress and
-                        important documents in real time.
+                        Receive official ownership deed and follow milestone progress
+                        in real time.
                     </p>
                 </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="{{ route('public.how-it-works') }}" class="text-link" style="font-size: 15px;">
+                    View detailed 4-step workflow guide →
+                </a>
             </div>
         </div>
     </section>

@@ -17,10 +17,10 @@
         </button>
 
         <nav class="nav-links" id="navLinks">
-            <a href="{{ route('landing') }}">Home</a>
-            <a href="{{ route('landing') }}#projects">Projects</a>
-            <a href="{{ route('landing') }}#services">Services</a>
-            <a href="{{ route('landing') }}#process">How It Works</a>
+            <a href="{{ route('landing') }}" class="{{ request()->routeIs('landing') ? 'active' : '' }}">Home</a>
+            <a href="{{ route('public.projects') }}" class="{{ request()->routeIs('public.projects') ? 'active' : '' }}">Projects</a>
+            <a href="{{ route('public.services') }}" class="{{ request()->routeIs('public.services') ? 'active' : '' }}">Services</a>
+            <a href="{{ route('public.how-it-works') }}" class="{{ request()->routeIs('public.how-it-works') ? 'active' : '' }}">How It Works</a>
 
             @auth
                 @php

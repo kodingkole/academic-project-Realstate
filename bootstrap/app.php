@@ -11,6 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->validateCsrfTokens(except: [
+            'api/ai/*',
+            'api/payments/*',
+        ]);
+
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureUserRole::class,
             'portal.role' => \App\Http\Middleware\EnsureUserRole::class,

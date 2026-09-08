@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AiChatController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminModuleController;
 use App\Http\Controllers\AdminInvestorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ErpController;
 use App\Http\Controllers\InvestorAuthController;
 use App\Http\Controllers\InvestorDashboardController;
@@ -23,8 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'landing'])
     ->name('landing');
+Route::get('/projects', [PublicController::class, 'allProjects'])->name('public.projects');
+Route::get('/services', [PublicController::class, 'services'])->name('public.services');
+Route::get('/how-it-works', [PublicController::class, 'howItWorks'])->name('public.how-it-works');
 Route::get('/submit-land', [PublicController::class, 'submitLand'])->name('land.submit');
 Route::post('/submit-land', [PublicController::class, 'submitLandPost'])->name('land.submit.store');
+Route::get('/checkout/{type}/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+Route::post('/api/ai/chat', [AiChatController::class, 'chat'])->name('api.ai.chat');
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +173,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
+    Route::post('/checkout/process', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
     Route::get('/api/notifications', [NotificationApiController::class, 'index'])->name('api.notifications');
     Route::post('/api/notifications/read-all', [NotificationApiController::class, 'markAllRead'])->name('api.notifications.read-all');
     Route::post('/api/notifications/{id}/read', [NotificationApiController::class, 'markRead'])->name('api.notifications.read');
