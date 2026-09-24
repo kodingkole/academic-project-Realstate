@@ -49,14 +49,14 @@ class LandownerAuthController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'phone' => ['required', 'string', 'max:20', 'unique:users,phone'],
+            'phone' => ['required', 'regex:/^01[3-9]\d{8}$/', 'unique:users,phone'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'nid_number' => ['required', 'string', 'min:10', 'max:17', 'unique:users,nid_number'],
-            'deed_khatian_no' => ['required', 'string', 'min:4', 'max:30', 'unique:users,deed_khatian_no'],
+            'nid_number' => ['required', 'regex:/^(?:\d{10}|\d{13}|\d{17})$/', 'unique:users,nid_number'],
             'electricity_bill_no' => ['required', 'string', 'min:6', 'max:25', 'unique:users,electricity_bill_no'],
         ], [
             'nid_number.unique' => 'This NID Number is already registered in our legal land registry.',
-            'deed_khatian_no.unique' => 'This Land Deed / Khatian Number is already registered under another submission.',
+            'nid_number.regex' => 'Enter a valid NID containing exactly 10, 13, or 17 digits.',
+            'phone.regex' => 'Enter an 11-digit Bangladeshi mobile number starting with 013 to 019.',
             'electricity_bill_no.unique' => 'This Electricity / Utility Bill Account Number is already registered.',
             'phone.unique' => 'This Phone Number is already registered.',
             'email.unique' => 'This Email Address is already registered.',
@@ -69,7 +69,6 @@ class LandownerAuthController extends Controller
             'password' => Hash::make($data['password']),
             'role' => 'landowner',
             'nid_number' => trim($data['nid_number']),
-            'deed_khatian_no' => trim($data['deed_khatian_no']),
             'electricity_bill_no' => trim($data['electricity_bill_no']),
         ]);
 

@@ -9,6 +9,7 @@ use App\Models\Lawyer;
 use App\Models\Project;
 use App\Models\JvAgreement;
 use App\Services\ErpIntelligenceService;
+use App\Services\ProjectProgressService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,14 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PortalController extends Controller
 {
-    public function adminDashboard(ErpIntelligenceService $ai): View
+    public function adminDashboard(ErpIntelligenceService $ai, ProjectProgressService $progressService): View
     {
         $projects = Project::with(['milestones','tasks','expenses'])->latest()->get();
         $stats = ['active_projects'=>$projects->where('status','active')->count(), 'budget_spent'=>(float) DB::table('expenses')->sum('amount'), 'active_workers'=>DB::table('attendances')->whereDate('check_in', today())->distinct('worker_name')->count('worker_name'), 'pending_legal'=>LandSubmission::whereIn('status',['submitted','under_review'])->count()];
-        $risks = $projects->map(fn ($project) => ['project'=>$project, 'risk'=>$ai->projectRisk($project), 'spent'=>(float)$project->expenses->sum('amount')]);
+        $risks = $projects->map(function ($project) use ($ai, $progressService): array {
+            $project->progress_percentage = $progressService->percentage($project);
+            return ['project'=>$project, 'risk'=>$ai->projectRisk($project), 'spent'=>(float)$project->expenses->sum('amount'), 'progress'=>$project->progress_percentage];
+        });
         $submissions = LandSubmission::latest()->take(6)->get();
         return view('admin.command-center', compact('stats','risks','submissions'));
     }
@@ -31,6 +35,9 @@ class PortalController extends Controller
     {
         $module = 'projects';
         $records = DB::table('projects')->latest()->limit(50)->get();
+        $records->each(function ($record): void {
+            unset($record->progress_percentage);
+        });
         $projects = Project::orderBy('title')->get();
         $materials = collect();
         $users = DB::table('users')->orderBy('name')->get();
@@ -105,15 +112,15 @@ class PortalController extends Controller
         $this->log('approve','legal','Approved '.$submission->title.' and created active project',$request); return back()->with('success','Submission approved; active project created and added to dashboard.');
     }
     public function rejectSubmission(Request $request, LandSubmission $submission): RedirectResponse { $data=$request->validate(['rejection_reason'=>'nullable|string|max:1000']); $submission->update(['status'=>'rejected','stage'=>'Rejected','rejection_reason'=>$data['rejection_reason']??'Legal requirements were not satisfied.']); $this->log('reject','legal','Rejected '.$submission->title,$request); return back()->with('success','Submission rejected.'); }
-    public function adminAudit(Request $request): View { $logs=ActivityLog::query()->when($request->module,fn($q,$v)=>$q->where('module',$v))->when($request->action,fn($q,$v)=>$q->where('action',$v))->latest('timestamp')->paginate(30)->withQueryString(); return view('admin.audit',compact('logs')); }
+    public function adminAudit(Request $request): View { $logs=ActivityLog::query()->when($request->module,fn($q,$v)=>$q->where('module',$v))->latest('timestamp')->paginate(30)->withQueryString(); return view('admin.audit',compact('logs')); }
     public function exportAuditLog(): StreamedResponse { return response()->streamDownload(function(){ $out=fopen('php://output','w'); fputcsv($out,['Time','User','Action','Module','Description','IP']); ActivityLog::orderBy('timestamp')->chunk(500,fn($rows)=>$rows->each(fn($r)=>fputcsv($out,[$r->timestamp,$r->user_id,$r->action,$r->module,$r->description,$r->ip_address]))); fclose($out); },'audit-log.csv',['Content-Type'=>'text/csv']); }
-    public function landownerDashboard(Request $request): View
+    public function landownerDashboard(Request $request, ProjectProgressService $progressService): View
     {
         $submissions=LandSubmission::with(['agreement','project'])->where('user_id',$request->user()->id)->latest('submitted_at')->get();
         $currentValue=(float)$submissions->sum('asking_price');
         $projectedValue=$submissions->sum(fn($s)=>$s->project ? ((float)$s->project->total_budget*((float)($s->agreement?->landowner_share_pct??40)/100)) : ((float)$s->asking_price*1.35));
         $growth=$currentValue>0?(($projectedValue-$currentValue)/$currentValue)*100:0;
-        $units=$submissions->flatMap(function($s){ return collect($s->agreement?->allocated_flats_json??[])->map(fn($unit)=>['code'=>is_array($unit)?($unit['code']??'-'):$unit,'size'=>is_array($unit)?($unit['size']??'TBA'):'TBA','progress'=>$s->project?->progress_percentage??0,'project'=>$s->project?->title??$s->title]); });
+        $units=$submissions->flatMap(function($s) use ($progressService){ $progress=$s->project ? $progressService->percentage($s->project) : 0; return collect($s->agreement?->allocated_flats_json??[])->map(fn($unit)=>['code'=>is_array($unit)?($unit['code']??'-'):$unit,'size'=>is_array($unit)?($unit['size']??'TBA'):'TBA','progress'=>$progress,'project'=>$s->project?->title??$s->title]); });
         return view('landowner.dashboard',compact('submissions','currentValue','projectedValue','growth','units'));
     }
     public function landownerSubmissions(Request $request): View
@@ -122,5 +129,5 @@ class PortalController extends Controller
         return view('landowner.submissions',compact('submissions'));
     }
     private function log(string $action,string $module,string $description,Request $request): void { ActivityLog::create(['user_id'=>$request->user()?->id,'action'=>$action,'module'=>$module,'description'=>$description,'ip_address'=>$request->ip(),'timestamp'=>now()]); }
-    private function modules(): array { return ['projects'=>['title'=>'Projects & AI Schedule','desc'=>'Milestones, delivery velocity and delay risk'],'tasks'=>['title'=>'Task Breakdown','desc'=>'Assignments, priorities and progress'],'inventory'=>['title'=>'Inventory & Auto-Reorder','desc'=>'Stock ledger and material demand'],'procurement'=>['title'=>'Procurement','desc'=>'Requests, quotations and POs'],'workforce'=>['title'=>'Workforce & Payroll','desc'=>'QR attendance and monthly payroll'],'finance'=>['title'=>'Finance','desc'=>'Expense categories and budget overruns'],'site-progress'=>['title'=>'Site Progress','desc'=>'Daily reports and photo timeline'],'inspections'=>['title'=>'Quality & Safety','desc'=>'Inspection results and corrective actions'],'documents'=>['title'=>'Document Control','desc'=>'Versioned drawings and approvals'],'equipment'=>['title'=>'Equipment Fleet','desc'=>'Utilization and maintenance due dates']]; }
+    private function modules(): array { return ['projects'=>['title'=>'Projects','desc'=>'Project records, milestones and delivery status'],'tasks'=>['title'=>'Task Breakdown','desc'=>'Assignments, priorities and progress'],'inventory'=>['title'=>'Inventory','desc'=>'Stock ledger and material demand'],'procurement'=>['title'=>'Procurement','desc'=>'Requests, quotations and POs'],'workforce'=>['title'=>'Workforce & Payroll','desc'=>'QR attendance and monthly payroll'],'finance'=>['title'=>'Finance','desc'=>'Expense categories and budget overruns'],'site-progress'=>['title'=>'Site Progress','desc'=>'Daily reports and photo timeline'],'inspections'=>['title'=>'Quality & Safety','desc'=>'Inspection results and corrective actions'],'documents'=>['title'=>'Document Control','desc'=>'Versioned drawings and approvals'],'equipment'=>['title'=>'Equipment Fleet','desc'=>'Utilization and maintenance due dates']]; }
 }

@@ -158,7 +158,7 @@ class CheckoutController extends Controller
         InvestorNotification::create([
             'user_id' => $user->id,
             'title' => 'Payment Request Submitted',
-            'message' => 'Your payment request of ৳' . number_format($validated['amount']) . ' (' . $planLabel . ') for ' . ($project?->title ?? 'Project') . ' has been received. Status: Under Admin Review.',
+            'message' => 'Your payment request of BDT ' . number_format($validated['amount']) . ' (' . $planLabel . ') for ' . ($project?->title ?? 'Project') . ' has been received. Status: Under Admin Review.',
             'type' => 'payment',
         ]);
 

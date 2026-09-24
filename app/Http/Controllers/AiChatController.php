@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class AiChatController extends Controller
 {
     /**
-     * Process incoming AI Assistant chat query and return contextual responses.
+     * Process incoming chat queries and return contextual responses.
      */
     public function chat(Request $request): JsonResponse
     {
@@ -39,7 +39,7 @@ class AiChatController extends Controller
             $sqft = $this->extractNumber($lowerMsg) ?? 1450;
             if ($sqft < 100) { $sqft = $sqft * 100; } // Handle shortcut numbers like 14 => 1400
 
-            $reply = "**AI Property Size & Valuation Analysis:**\n" .
+            $reply = "**Property Size & Valuation Analysis:**\n" .
                      "For a flat/unit size of ~" . number_format($sqft) . " Sq Ft, here is our smart estimate and project matching:\n\n";
 
             foreach ($projects->take(3) as $p) {
@@ -62,7 +62,7 @@ class AiChatController extends Controller
 
         // Intent 2: Plot / Project Recommendation & Location Choice
         } elseif (Str::contains($lowerMsg, ['plot', 'recommend', 'best', 'location', 'bashundhara', 'uttara', 'dhanmondi', 'gazipur', 'dhaka', 'where'])) {
-            $reply = "**AI Recommended Best Locations & Projects:**\n" .
+            $reply = "**Recommended Locations & Projects:**\n" .
                      "Based on capital growth potential, location accessibility, and legal title safety, here are our top picks:\n\n";
 
             $rank = 1;
@@ -113,7 +113,7 @@ class AiChatController extends Controller
                 });
 
                 if ($matchingProjects->isNotEmpty()) {
-                    $reply = "**AI Investment Matcher:**\nBased on your budget (~BDT " . number_format($budget < 1000 ? $budget . ' Lakh' : $budget) . "), here are top recommended verified projects:\n\n";
+                    $reply = "**Investment Options:**\nBased on your budget (~BDT " . number_format($budget < 1000 ? $budget . ' Lakh' : $budget) . "), here are top recommended verified projects:\n\n";
                     foreach ($matchingProjects->take(3) as $p) {
                         $unitCost = $p->total_budget > 0 ? (int) ($p->total_budget / 20) : ($p->estimated_cost ?? 6000000);
                         $reply .= "• **" . $p->title . "** (" . $p->location . ")\n  - Share Valuation: **BDT " . number_format($unitCost) . "**\n  - Status: " . ucfirst($p->status) . "\n\n";
@@ -125,7 +125,7 @@ class AiChatController extends Controller
                         'url' => route('checkout.show', ['type' => 'project', 'id' => $firstProj->id]),
                     ];
                 } else {
-                    $reply = "**AI Property Recommendation:**\nWe currently have prime real estate developments in Dhaka starting from BDT 42-60 Lakh per share. Would you like to inspect our active portfolio?";
+                    $reply = "**Property Recommendation:**\nWe currently have prime real estate developments in Dhaka starting from BDT 42-60 Lakh per share. Would you like to inspect our active portfolio?";
                 }
             } else {
                 $reply = "**Intern Estate Active Projects Portfolio:**\nWe have " . $projects->count() . " active construction & real estate developments:\n\n";
@@ -146,8 +146,8 @@ class AiChatController extends Controller
 
         // Intent 5: EMI / Installments / Payment Plans
         } elseif (Str::contains($lowerMsg, ['emi', 'installment', 'payment', 'bkash', 'nagad', 'bank', 'card', 'credit card', 'pay', 'monthly'])) {
-            $reply = "**AI Payment & Installment Guidance:**\nIntern Estate offers flexible payment solutions:\n\n" .
-                     "1. **Full One-Time Payment**: Instant booking confirmation via bKash, Nagad, SSLCommerz, or Bank Transfer.\n" .
+            $reply = "**Payment & Installment Guidance:**\nIntern Estate offers flexible payment solutions:\n\n" .
+                     "1. **Full One-Time Payment**: Instant booking confirmation via bKash, Nagad, Rocket, or Bank Transfer.\n" .
                      "2. **1-3 Years EMI Installments**: Backed by Credit Card guarantee (City Bank Amex, BRAC Bank, EBL, SCB, DBBL).\n" .
                      "3. **Verification**: All payments undergo automatic 256-bit encryption & Admin audit review before final deed issue.\n\n" .
                      "Would you like to initiate booking for a project share?";
@@ -186,7 +186,7 @@ class AiChatController extends Controller
 
         // Intent 8: Default Greeting & General Support
         } else {
-            $reply = "Hello! I am your **Intern Estate Smart AI Assistant**.\n\nI can help you with:\n" .
+            $reply = "Hello! Welcome to **Intern Estate**.\n\nI can help you with:\n" .
                      "• Finding projects matching your exact budget (e.g. 50 lakh)\n" .
                      "• Estimating flat cost by Sq Ft size (e.g. 1500 sqft)\n" .
                      "• Recommending prime plot locations & slot benefits\n" .

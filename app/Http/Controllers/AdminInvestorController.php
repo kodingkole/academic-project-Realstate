@@ -41,17 +41,20 @@ class AdminInvestorController extends Controller
                 $updates = ['missed_installments' => 0];
                 if ($remaining <= 0) {
                     $updates += ['status' => 'paid_in_full', 'next_payment_date' => null];
-                } elseif ($payment->payment_type === 'installment' && $booking->installment_day) {
-                    $nextMonth = now()->addMonthNoOverflow();
-                    $day = (int) $booking->installment_day;
-                    $updates['next_payment_date'] = $nextMonth->day(min($day, $nextMonth->daysInMonth))->toDateString();
+                } elseif ($payment->payment_type === 'installment') {
+                    $baseDue = ($booking->next_payment_date && \Carbon\Carbon::parse($booking->next_payment_date)->isFuture())
+                        ? \Carbon\Carbon::parse($booking->next_payment_date)
+                        : now();
+                    $nextDue = $baseDue->copy()->addDays(30);
+                    $updates['next_payment_date'] = $nextDue->toDateString();
+                    $updates['installment_day'] = $nextDue->day;
                 }
                 $booking->update($updates);
             }
             InvestorNotification::create([
                 'user_id' => $payment->user_id,
                 'title' => 'Payment confirmed',
-                'message' => 'Your payment of ৳'.number_format((float) $payment->amount).' for '.$payment->project->title.' has been confirmed.',
+                'message' => 'Your payment of BDT '.number_format((float) $payment->amount).' for '.$payment->project->title.' has been confirmed.',
                 'type' => 'payment',
             ]);
         });
@@ -75,6 +78,28 @@ class AdminInvestorController extends Controller
         });
 
         return back()->with('success', 'Payment rejected and the investor has been notified.');
+    }
+
+    public function unblockBooking(Request $request, InvestorBooking $booking): RedirectResponse
+    {
+        $newDueDate = now()->addDays(30)->toDateString();
+
+        $booking->update([
+            'status' => 'reserved',
+            'missed_installments' => 0,
+            'forfeited_at' => null,
+            'next_payment_date' => $newDueDate,
+            'installment_day' => \Carbon\Carbon::parse($newDueDate)->day,
+        ]);
+
+        InvestorNotification::create([
+            'user_id' => $booking->user_id,
+            'title' => 'Plot / Flat Unblocked by Admin',
+            'message' => 'Admin has approved unblocking for Unit '.$booking->unit_no.' ('.$booking->project->title.'). Next installment due date extended to '.$newDueDate.'.',
+            'type' => 'legal',
+        ]);
+
+        return back()->with('success', 'Unit '.$booking->unit_no.' has been unblocked. Next due date extended to '.$newDueDate.'.');
     }
 
     public function downloadDocument(InvestorPayment $payment, string $type)

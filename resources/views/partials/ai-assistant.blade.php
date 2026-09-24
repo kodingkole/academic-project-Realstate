@@ -1,9 +1,9 @@
-{{-- Floating AI Assistant Widget --}}
+{{-- Floating Intern Estate help widget --}}
 <div id="aiAssistantContainer" class="ai-assistant-container">
     
     {{-- Launcher Button --}}
-    <button type="button" id="aiAssistantLauncher" class="ai-launcher-btn" onclick="toggleAiModal()" aria-label="Open Intern Estate AI Assistant">
-        <span class="ai-launcher-badge">InternEstate AI</span>
+    <button type="button" id="aiAssistantLauncher" class="ai-launcher-btn" onclick="toggleAiModal()" aria-label="Open Intern Estate">
+        <span class="ai-launcher-badge">Intern Estate</span>
         <span class="ai-pulse-dot"></span>
     </button>
 
@@ -14,9 +14,9 @@
         <div class="ai-chat-header">
             <div class="ai-header-info">
                 <div>
-                    <h4 class="ai-title">Intern Estate AI Assistant</h4>
+                    <h4 class="ai-title">Intern Estate</h4>
                     <span class="ai-status">
-                        <span class="status-dot"></span> Online • Real Estate Intelligence
+                        <span class="status-dot"></span> Online • Property Support
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             {{-- Initial Bot Welcome Message --}}
             <div class="ai-message bot">
                 <div class="ai-msg-bubble">
-                    <p>Hello! I am your <strong>Intern Estate Smart AI Assistant</strong>.</p>
+                    <p>Hello! Welcome to <strong>Intern Estate</strong>.</p>
                     <p>Ask me anything about active investment projects, 1-3 year Credit Card EMI plans, or land joint-ventures!</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
-            <span class="typing-text">AI is searching live real estate data...</span>
+            <span class="typing-text">Searching live real estate data...</span>
         </div>
 
         {{-- Input Footer --}}
@@ -74,7 +74,7 @@
                     type="text" 
                     id="aiInputMessage" 
                     class="ai-input-field" 
-                    placeholder="Ask AI about projects, budget, EMI..." 
+                    placeholder="Ask about projects, budget, EMI..." 
                     autocomplete="off"
                     required
                 >
@@ -88,7 +88,7 @@
 
 </div>
 
-{{-- Inline Client-Side AI Script with Smooth Typewriter Effect --}}
+{{-- Inline client-side chat script with a typewriter effect --}}
 <script>
     function toggleAiModal() {
         const modal = document.getElementById('aiChatModal');
@@ -159,9 +159,9 @@
             }
 
         } catch (error) {
-            console.error('AI Chat Error:', error);
+            console.error('Intern Estate chat error:', error);
             indicator.style.display = 'none';
-            appendMessage("Unable to connect to AI server. Please check your network connection.", 'bot');
+            appendMessage("Unable to connect to Intern Estate. Please check your network connection.", 'bot');
         }
     }
 

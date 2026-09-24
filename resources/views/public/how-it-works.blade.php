@@ -27,7 +27,7 @@
                     </div>
                     <h3>1. Explore & Match Property</h3>
                     <p>
-                        Browse verified residential & commercial developments based on location (Uttara, Bashundhara, Dhanmondi, Gazipur), unit size (Sq Ft), and budget. Use our AI Assistant to find your ideal share.
+                        Browse verified residential & commercial developments based on location (Uttara, Bashundhara, Dhanmondi, Gazipur), unit size (Sq Ft), and budget. Use our Smart Assistant to find your ideal share.
                     </p>
                 </article>
 
@@ -38,7 +38,7 @@
                     </div>
                     <h3>2. Choose Payment</h3>
                     <p>
-                        Select full one-time payment or 1-3 years Credit Card EMI plans via SSLCommerz, bKash, Nagad, or Bank Transfer. Upload required NID, Tax TIN certificate, and utility bill proof.
+                        Select full one-time payment or flexible installment plans via bKash, Nagad, Rocket, or Bank Transfer. Upload required NID, Tax TIN certificate, and utility bill proof.
                     </p>
                 </article>
 

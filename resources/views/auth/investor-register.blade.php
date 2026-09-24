@@ -84,13 +84,13 @@
                 <div class="form-row-2col">
                     <div class="form-group">
                         <label for="phone">Mobile Phone Number</label>
-                        <input id="phone" type="text" name="phone" value="{{ old('phone') }}" placeholder="e.g. +8801700000000" required class="@error('phone') input-error @enderror">
+                        <input id="phone" type="tel" name="phone" value="{{ old('phone') }}" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" maxlength="11" inputmode="numeric" title="Use an 11-digit Bangladeshi number starting with 013 to 019." required class="@error('phone') input-error @enderror">
                         @error('phone')<p class="error-message">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="form-group">
                         <label for="nid_number">National ID (NID) Number</label>
-                        <input id="nid_number" type="text" name="nid_number" value="{{ old('nid_number') }}" placeholder="10 to 17 digit NID No." required class="@error('nid_number') input-error @enderror">
+                        <input id="nid_number" type="text" name="nid_number" value="{{ old('nid_number') }}" placeholder="10, 13, or 17 digit NID" pattern="([0-9]{10}|[0-9]{13}|[0-9]{17})" minlength="10" maxlength="17" inputmode="numeric" title="Enter a 10, 13, or 17 digit NID number." required class="@error('nid_number') input-error @enderror">
                         @error('nid_number')<p class="error-message">{{ $message }}</p>@enderror
                     </div>
                 </div>

@@ -159,7 +159,7 @@
                 </a>
 
                 <a href="{{ route('admin.modules.create', 'finance') }}">
-                    <span>৳</span>
+                    <span>BDT</span>
                     Add project expense
                 </a>
             </div>

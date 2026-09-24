@@ -28,8 +28,10 @@ Route::get('/', [PublicController::class, 'landing'])
 Route::get('/projects', [PublicController::class, 'allProjects'])->name('public.projects');
 Route::get('/services', [PublicController::class, 'services'])->name('public.services');
 Route::get('/how-it-works', [PublicController::class, 'howItWorks'])->name('public.how-it-works');
-Route::get('/submit-land', [PublicController::class, 'submitLand'])->name('land.submit');
-Route::post('/submit-land', [PublicController::class, 'submitLandPost'])->name('land.submit.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/submit-land', [PublicController::class, 'submitLand'])->name('land.submit');
+    Route::post('/submit-land', [PublicController::class, 'submitLandPost'])->name('land.submit.store');
+});
 Route::get('/checkout/{type}/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 Route::post('/api/ai/chat', [AiChatController::class, 'chat'])->name('api.ai.chat');
 
@@ -92,10 +94,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/portal/admin/audit', [PortalController::class, 'adminAudit'])->name('admin.audit');
     Route::get('/portal/admin/investor-documents', [InvestorDocumentController::class, 'manage'])->name('admin.investor-documents');
     Route::post('/portal/admin/investor-documents', [InvestorDocumentController::class, 'store'])->name('admin.investor-documents.store');
+    Route::get('/portal/admin/investor-documents/{document}/preview', [InvestorDocumentController::class, 'preview'])->name('admin.investor-documents.preview');
+    Route::get('/portal/admin/investor-documents/{document}/download', [InvestorDocumentController::class, 'download'])->name('admin.investor-documents.download');
     Route::get('/portal/admin/investors', [AdminInvestorController::class, 'index'])->name('admin.investors');
     Route::get('/portal/admin/investor-payments/{payment}/document/{type}', [AdminInvestorController::class, 'downloadDocument'])->name('admin.investor-payments.document');
     Route::patch('/portal/admin/investor-payments/{payment}/approve', [AdminInvestorController::class, 'approvePayment'])->name('admin.investor-payments.approve');
     Route::patch('/portal/admin/investor-payments/{payment}/reject', [AdminInvestorController::class, 'rejectPayment'])->name('admin.investor-payments.reject');
+    Route::post('/portal/admin/investor-bookings/{booking}/unblock', [AdminInvestorController::class, 'unblockBooking'])->name('admin.investor-bookings.unblock');
 
     Route::prefix('/portal/admin/{module}')
         ->whereIn('module', array_keys(AdminModuleController::MODULES))
@@ -118,16 +123,20 @@ Route::prefix('erp')->middleware(['auth', 'portal.role:admin', 'erp.module:dashb
     Route::get('/tasks', fn (ErpController $controller, \App\Services\ErpIntelligenceService $ai) => $controller->index('tasks', $ai))->name('erp.tasks');
     Route::post('/tasks', [ErpController::class, 'storeTask'])->name('erp.tasks.store');
     Route::post('/tasks/{task}/progress', [ErpController::class, 'updateTaskProgress'])->name('erp.tasks.progress');
+    Route::post('/tasks/{task}/simulate-day', [ErpController::class, 'simulateTaskProgress'])->name('erp.tasks.simulate-day');
     Route::put('/tasks/{task}', [ErpController::class, 'updateTask'])->name('erp.tasks.update');
     Route::delete('/tasks/{task}', [ErpController::class, 'destroyTask'])->name('erp.tasks.destroy');
+    Route::post('/tasks/generate-standard', [ErpController::class, 'generateStandardTasks'])->name('erp.tasks.generate');
     Route::get('/inventory', fn (ErpController $controller, \App\Services\ErpIntelligenceService $ai) => $controller->index('inventory', $ai))->name('erp.inventory');
     Route::post('/inventory/materials', [ErpController::class, 'storeMaterial'])->name('erp.inventory.materials');
     Route::post('/inventory/transaction', [ErpController::class, 'stockTransaction'])->name('erp.inventory.transaction');
     Route::post('/inventory/auto-reorder', [ErpController::class, 'autoReorder'])->name('erp.inventory.reorder');
+    Route::post('/inventory/requirements', [ErpController::class, 'saveMaterialRequirement'])->name('erp.inventory.requirements');
     Route::put('/inventory/materials/{material}', [ErpController::class, 'updateMaterial'])->name('erp.inventory.materials.update');
     Route::delete('/inventory/materials/{material}', [ErpController::class, 'destroyMaterial'])->name('erp.inventory.materials.destroy');
     Route::get('/finance', fn (ErpController $controller, \App\Services\ErpIntelligenceService $ai) => $controller->index('finance', $ai))->name('erp.finance');
     Route::post('/finance/expenses', [ErpController::class, 'storeExpense'])->name('erp.finance.expenses');
+    Route::post('/finance/procurement/{requestId}/approve', [ErpController::class, 'approvePurchaseRequest'])->name('erp.finance.procurement.approve');
     foreach (['procurement','workforce','site-progress','inspections','documents','equipment'] as $module) {
         Route::get('/'.$module, fn (ErpController $controller, \App\Services\ErpIntelligenceService $ai) => $controller->index($module, $ai))->name('erp.'.$module);
         Route::post('/'.$module, fn (\Illuminate\Http\Request $request, ErpController $controller) => $controller->genericStore($request, $module))->name('erp.'.$module.'.store');
@@ -135,12 +144,13 @@ Route::prefix('erp')->middleware(['auth', 'portal.role:admin', 'erp.module:dashb
     Route::post('/workforce/generate-payroll', [ErpController::class, 'generatePayroll'])->name('erp.workforce.payroll');
     Route::post('/procurement/suppliers', [ErpController::class, 'storeSupplier'])->name('erp.procurement.suppliers');
     Route::post('/procurement/purchase-requests', [ErpController::class, 'storePurchaseRequest'])->name('erp.procurement.requests');
+    Route::patch('/procurement/purchase-requests/{requestId}/status', [ErpController::class, 'updatePurchaseRequestStatus'])->name('erp.procurement.requests.status');
     Route::post('/procurement/purchase-orders', [ErpController::class, 'createPurchaseOrder'])->name('erp.procurement.orders');
-    Route::post('/workforce/qr-attendance', [ErpController::class, 'recordQrAttendance'])->name('erp.workforce.attendance');
     Route::post('/site-progress/reports', [ErpController::class, 'storeReport'])->name('erp.site-progress.reports');
     Route::post('/inspections/report', [ErpController::class, 'storeInspection'])->name('erp.inspections.report');
     Route::post('/documents/upload', [ErpController::class, 'storeDocument'])->name('erp.documents.upload');
     Route::post('/equipment/register', [ErpController::class, 'storeEquipment'])->name('erp.equipment.register');
+    Route::post('/equipment/usage', [ErpController::class, 'useEquipment'])->name('erp.equipment.usage');
 });
 
 Route::middleware(['auth', 'role:investor'])->group(function () {
@@ -154,7 +164,10 @@ Route::middleware(['auth', 'role:investor'])->group(function () {
     Route::get('/portal/investor/documents/{document}/download', [InvestorDocumentController::class, 'download'])->name('investor.documents.download');
     Route::get('/portal/investor/documents/{document}/preview', [InvestorDocumentController::class, 'preview'])->name('investor.documents.preview');
     Route::post('/portal/investor/bookings/reserve', [InvestorDashboardController::class, 'reserve'])->name('investor.reserve');
+    Route::post('/portal/investor/bookings/{booking}/request-unblock', [InvestorDashboardController::class, 'requestUnblock'])->name('investor.bookings.request-unblock');
     Route::post('/portal/investor/payments/initiate', [InvestorDashboardController::class, 'pay'])->name('investor.pay');
+    Route::get('/portal/investor/payment-gateway', [InvestorDashboardController::class, 'paymentGateway'])->name('investor.payment-gateway');
+    Route::post('/portal/investor/payment-gateway/process', [InvestorDashboardController::class, 'processGatewayPayment'])->name('investor.payment-gateway.process');
     Route::get('/portal/investor/payments/{payment}/invoice', [InvestorDashboardController::class, 'invoice'])->name('investor.invoice');
 });
 

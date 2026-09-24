@@ -22,7 +22,7 @@
                 <div class="checklist-header">
                     <span class="checklist-badge landowner">LANDOWNER REQUIRED CHECKLIST</span>
                     <h4>What documents are required to register?</h4>
-                    <p>Please ensure you have the following 4 verified property details ready before filling out this form:</p>
+                    <p>Please have your identity and contact details ready before filling out this form:</p>
                 </div>
                 <div class="checklist-items-grid">
                     <div class="checklist-item">
@@ -35,19 +35,12 @@
                     <div class="checklist-item">
                         <span class="item-num landowner">2</span>
                         <div>
-                            <strong>Land Deed / Khatian No.</strong>
-                            <small>Deed No / CS/RS/BS Khatian Record</small>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <span class="item-num landowner">3</span>
-                        <div>
                             <strong>Electricity / Utility Bill No.</strong>
                             <small>DESCO / DPDC / NESCO Bill No.</small>
                         </div>
                     </div>
                     <div class="checklist-item">
-                        <span class="item-num landowner">4</span>
+                        <span class="item-num landowner">3</span>
                         <div>
                             <strong>Active Phone & Email</strong>
                             <small>For legal counsel & JV contract updates</small>
@@ -69,7 +62,7 @@
 
                 <div class="form-row-2col">
                     <div class="form-group">
-                        <label for="name">Full Name (Matching Deed / NID)</label>
+                        <label for="name">Full Name (Matching NID)</label>
                         <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rafiqul Islam" required autofocus class="@error('name') input-error @enderror">
                         @error('name')<p class="error-message">{{ $message }}</p>@enderror
                     </div>
@@ -84,24 +77,18 @@
                 <div class="form-row-2col">
                     <div class="form-group">
                         <label for="phone">Mobile Phone Number</label>
-                        <input id="phone" type="text" name="phone" value="{{ old('phone') }}" placeholder="e.g. +8801700000000" required class="@error('phone') input-error @enderror">
+                        <input id="phone" type="tel" name="phone" value="{{ old('phone') }}" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" maxlength="11" inputmode="numeric" title="Use an 11-digit Bangladeshi number starting with 013 to 019." required class="@error('phone') input-error @enderror">
                         @error('phone')<p class="error-message">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="form-group">
                         <label for="nid_number">National ID (NID) Number</label>
-                        <input id="nid_number" type="text" name="nid_number" value="{{ old('nid_number') }}" placeholder="10 to 17 digit NID No." required class="@error('nid_number') input-error @enderror">
+                        <input id="nid_number" type="text" name="nid_number" value="{{ old('nid_number') }}" placeholder="10, 13, or 17 digit NID" pattern="([0-9]{10}|[0-9]{13}|[0-9]{17})" minlength="10" maxlength="17" inputmode="numeric" title="Enter a 10, 13, or 17 digit NID number." required class="@error('nid_number') input-error @enderror">
                         @error('nid_number')<p class="error-message">{{ $message }}</p>@enderror
                     </div>
                 </div>
 
                 <div class="form-row-2col">
-                    <div class="form-group">
-                        <label for="deed_khatian_no">Land Deed / Khatian Number</label>
-                        <input id="deed_khatian_no" type="text" name="deed_khatian_no" value="{{ old('deed_khatian_no') }}" placeholder="Deed No / CS/RS/BS Khatian No." required class="@error('deed_khatian_no') input-error @enderror">
-                        @error('deed_khatian_no')<p class="error-message">{{ $message }}</p>@enderror
-                    </div>
-
                     <div class="form-group">
                         <label for="electricity_bill_no">Electricity / Utility Bill Account No</label>
                         <input id="electricity_bill_no" type="text" name="electricity_bill_no" value="{{ old('electricity_bill_no') }}" placeholder="e.g. DESCO / DPDC / NESCO Bill No." required class="@error('electricity_bill_no') input-error @enderror">

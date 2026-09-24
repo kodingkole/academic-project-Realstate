@@ -19,7 +19,7 @@
         <div style="display: grid; gap: 18px; grid-template-columns: 1fr 1fr 1fr;">
             <div class="input-group">
                 <label style="color: #334155; font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Assign to Investor *</label>
-                <select name="user_id" required style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 9px; color: #0f172a; font-size: 13px; padding: 11px 14px; width: 100%;">
+                <select id="documentInvestorSelect" name="user_id" required style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 9px; color: #0f172a; font-size: 13px; padding: 11px 14px; width: 100%;">
                     <option value="">Select investor</option>
                     @foreach($investors as $investor)
                         <option value="{{ $investor->id }}">{{ $investor->name }} ({{ $investor->email }})</option>
@@ -28,12 +28,9 @@
             </div>
 
             <div class="input-group">
-                <label style="color: #334155; font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Linked Project (Optional)</label>
-                <select name="project_id" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 9px; color: #0f172a; font-size: 13px; padding: 11px 14px; width: 100%;">
+                <label style="color: #334155; font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Investor's Project (Optional)</label>
+                <select id="documentProjectSelect" name="project_id" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 9px; color: #0f172a; font-size: 13px; padding: 11px 14px; width: 100%;">
                     <option value="">Not project-specific</option>
-                    @foreach($projects as $project)
-                        <option value="{{ $project->id }}">{{ $project->title }}</option>
-                    @endforeach
                 </select>
             </div>
 
@@ -111,7 +108,7 @@
         {{-- Submit Button --}}
         <div>
             <button type="submit" class="erp-button" style="background: #0f172a; color: #ffffff; border: none; border-radius: 10px; font-size: 14px; font-weight: 800; padding: 13px 28px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(15,23,42,0.12); transition: all 0.2s;">
-                <span>📁 Upload Documents (3 Slots)</span>
+                <span>Upload Documents (3 Slots)</span>
             </button>
         </div>
     </form>
@@ -156,10 +153,10 @@
                         </td>
                         <td style="padding: 14px 12px;">
                             <div style="display: flex; gap: 8px;">
-                                <button type="button" onclick="previewDocModal('{{ route('investor.documents.preview', $document) }}', '{{ $document->title }}')" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">
+                                <button type="button" onclick="previewDocModal('{{ route('admin.investor-documents.preview', $document) }}', '{{ $document->title }}')" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">
                                     View PDF / Picture
                                 </button>
-                                <a href="{{ route('investor.documents.download', $document) }}" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;">
+                                <a href="{{ route('admin.investor-documents.download', $document) }}" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;">
                                     Download
                                 </a>
                             </div>
@@ -191,6 +188,26 @@
 
 @push('scripts')
 <script>
+(() => {
+    const investorSelect = document.getElementById('documentInvestorSelect');
+    const projectSelect = document.getElementById('documentProjectSelect');
+    if (!investorSelect || !projectSelect) return;
+
+    const investorProjects = {{ Illuminate\Support\Js::from($investorProjects) }};
+    const updateProjects = () => {
+        projectSelect.replaceChildren(new Option('Not project-specific', ''));
+        const projects = investorProjects[investorSelect.value] || [];
+        projects.forEach((project) => projectSelect.add(new Option(project.title, project.id)));
+        if (projects.length === 0) {
+            projectSelect.add(new Option('This investor has no active project investments', '', true, true));
+            projectSelect.options[1].disabled = true;
+        }
+    };
+
+    investorSelect.addEventListener('change', updateProjects);
+    updateProjects();
+})();
+
 function previewDocModal(url, title) {
     let modal = document.getElementById('docViewerModal');
     let frame = document.getElementById('docFrame');
@@ -203,4 +220,3 @@ function previewDocModal(url, title) {
 </script>
 @endpush
 @endsection
-

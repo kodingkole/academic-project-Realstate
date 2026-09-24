@@ -31,6 +31,7 @@
                 @forelse($dbProjects as $index => $project)
                     @php
                         $unitCost = $project->total_budget > 0 ? (int) ($project->total_budget / 20) : ($project->estimated_cost ?? 6000000);
+                        $projectProgress = app(\App\Services\ProjectProgressService::class)->percentage($project);
                     @endphp
                     <article class="project-card">
                         <div class="project-image project-image-{{ ($index % 3) + 1 }}">
@@ -53,20 +54,20 @@
                             <h3>{{ $project->title }}</h3>
 
                             <p class="project-price">
-                                Starting from ৳{{ number_format($unitCost) }} BDT
+                                Starting from BDT {{ number_format($unitCost) }}
                             </p>
 
                             <div class="progress-information">
                                 <span>Construction progress</span>
                                 <strong>
-                                    {{ $project->progress_percentage }}%
+                                    {{ $projectProgress }}%
                                 </strong>
                             </div>
 
                             <div class="progress-track">
                                 <div
                                     class="progress-bar"
-                                    style="width: {{ $project->progress_percentage }}%"
+                                    style="width: {{ $projectProgress }}%"
                                 ></div>
                             </div>
 

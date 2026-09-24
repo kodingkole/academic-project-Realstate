@@ -15,7 +15,7 @@
                 <td><strong>{{ $record->title }}</strong><small>{{ $record->details }}</small></td>
                 <td><span class="table-status">{{ $record->status }}</span></td>
                 <td>{{ $record->quantity ?? '—' }}</td>
-                <td>{{ $record->amount !== null ? '৳'.number_format((float) $record->amount, 2) : '—' }}</td>
+                <td>{{ $record->amount !== null ? 'BDT '.number_format((float) $record->amount) : '—' }}</td>
                 <td>{{ $record->due_date?->format('d M Y') ?? '—' }}</td>
                 <td><div class="module-actions">
                     <a href="{{ route('admin.modules.edit', [$module, $record]) }}">Edit</a>

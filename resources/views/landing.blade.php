@@ -4,6 +4,8 @@
 
 @section('content')
 
+    @php($featuredProject = $projects[0] ?? null)
+
     {{-- Hero Section --}}
     <section class="hero-section">
         <div class="hero-overlay"></div>
@@ -41,22 +43,19 @@
 
                 <div class="hero-trust">
                     <div>
-                        <strong>12+</strong>
+                        <strong>{{ $activeProjects }}</strong>
                         <span>Active Projects</span>
                     </div>
 
                     <div>
-                        <strong>146+</strong>
+                        <strong>{{ $investors }}</strong>
                         <span>Investors</span>
                     </div>
 
-                    <div>
-                        <strong>98%</strong>
-                        <span>Client Satisfaction</span>
-                    </div>
                 </div>
             </div>
 
+            @if($featuredProject)
             <div class="hero-card">
                 <div class="hero-card-header">
                     <span>Featured Investment</span>
@@ -66,13 +65,14 @@
                 <div class="property-visual">
                     <div class="building building-one"></div>
                     <div class="building building-two"></div>
-                    <div class="building building-three"></div>
+
+
                 </div>
 
                 <div class="hero-card-body">
-                    <p class="small-label">UTTARA, DHAKA</p>
+                    <p class="small-label">{{ strtoupper($featuredProject['location']) }}</p>
 
-                    <h2>Skyline Residence</h2>
+                    <h2>{{ $featuredProject['name'] }}</h2>
 
                     <p>
                         Modern residential apartments with transparent
@@ -81,19 +81,19 @@
 
                     <div class="progress-information">
                         <span>Construction progress</span>
-                        <strong>72%</strong>
+                        <strong>{{ $featuredProject['progress'] }}%</strong>
                     </div>
 
                     <div class="progress-track">
                         <div
                             class="progress-bar"
-                            style="width: 72%"
+                            style="width: {{ $featuredProject['progress'] }}%"
                         ></div>
                     </div>
 
                     <div style="margin-top: 18px;">
                         @auth
-                            <a href="{{ route('checkout.show', ['type' => 'project', 'id' => 1]) }}" class="btn-card-invest" style="height: 42px; padding: 0 20px; font-size: 14px;">
+                            <a href="{{ route('checkout.show', ['type' => 'project', 'id' => $featuredProject['id']]) }}" class="btn-card-invest" style="height: 42px; padding: 0 20px; font-size: 14px;">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
@@ -114,33 +114,22 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </section>
 
     {{-- Search Section --}}
     <section class="search-wrapper">
         <div class="container">
-            <form class="property-search" action="#projects">
+            <form class="property-search" action="{{ route('landing') }}#projects" method="GET">
                 <div class="search-field">
-                    <label for="location">Location</label>
-
-                    <select id="location" name="location">
-                        <option value="">Choose a location</option>
-                        <option>Uttara</option>
-                        <option>Bashundhara</option>
-                        <option>Gazipur</option>
-                    </select>
+                    <label for="search">Project name</label>
+                    <input id="search" type="search" name="search" value="{{ $search }}" placeholder="Search project name">
                 </div>
 
                 <div class="search-field">
-                    <label for="property_type">Property Type</label>
-
-                    <select id="property_type" name="property_type">
-                        <option value="">Choose property type</option>
-                        <option>Residential</option>
-                        <option>Commercial</option>
-                        <option>Luxury Apartment</option>
-                    </select>
+                    <label for="location">Location</label>
+                    <input id="location" type="search" name="location" value="{{ $location }}" placeholder="Search location">
                 </div>
 
                 <div class="search-field">
@@ -148,9 +137,9 @@
 
                     <select id="budget" name="budget">
                         <option value="">Choose your budget</option>
-                        <option>৳40–60 Lakh</option>
-                        <option>৳60–90 Lakh</option>
-                        <option>৳90 Lakh–1.5 Crore</option>
+                        <option value="under-5cr" @selected($budget === 'under-5cr' || $budget === 'under-60')>Under 5 Crore BDT</option>
+                        <option value="5cr-10cr" @selected($budget === '5cr-10cr' || $budget === '60-90')>5 Crore – 10 Crore BDT</option>
+                        <option value="over-10cr" @selected($budget === 'over-10cr' || $budget === 'over-90')>Over 10 Crore BDT</option>
                     </select>
                 </div>
 
@@ -182,7 +171,7 @@
             </div>
 
             <div class="project-grid">
-                @foreach($projects as $index => $project)
+                @forelse($projects as $index => $project)
                     <article class="project-card">
                         <div class="project-image project-image-{{ ($index % 3) + 1 }}">
                             <span class="project-type">
@@ -241,13 +230,12 @@
                                         Buy / Invest Now
                                     </a>
                                 @endauth
-                                <a href="{{ route('login') }}" class="btn-card-details">
-                                    View details →
-                                </a>
                             </div>
                         </div>
                     </article>
-                @endforeach
+                @empty
+                    <p class="empty-state">No active properties match your search.</p>
+                @endforelse
             </div>
         </div>
     </section>

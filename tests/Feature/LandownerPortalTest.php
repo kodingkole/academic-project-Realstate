@@ -14,10 +14,17 @@ class LandownerPortalTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_public_landowner_can_complete_submission_with_private_documents(): void
+    public function test_unauthenticated_user_cannot_access_land_submission_page(): void
+    {
+        $response = $this->get(route('land.submit'));
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_authenticated_landowner_can_complete_submission_with_private_documents(): void
     {
         Storage::fake('local');
-        $response = $this->post(route('land.submit.store'), [
+        $user = User::factory()->create(['role' => 'landowner']);
+        $response = $this->actingAs($user)->post(route('land.submit.store'), [
             'phone'=>'01712345678','division'=>'Dhaka','district'=>'Dhaka','location'=>'Uttara Sector 18',
             'katha'=>8.5,'road_width'=>30,'landmark'=>'Metro station','description'=>'Corner plot',
             'owner_name'=>'Public Landowner','nid_number'=>'1234567890123',
@@ -27,7 +34,7 @@ class LandownerPortalTest extends TestCase
         $response->assertRedirect(route('land.submit'))->assertSessionHas('submission_success');
         $submission=LandSubmission::firstOrFail();
         $this->assertMatchesRegularExpression('/^LND-\d{4}-[A-Z0-9]{5}$/',$submission->code);
-        $this->assertNull($submission->user_id);
+        $this->assertSame($user->id, $submission->user_id);
         Storage::disk('local')->assertExists($submission->deed_path);
         Storage::disk('local')->assertExists($submission->nid_path);
     }

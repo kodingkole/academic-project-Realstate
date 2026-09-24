@@ -4,6 +4,14 @@
 @section('page-heading', 'Investor Dashboard')
 
 @section('content')
+<!-- Validation Error Alert: Displays flash errors or form validation failures -->
+@if($errors->any())
+<div role="alert" style="margin:0 0 20px;padding:14px 18px;border:1px solid #fca5a5;border-radius:10px;background:#fef2f2;color:#991b1b;font-weight:600">
+    {{ $errors->first() }}
+</div>
+@endif
+
+<!-- Hero Header Section: Displays investor welcome greeting and portfolio summary introduction -->
 <section class="investor-welcome-card">
     <div>
         <span class="investor-eyebrow">INVESTMENT OVERVIEW</span>
@@ -16,7 +24,7 @@
     </div>
 </section>
 
-<!-- Success Payment Confirmation Notification Banner / Dialog -->
+<!-- Payment Confirmation Modal: Displays transaction receipt after returning from payment gateway -->
 @if(session('payment_success_details'))
 @php($details = session('payment_success_details'))
 <div class="payment-success-modal-overlay" id="paymentSuccessNotice">
@@ -56,6 +64,7 @@
 </div>
 @endif
 
+<!-- Top Summary Metrics Grid: Displays aggregated portfolio totals -->
 <section class="stat-card-grid investor-stat-grid">
     <article class="stat-card investor-stat-card"><div><p>Total contracted value</p><h3>BDT {{ number_format($bookings->sum('investment_amount')) }}</h3></div></article>
     <article class="stat-card investor-stat-card"><div><p>Active projects</p><h3>{{ $projects->count() }}</h3></div></article>
@@ -63,20 +72,53 @@
     <article class="stat-card investor-stat-card"><div><p>Unread updates</p><h3 id="liveNotificationCount">{{ $unreadNotifications }}</h3></div></article>
 </section>
 
+<!-- Overdue & Upcoming Due Date Alerts Banner: Warns investor about installments due within 7 days or overdue -->
+@if(!empty($dueAlerts))
+@foreach($dueAlerts as $alert)
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 20px;border-radius:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);{{ $alert['style'] }}" role="alert">
+    <div style="display:flex;align-items:center;gap:12px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">{!! $alert['icon'] !!}</span>
+        <div>
+            <strong style="font-size:14px;display:block;">{{ $alert['text'] }}</strong>
+            <span style="font-size:12px;opacity:0.85;">
+                {{ $alert['project_title'] }} — Unit {{ $alert['unit_no'] }}
+                &bull; Due: {{ $alert['due_formatted'] }}
+            </span>
+        </div>
+    </div>
+    <button type="button" class="btn-portfolio-pay"
+            style="flex-shrink:0;font-size:13px;padding:7px 16px;"
+            data-modal-open="paymentModal"
+            data-booking-id="{{ $alert['booking_id'] }}"
+            data-project-id="{{ $alert['project_id'] }}">
+        Pay Now
+    </button>
+</div>
+@endforeach
+@endif
+
+<!-- Quick Actions Section: Quick modal triggers for reserving a unit or making an installment payment -->
 <section class="investor-actions">
     <div class="investor-actions-intro"><span>QUICK ACTIONS</span><h3>Manage your investment</h3><p>Reserve an available unit with a 15% deposit, then pay the scheduled installment or full balance.</p></div>
     <article class="investor-action-card"><h4>Reserve a unit</h4><p>Interactive 10-floor cube map. Pay 15% booking deposit to lock unit.</p><button type="button" class="investor-reserve-button" data-modal-open="bookingModal">Reserve property</button></article>
     <article class="investor-action-card payment"><h4>Make a payment</h4><p>Submit your scheduled installment or settle the complete remaining balance.</p><button type="button" class="investor-pay-button" data-modal-open="paymentModal">Make a payment</button></article>
 </section>
 
+<!-- Available Properties Showcase: Displays active projects with 15% initial booking fee calculation -->
 <section class="dashboard-panel" style="margin-bottom:25px">
     <div class="panel-header"><div><h3>Available properties</h3><p>Select any property to view its 10-floor unit floorplan and 15% reservation fee.</p></div></div>
     <div style="display:grid;gap:15px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));padding:10px 0">
         @forelse($availableProjects as $property)
         @php($propPrice = $property->total_budget ?: 5000000)
+        @php(preg_match('/Dag #?(\d+)/i', $property->title, $_dagM))
         <div class="investor-property-card">
-            <h4 style="font-size:16px;margin-bottom:6px;color:#0f172a">{{ $property->title }}</h4>
-            <p style="color:#64748b;font-size:12px;margin-bottom:12px">{{ $property->location }}</p>
+            <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <h4 style="font-size:16px;margin:0;color:#0f172a;flex:1;min-width:0">{{ $property->title }}</h4>
+                @if(!empty($_dagM[1]))
+                    <span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;padding:2px 8px;border-radius:8px;border:1px solid #fde68a;white-space:nowrap;flex-shrink:0;">Dag {{ $_dagM[1] }}</span>
+                @endif
+            </div>
+            <p style="color:#64748b;font-size:12px;margin-bottom:12px;display:flex;align-items:center;gap:4px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> {{ $property->location }}</p>
             <div style="display:flex;justify-content:space-between;align-items:center">
                 <div>
                     <span style="color:#0f172a;font-weight:800;font-size:15px;display:block">BDT {{ number_format($propPrice) }}</span>
@@ -91,6 +133,7 @@
     </div>
 </section>
 
+<!-- My Investment Portfolio: List of all units reserved by the logged-in investor -->
 <section class="investor-dashboard-grid">
     <article class="dashboard-panel">
         <div class="panel-header">
@@ -101,21 +144,49 @@
             <a class="erp-secondary" href="{{ route('investor.ledger') }}">View full ledger</a>
         </div>
 
-        @forelse($projects as $project)
-            @php($booking = $bookings->firstWhere('project_id', $project->id))
-            @php($summary = $bookingSummaries->get($project->id))
+        @forelse($bookings as $booking)
+            @php($project = $booking->project)
+            @php($summary = $bookingSummaries->get($booking->id) ?? $bookingSummaries->get($project?->id))
             @php($isFullyPaid = ($summary?->remaining ?? 0) <= 0 || $booking?->status === 'paid_in_full')
+            @php($dueDate = $booking?->next_payment_date ? \Carbon\Carbon::parse($booking->next_payment_date) : null)
+            @php($isOverdue = !$isFullyPaid && $dueDate && $dueDate->lt(today()->startOfDay()))
+            @php($isForfeited = $booking?->status === 'forfeited')
+            @php($isBlocked = $isOverdue || $isForfeited || in_array($booking?->status, ['blocked']))
+            @php($daysOverdue = ($dueDate && $isOverdue) ? today()->diffInDays($dueDate) : 0)
+            @php($unblockRequested = session('unblock_requested_'.$booking?->id))
+            @if(!$project) @continue @endif
 
-            <div class="portfolio-item-card">
+            <div class="portfolio-item-card {{ $isBlocked ? 'is-blocked-card' : '' }}">
                 <div class="portfolio-item-header">
                     <div class="portfolio-title-block">
-                        <span class="portfolio-unit-badge">{{ $booking?->unit_no }}</span>
+                        {{-- Serial number badge (Chronological order: #1 = earliest reserved) --}}
+                        <span style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 10px; background: linear-gradient(135deg, #1e293b, #334155); color: #f8fafc; font-weight: 800; font-size: 13px; border-radius: 6px; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.12); flex-shrink: 0;" title="Reservation order: #{{ $loop->iteration }} means this is the {{ $loop->iteration == 1 ? '1st' : ($loop->iteration == 2 ? '2nd' : ($loop->iteration == 3 ? '3rd' : $loop->iteration.'th')) }} property you reserved">
+                            SL #{{ $loop->iteration }}
+                        </span>
+                        <span class="portfolio-unit-badge {{ $isBlocked ? 'badge-blocked' : '' }}">Unit {{ $booking?->unit_no }}</span>
                         <div>
-                            <h4 class="portfolio-project-title">{{ $project->title }}</h4>
-                            <div class="portfolio-project-meta">
-                                <span>Location: {{ $project->location }}</span>
+                            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                <h4 class="portfolio-project-title" style="margin: 0;">{{ $project->title }}</h4>
+                                @if($isForfeited)
+                                    <span style="background:#fef2f2; color:#991b1b; font-size:11px; font-weight:700; padding:3px 9px; border-radius:12px; border:1px solid #fca5a5; display:inline-flex; align-items:center; gap:4px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg> Forfeited</span>
+                                @elseif($isBlocked)
+                                    <span class="status-blocked-tag" style="display:inline-flex; align-items:center; gap:4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Blocked</span>
+                                @endif
+                                @if($isFullyPaid)
+                                    <span style="background:#dcfce7; color:#166534; font-size:11px; font-weight:700; padding:2px 8px; border-radius:12px; border:1px solid #bbf7d0; display:inline-flex; align-items:center; gap:4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Paid in Full (100%)</span>
+                                @endif
+                            </div>
+                            <div class="portfolio-project-meta" style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+                                <span><strong>Reserved on:</strong> {{ $booking->created_at ? $booking->created_at->format('d M Y, h:i A') : 'N/A' }}</span>
                                 <span class="meta-separator">•</span>
-                                <span class="construction-pill">{{ $project->progress_percentage }}% Construction Complete</span>
+                                <span style="display:inline-flex; align-items:center; gap:4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> {{ $project->location }}</span>
+                                @if(str_contains($project->title, 'Dag #'))
+                                    @php(preg_match('/Dag #?(\d+)/i', $project->title, $dagMatch))
+                                    @if(!empty($dagMatch[1]))
+                                        <span style="background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 800; padding: 2px 9px; border-radius: 10px; border: 1px solid #fde68a;">Dag: {{ $dagMatch[1] }}</span>
+                                    @endif
+                                @endif
+                                <span class="meta-separator">•</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +202,7 @@
                                     data-modal-open="paymentModal"
                                     data-booking-id="{{ $booking->id }}"
                                     data-project-id="{{ $project->id }}">
-                                Pay Now
+                                {{ $isBlocked ? 'Pay Overdue' : 'Pay Now' }}
                             </button>
                         @endif
 
@@ -141,6 +212,7 @@
                     </div>
                 </div>
 
+                <!-- Financial Progress Bar: Displays total paid vs remaining balance and payment plan tenure -->
                 <div class="portfolio-progress-container">
                     <div class="portfolio-progress-bar">
                         <span class="portfolio-progress-fill" style="width: {{ $summary?->percentage ?? 0 }}%"></span>
@@ -150,12 +222,78 @@
                         <span><strong>Paid:</strong> BDT {{ number_format($summary?->paid ?? 0) }} ({{ $summary?->percentage ?? 0 }}%)</span>
                         <span class="{{ $isFullyPaid ? 'text-green' : 'text-bold' }}"><strong>Remaining:</strong> BDT {{ number_format($summary?->remaining ?? 0) }}</span>
                         @if($booking?->next_payment_date && !$isFullyPaid)
-                            <span class="next-due-tag"><strong>Next due:</strong> {{ $booking->next_payment_date->format('d M Y') }}</span>
+                            @php($daysUntilDue = (int) \Carbon\Carbon::parse($booking->next_payment_date)->startOfDay()->diffInDays(today()->startOfDay(), false) * -1)
+                            @if($isOverdue)
+                                <span class="next-due-tag tag-overdue">
+                                    <strong>Overdue:</strong> {{ $booking->next_payment_date->format('d M Y') }}
+                                </span>
+                            @else
+                                <span class="next-due-tag" style="display: inline-flex; align-items: center; gap: 6px;">
+                                    <strong>Next due:</strong> {{ $booking->next_payment_date->format('d M Y') }}
+                                    <span style="background: #e0f2fe; color: #0369a1; font-weight: 800; font-size: 11px; padding: 1px 7px; border-radius: 4px;">
+                                        {{ $daysUntilDue > 0 ? 'in ' . $daysUntilDue . ' days' : ($daysUntilDue == 0 ? 'Due Today' : 'Overdue') }}
+                                    </span>
+                                </span>
+                            @endif
                         @endif
                     </div>
                 </div>
 
-                <!-- Toggleable Per-Plot Payment History Drawer -->
+                @php($activeTasks = $project->tasks->where('status', 'in_progress'))
+                @php($latestUpdate = $latestConstructionUpdates->get($project->id))
+                <!-- Live Construction Update: Shows published work phases without a percentage estimate -->
+                <section class="flat-work-update" aria-label="Construction update for {{ $booking?->unit_no }}">
+                    <div class="flat-work-update-head"><div><span>LIVE CONSTRUCTION UPDATE</span><h5>Your flat {{ $booking?->unit_no }}: building work in progress</h5></div></div>
+                    @if($activeTasks->isNotEmpty())
+                        <div class="flat-work-list">@foreach($activeTasks->take(3) as $task)<div><strong>{{ $task->title }}</strong></div>@endforeach</div>
+                    @else
+                        <p class="flat-work-empty">No active phase has been published yet. Check back for the next construction update.</p>
+                    @endif
+                    @if($latestUpdate)<p class="flat-work-summary"><strong>{{ \Carbon\Carbon::parse($latestUpdate->report_date)->format('d M Y') }} update:</strong> {{ $latestUpdate->work_summary }}</p>@endif
+                </section>
+
+                @if($isBlocked)
+                <!-- Clean, real-world overdue alert bar -->
+                <div class="overdue-blocked-banner">
+                    <div class="blocked-banner-left">
+                        <span class="blocked-bell-icon" style="display:inline-flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                        <div>
+                            <div class="blocked-title-line">
+                                <strong>Plot / Flat Blocked</strong>
+                                <span class="blocked-badge-small">Due: {{ $booking->next_payment_date?->format('d M Y') }}</span>
+                            </div>
+                            <p class="blocked-subtext">
+                                Contact admin to unblock, or risk forfeiture after 3 months of non-payment. Admin er kache request pathan, nahole 3 month por flat cancel hote pare.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="blocked-banner-actions">
+                        @if($unblockRequested)
+                            <!-- Unblock request already submitted -->
+                            <span class="unblock-submitted-pill" style="display:inline-flex;align-items:center;gap:4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Request Sent</span>
+                        @else
+                            <!-- Send unblock request to admin -->
+                            <form method="POST" action="{{ route('investor.bookings.request-unblock', $booking) }}" style="display: inline; margin: 0;">
+                                @csrf
+                                <button type="submit" class="btn-request-admin-unblock">
+                                    Request Admin
+                                </button>
+                            </form>
+                        @endif
+
+                        <!-- Pay overdue installment -->
+                        <button type="button" 
+                                class="btn-blocked-pay-now" 
+                                data-modal-open="paymentModal"
+                                data-booking-id="{{ $booking->id }}"
+                                data-project-id="{{ $project->id }}">
+                            Pay Overdue
+                        </button>
+                    </div>
+                </div>
+                @endif
+
+                <!-- Payment History Drawer: Expandable table displaying all past payments for this unit -->
                 <div id="history-{{ $booking->id }}" class="plot-history-container" style="display: none;">
                     <div class="plot-history-header">
                         <h5>Payment History — {{ $project->title }} ({{ $booking->unit_no }})</h5>
@@ -209,6 +347,7 @@
         @endforelse
     </article>
 
+    <!-- Sidebar: Investor Profile and KYC verification status -->
     <aside class="dashboard-panel">
         <div class="panel-header">
             <div>
@@ -222,7 +361,9 @@
     </aside>
 </section>
 
-<!-- FULL PAGE PROPERTY & UNIT RESERVATION PORTAL MODAL -->
+<!-- ========================================================================= -->
+<!-- MODAL 1: UNIT RESERVATION PORTAL (10-Floor Cube Map + 15% Booking Deposit) -->
+<!-- ========================================================================= -->
 <dialog id="bookingModal" class="fullpage-booking-portal">
     <div class="portal-booking-container">
         <!-- Portal Header -->
@@ -257,8 +398,9 @@
                                     <option value="{{ $property->id }}" 
                                             data-price="{{ $pPrice }}"
                                             data-deposit="{{ $pPrice * 0.15 }}"
-                                            data-remaining="{{ $pPrice * 0.85 }}">
-                                        {{ $property->title }} — Fixed: BDT {{ number_format($pPrice) }} (15% Deposit: BDT {{ number_format($pPrice * 0.15) }})
+                                            data-remaining="{{ $pPrice * 0.85 }}"
+                                            data-location="{{ $property->location }}">
+                                        {{ $property->title }} — BDT {{ number_format($pPrice) }} (Deposit: BDT {{ number_format($pPrice * 0.15) }})
                                     </option>
                                 @empty
                                     <option value="">No property available</option>
@@ -362,11 +504,11 @@
                 <!-- Right Column: Installment Plan & Reservation Confirmation -->
                 <div class="portal-section-side">
                     
-                    <!-- Section 3: Tenure & Due Day -->
+                    <!-- Section 3: Installment Plan & 15% Booking Fee -->
                     <div class="portal-card compact">
                         <div class="portal-card-head">
                             <span class="step-num">3</span>
-                            <h3>Installment Tenure & Due Day</h3>
+                            <h3>Installment Plan & Due Schedule</h3>
                         </div>
 
                         <div class="form-group wide">
@@ -379,8 +521,27 @@
                         </div>
 
                         <div class="form-group wide">
-                            <label for="reservationInstallmentDay">Monthly Auto-Due Day (1 - 28):</label>
-                            <input type="number" min="1" max="28" name="installment_day" id="reservationInstallmentDay" value="5" required class="portal-input">
+                            <label>Next Installment Due Date:</label>
+                            <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #0f172a;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong style="color: #0369a1; font-size: 14px;">{{ now()->addDays(30)->format('d M Y') }}</strong>
+                                    <span style="background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">Auto-Calculated (30 Days)</span>
+                                </div>
+                                <small style="color: #64748b; font-size: 11px; display: block; margin-top: 4px;">
+                                    15% booking deposit is paid today ({{ now()->format('d M Y') }}). Your next monthly installment is due exactly 30 days after reservation date.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group wide" style="margin-top: 6px;">
+                            <label for="reservationPaymentMethod">15% Booking Fee Payment Method:</label>
+                            <select name="payment_method" id="reservationPaymentMethod" class="portal-select">
+                                <option value="bKash">bKash (01711223344)</option>
+                                <option value="Nagad">Nagad (01819876543)</option>
+                                <option value="Rocket">Rocket (017112233441)</option>
+                                <option value="Bank Transfer">Bank Transfer (City Bank)</option>
+                                <option value="SSLCommerz">SSLCommerz Gateway</option>
+                            </select>
                         </div>
                     </div>
 
@@ -392,16 +553,16 @@
                             <strong id="selectedUnitDisplay" class="text-primary">None selected (Click a white box)</strong>
                         </div>
                         <div class="summary-line">
-                            <span>15% Booking Fee:</span>
+                            <span>15% Booking Fee (Paid Now):</span>
                             <strong id="summaryDepositFeeDisplay" class="text-green">BDT 0</strong>
                         </div>
                         <div class="summary-line">
-                            <span>Monthly Installment:</span>
+                            <span>Monthly Installment (Due in 30 Days):</span>
                             <strong id="summaryMonthlyFeeDisplay">BDT 0 / month</strong>
                         </div>
 
                         <button type="submit" class="btn-confirm-reservation" id="btnConfirmReservation" disabled>
-                            Confirm Unit Reservation
+                            Proceed to Payment Gateway (15% Deposit) &rarr;
                         </button>
                     </div>
 
@@ -411,7 +572,9 @@
     </div>
 </dialog>
 
-<!-- FULL PAGE MAKE PAYMENT PORTAL MODAL -->
+<!-- ========================================================================= -->
+<!-- MODAL 2: MAKE PAYMENT PORTAL (Installment, Full Settlement & Custom Dues) -->
+<!-- ========================================================================= -->
 <dialog id="paymentModal" class="fullpage-payment-portal">
     <div class="portal-payment-container">
         <!-- Portal Header -->
@@ -426,6 +589,7 @@
 
         <form method="POST" action="{{ route('investor.pay') }}" id="securePaymentForm" class="portal-payment-body">
             @csrf
+            <input type="hidden" name="gateway_checkout" value="1">
             
             <div class="portal-payment-grid">
                 <!-- Left Column: Plot & Installment Breakdown -->
@@ -443,7 +607,7 @@
                             <select name="booking_id" id="paymentBookingSelect" required class="portal-select">
                                 @forelse($bookings->whereNotIn('status', ['forfeited', 'paid_in_full']) as $booking)
                                     @php($paymentProject = $booking->project)
-                                    @php($paymentSummary = $bookingSummaries->get($booking->project_id))
+                                    @php($paymentSummary = $bookingSummaries->get($booking->id) ?? $bookingSummaries->get($booking->project_id))
                                     @if(($paymentSummary?->remaining ?? 0) > 0)
                                     <option value="{{ $booking->id }}" 
                                             data-project-title="{{ $paymentProject?->title }}"
@@ -453,7 +617,7 @@
                                             data-remaining="{{ $paymentSummary?->remaining ?? 0 }}"
                                             data-installment-months="{{ $booking->installment_months ?: 24 }}"
                                             data-monthly-installment="{{ $booking->monthly_installment_amount }}">
-                                        {{ $paymentProject?->title ?? 'Project' }} — Unit {{ $booking->unit_no }} (Remaining: BDT {{ number_format($paymentSummary?->remaining ?? 0) }})
+                                        [SL #{{ $loop->iteration }}] {{ $paymentProject?->title ?? 'Project' }} — Unit {{ $booking->unit_no }} (Remaining: BDT {{ number_format($paymentSummary?->remaining ?? 0) }})
                                     </option>
                                     @endif
                                 @empty
@@ -508,181 +672,44 @@
                                     </div>
                                 </label>
 
-                                <div class="mode-card-option" onclick="activateCustomAmountMode(event)" style="cursor: pointer;">
-                                    <input type="radio" name="payment_type" value="custom" class="mode-radio" id="modeCustom">
+                                <label class="mode-card-option" for="modeCustom">
+                                    <input type="radio" name="payment_type" value="custom" class="mode-radio" id="modeCustom" onchange="updatePaymentPortalCalculations()">
                                     <div class="mode-card-content">
                                         <div class="mode-title">Custom Amount</div>
-                                        <div class="custom-amount-input-wrap" style="margin-top: 6px;">
-                                            <input type="number" min="1000" name="amount" id="customAmountInput" placeholder="Enter custom amount (BDT)" class="portal-input" onclick="activateCustomAmountMode(event)" onfocus="activateCustomAmountMode(event)" oninput="validateCustomAmountLimits()" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; color: #0f172a; font-size: 14px; font-weight: 700; padding: 10px 14px; width: 100%;">
+                                        <div class="custom-amount-input-wrap" style="margin-top: 6px;" onclick="event.stopPropagation()">
+                                            <input type="number" min="1000" name="amount" id="customAmountInput" placeholder="Enter custom amount (BDT)" class="portal-input" onfocus="document.getElementById('modeCustom').checked=true;updatePaymentPortalCalculations();" oninput="validateCustomAmountLimits()" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; color: #0f172a; font-size: 14px; font-weight: 700; padding: 10px 14px; width: 100%;">
                                             <small id="customLimitNotice" style="font-size: 11px; color: #059669; font-weight: 700; display: block; margin-top: 4px;">Min: Monthly Installment | Max: Remaining Balance</small>
                                         </div>
                                     </div>
-                                </div>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column: Channel & Terms -->
+                <!-- Right Column: Gateway Checkout Notice & Submit -->
                 <div class="portal-section-side">
-                    <!-- Section 3: Payment Channel & References -->
+                    <!-- Section 3: Payment Gateway Checkout -->
                     <div class="portal-card compact">
                         <div class="portal-card-head">
                             <span class="step-num">3</span>
-                            <h3>Select Payment Gateway</h3>
+                            <h3>Payment Gateway Checkout</h3>
                         </div>
 
-                        <div class="form-group wide">
-                            <div class="channel-selector-grid">
-                                <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="bKash" checked onchange="switchModalGateway('bKash')">
-                                    <span>bKash</span>
-                                </label>
-                                <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="Nagad" onchange="switchModalGateway('Nagad')">
-                                    <span>Nagad</span>
-                                </label>
-                                <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="SSLCommerz" onchange="switchModalGateway('SSLCommerz')">
-                                    <span>SSLCommerz</span>
-                                </label>
-                                <label class="channel-card">
-                                    <input type="radio" name="payment_method" value="Bank Transfer" onchange="switchModalGateway('Bank')">
-                                    <span>Bank Wire</span>
-                                </label>
+                        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px; color: #475569; font-weight: 700;">Direct Payment Channels:</span>
+                                <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; font-weight: 800; padding: 2px 8px; border-radius: 4px;">SSL Secured</span>
                             </div>
-                        </div>
-
-                        {{-- Modal bKash Panel --}}
-                        <div id="modalBkashBox" class="payment-gateway-panel bkash-gateway-box" style="margin-bottom: 15px;">
-                            <div class="gw-header" style="padding: 12px 16px;">
-                                <div class="gw-brand-title">
-                                    <span class="gw-logo-pill" style="font-size: 14px;">bKash</span>
-                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">bKash Online Payment</h5>
-                                </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                                <span style="background: #fdf2f4; color: #9f1239; border: 1px solid #fce7eb; font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px;">bKash</span>
+                                <span style="background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px;">Nagad</span>
+                                <span style="background: #faf5ff; color: #6b21a8; border: 1px solid #f3e8ff; font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px;">Rocket</span>
+                                <span style="background: #f0f9ff; color: #0369a1; border: 1px solid #e0f2fe; font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px;">Cards &amp; SSL</span>
                             </div>
-                            <div class="gw-body" style="padding: 14px;">
-                                <div style="margin-bottom: 10px;">
-                                    <label>bKash Account Number *</label>
-                                    <input type="text" id="modalBkashPhone" placeholder="01711223344" value="01711223344" class="portal-input">
-                                </div>
-                                <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
-                                    <div>
-                                        <label>6-Digit OTP *</label>
-                                        <input type="text" id="modalBkashOtp" placeholder="123456" value="123456" class="portal-input">
-                                    </div>
-                                    <div>
-                                        <label>5-Digit PIN *</label>
-                                        <input type="password" id="modalBkashPin" placeholder="•••••" value="12345" class="portal-input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Modal Nagad Panel --}}
-                        <div id="modalNagadBox" class="payment-gateway-panel nagad-gateway-box" style="margin-bottom: 15px; display: none;">
-                            <div class="gw-header" style="padding: 12px 16px;">
-                                <div class="gw-brand-title">
-                                    <span class="gw-logo-pill" style="font-size: 14px;">Nagad</span>
-                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Nagad Pay Gateway</h5>
-                                </div>
-                            </div>
-                            <div class="gw-body" style="padding: 14px;">
-                                <div style="margin-bottom: 10px;">
-                                    <label>Nagad Account Mobile No *</label>
-                                    <input type="text" id="modalNagadPhone" placeholder="01819876543" value="01819876543" class="portal-input">
-                                </div>
-                                <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
-                                    <div>
-                                        <label>6-Digit OTP *</label>
-                                        <input type="text" id="modalNagadOtp" placeholder="654321" value="654321" class="portal-input">
-                                    </div>
-                                    <div>
-                                        <label>4-Digit PIN *</label>
-                                        <input type="password" id="modalNagadPin" placeholder="••••" value="1234" class="portal-input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Modal SSLCommerz Panel --}}
-                        <div id="modalSSLBox" class="payment-gateway-panel ssl-gateway-box" style="margin-bottom: 15px; display: none;">
-                            <div class="gw-header" style="padding: 12px 16px;">
-                                <div class="gw-brand-title">
-                                    <span class="gw-logo-pill" style="font-size: 13px;">SSLCommerz</span>
-                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Secured Cards & NetBanking</h5>
-                                </div>
-                            </div>
-                            <div class="gw-body" style="padding: 14px;">
-                                <div class="ssl-sub-tabs" style="margin-bottom: 10px;">
-                                    <button type="button" class="ssl-sub-btn active" id="modalSslCardBtn" onclick="toggleModalSSLSubTab('cards')" style="font-size: 11px; padding: 6px 10px;">Cards</button>
-                                    <button type="button" class="ssl-sub-btn" id="modalSslNetBtn" onclick="toggleModalSSLSubTab('net')" style="font-size: 11px; padding: 6px 10px;">Net Banking</button>
-                                </div>
-
-                                <div id="modalSslCardView">
-                                    <div style="margin-bottom: 8px;">
-                                        <label>16-Digit Card Number *</label>
-                                        <input type="text" id="modalSslCardNum" value="4222 8899 4411 9812" placeholder="4222 •••• •••• 9812" class="portal-input">
-                                    </div>
-                                    <div style="display: grid; gap: 8px; grid-template-columns: 1fr 1fr;">
-                                        <div>
-                                            <label>Expiry (MM/YY)</label>
-                                            <input type="text" id="modalSslExpiry" value="08/29" placeholder="08/29" class="portal-input">
-                                        </div>
-                                        <div>
-                                            <label>CVV / CVC</label>
-                                            <input type="password" id="modalSslCvv" value="882" placeholder="882" class="portal-input">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="modalSslNetView" style="display: none;">
-                                    <label style="font-size: 11px; color: #cbd5e1; font-weight: 700; margin-bottom: 4px; display: block;">Select Net Banking Partner *</label>
-                                    <select id="modalSslNetBank" class="portal-select" style="margin-bottom: 8px;">
-                                        <option value="City Touch (City Bank)">City Touch (City Bank)</option>
-                                        <option value="EBL Skybanking">EBL Skybanking (Eastern Bank)</option>
-                                        <option value="BRAC Bank iBanking">BRAC Bank iBanking</option>
-                                        <option value="DBBL NexusPay">DBBL NexusPay</option>
-                                        <option value="CellFin (Islami Bank)">CellFin (IBBL)</option>
-                                        <option value="Bank Asia Smart App">Bank Asia Smart App</option>
-                                    </select>
-                                    <div>
-                                        <label>Customer User ID *</label>
-                                        <input type="text" id="modalSslNetUser" value="USER-9920192" placeholder="USER-9920192" class="portal-input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Modal Bank Wire Panel --}}
-                        <div id="modalBankBox" class="payment-gateway-panel bank-gateway-box" style="margin-bottom: 15px; display: none;">
-                            <div class="gw-header" style="padding: 12px 16px;">
-                                <div class="gw-brand-title">
-                                    <span class="gw-logo-pill" style="font-size: 13px; background:#fff; color:#064e3b;">Bank</span>
-                                    <h5 style="font-size: 13px; margin: 0; color: #fff;">Bank Wire & Escrow Clearance</h5>
-                                </div>
-                            </div>
-                            <div class="gw-body" style="padding: 14px;">
-                                <div style="margin-bottom: 8px;">
-                                    <label style="color: #cbd5e1;">Selected Bank *</label>
-                                    <select id="modalBankName" class="portal-select">
-                                        <option value="City Bank Ltd">City Bank Ltd</option>
-                                        <option value="Dutch-Bangla Bank (DBBL)">Dutch-Bangla Bank (DBBL)</option>
-                                        <option value="BRAC Bank PLC">BRAC Bank PLC</option>
-                                        <option value="Eastern Bank Ltd (EBL)">Eastern Bank Ltd (EBL)</option>
-                                        <option value="Islami Bank Bangladesh">Islami Bank Bangladesh</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label style="color: #cbd5e1;">Deposit Slip / Ref No *</label>
-                                    <input type="text" id="modalBankRef" value="DEP-2026-981245" placeholder="e.g. DEP-2026-981245" class="portal-input">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group wide">
-                            <label for="payerReferenceInput">Transaction / Payer Reference (Auto-Generated):</label>
-                            <input type="text" name="payer_reference" id="payerReferenceInput" value="01711223344" placeholder="e.g. TrxID 9A82B3C7" class="portal-input">
+                            <p style="margin: 0; font-size: 12px; color: #64748b; line-height: 1.5;">
+                                Click below to proceed to the dedicated hosted gateway. You can choose any payment method and verify with your Mobile Number &rarr; OTP &rarr; PIN.
+                            </p>
                         </div>
                     </div>
 
@@ -690,7 +717,7 @@
                     <div class="payment-terms-box compact">
                         <h4>Payment Rules & Terms</h4>
                         <ul>
-                            <li><strong>Monthly Due Date:</strong> Auto due on designated day.</li>
+                            <li><strong>Monthly Due Date:</strong> Auto calculated 30 days from reservation.</li>
                             <li><strong>Grace Period:</strong> 15 days grace period allowed.</li>
                             <li><strong>Default Policy:</strong> 3 missed installments (60+ days) leads to cancellation & forfeiture.</li>
                         </ul>
@@ -699,7 +726,7 @@
                     <!-- Submit Button -->
                     <div class="portal-submit-area">
                         <button type="submit" class="btn-confirm-secure-payment">
-                            Confirm Payment Request
+                            Proceed to Payment Gateway &rarr;
                         </button>
                     </div>
                 </div>
@@ -722,6 +749,7 @@ const summaryDepositFeeDisplay = document.getElementById('summaryDepositFeeDispl
 const summaryMonthlyFeeDisplay = document.getElementById('summaryMonthlyFeeDisplay');
 const btnConfirmReservation = document.getElementById('btnConfirmReservation');
 
+// Reservation Portal Live Calculation
 function updateReservationPortal() {
     if (!resProjectSelect || !resProjectSelect.options.length) return;
     const opt = resProjectSelect.options[resProjectSelect.selectedIndex];
@@ -811,14 +839,16 @@ document.addEventListener('click', function(e) {
 // Run calculation immediately on page load
 updateReservationPortal();
 
-// Payment History Toggle Function
+// Toggle Payment History Drawer for a specific unit
 function togglePlotHistory(containerId) {
     const el = document.getElementById(containerId);
     if (!el) return;
     el.style.display = el.style.display === 'none' ? 'block' : 'none';
 }
 
-// Live Calculation in Full Page Secure Payment Portal
+// =========================================================================
+// Payment Portal Script: Calculates Installment, Full Balance & Custom Dues
+// =========================================================================
 const bookingSelect = document.getElementById('paymentBookingSelect');
 const modeRadios = document.querySelectorAll('input[name="payment_type"]');
 const customInput = document.getElementById('customAmountInput');
@@ -934,79 +964,6 @@ document.addEventListener('click', function(e) {
         }
     }
 });
-
-// Switch Gateway Box in Investor Payment Modal
-function switchModalGateway(method) {
-    let bkBox = document.getElementById('modalBkashBox');
-    let ngBox = document.getElementById('modalNagadBox');
-    let sslBox = document.getElementById('modalSSLBox');
-    let bankBox = document.getElementById('modalBankBox');
-
-    if (bkBox) bkBox.style.display = 'none';
-    if (ngBox) ngBox.style.display = 'none';
-    if (sslBox) sslBox.style.display = 'none';
-    if (bankBox) bankBox.style.display = 'none';
-
-    if (method === 'bKash') {
-        if (bkBox) bkBox.style.display = 'block';
-    } else if (method === 'Nagad') {
-        if (ngBox) ngBox.style.display = 'block';
-    } else if (method === 'SSLCommerz') {
-        if (sslBox) sslBox.style.display = 'block';
-    } else if (method === 'Bank') {
-        if (bankBox) bankBox.style.display = 'block';
-    }
-}
-
-function toggleModalSSLSubTab(type) {
-    let cardBtn = document.getElementById('modalSslCardBtn');
-    let netBtn = document.getElementById('modalSslNetBtn');
-    let cardView = document.getElementById('modalSslCardView');
-    let netView = document.getElementById('modalSslNetView');
-
-    if (type === 'cards') {
-        if (cardBtn) cardBtn.classList.add('active');
-        if (netBtn) netBtn.classList.remove('active');
-        if (cardView) cardView.style.display = 'block';
-        if (netView) netView.style.display = 'none';
-    } else {
-        if (netBtn) netBtn.classList.add('active');
-        if (cardBtn) cardBtn.classList.remove('active');
-        if (netView) netView.style.display = 'block';
-        if (cardView) cardView.style.display = 'none';
-    }
-}
-
-// Sync modal gateway reference before form submit
-const paymentModalForm = document.querySelector('#paymentModal form');
-if (paymentModalForm) {
-    paymentModalForm.addEventListener('submit', function() {
-        const method = document.querySelector('input[name="payment_method"]:checked')?.value;
-        const refInput = document.getElementById('payerReferenceInput');
-
-        if (method === 'bKash') {
-            const phone = document.getElementById('modalBkashPhone')?.value.trim() || '01711223344';
-            if (refInput) refInput.value = phone;
-        } else if (method === 'Nagad') {
-            const phone = document.getElementById('modalNagadPhone')?.value.trim() || '01819876543';
-            if (refInput) refInput.value = phone;
-        } else if (method === 'SSLCommerz') {
-            const isNet = document.getElementById('modalSslNetView')?.style.display !== 'none';
-            if (isNet) {
-                const bank = document.getElementById('modalSslNetBank')?.value || 'City Touch';
-                const user = document.getElementById('modalSslNetUser')?.value.trim() || 'USER-9920192';
-                if (refInput) refInput.value = 'SSLCommerz NetBanking: ' + bank + ' (' + user + ')';
-            } else {
-                const cardNum = document.getElementById('modalSslCardNum')?.value.trim() || '4222 8899 4411 9812';
-                if (refInput) refInput.value = 'SSLCommerz Card (' + cardNum.slice(-4) + ')';
-            }
-        } else if (method === 'Bank Transfer') {
-            const bank = document.getElementById('modalBankName')?.value || 'City Bank';
-            const ref = document.getElementById('modalBankRef')?.value.trim() || 'DEP-2026-981245';
-            if (refInput) refInput.value = bank + ' (Ref: ' + ref + ')';
-        }
-    });
-}
 
 // Notifications Realtime Sync
 setInterval(() => fetch('{{ route('api.notifications') }}', {headers:{Accept:'application/json'}}).then(r=>r.json()).then(data=>{const badge=document.getElementById('liveNotificationCount');if(badge&&data.status==='success')badge.textContent=data.unread_count;}).catch(()=>{}), 5000);

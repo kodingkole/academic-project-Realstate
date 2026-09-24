@@ -75,7 +75,7 @@ class PaymentApiController extends Controller
         InvestorNotification::create([
             'user_id' => $user->id,
             'title' => 'bKash Payment Verified',
-            'message' => 'Your payment of ৳' . number_format($validated['amount']) . ' for ' . ($project?->title ?? 'Project') . ' via bKash (TxID: ' . $gatewayTxId . ') was successfully completed.',
+            'message' => 'Your payment of BDT ' . number_format($validated['amount']) . ' for ' . ($project?->title ?? 'Project') . ' via bKash (TxID: ' . $gatewayTxId . ') was successfully completed.',
             'type' => 'payment',
         ]);
 
@@ -150,7 +150,7 @@ class PaymentApiController extends Controller
         InvestorNotification::create([
             'user_id' => $user->id,
             'title' => 'Nagad Payment Verified',
-            'message' => 'Your payment of ৳' . number_format($validated['amount']) . ' for ' . ($project?->title ?? 'Project') . ' via Nagad (TxID: ' . $gatewayTxId . ') was successfully completed.',
+            'message' => 'Your payment of BDT ' . number_format($validated['amount']) . ' for ' . ($project?->title ?? 'Project') . ' via Nagad (TxID: ' . $gatewayTxId . ') was successfully completed.',
             'type' => 'payment',
         ]);
 
@@ -227,7 +227,7 @@ class PaymentApiController extends Controller
         InvestorNotification::create([
             'user_id' => $user->id,
             'title' => 'Bank Transfer Submitted & Verified',
-            'message' => 'Your Bank transfer payment of ৳' . number_format($validated['amount']) . ' via ' . $validated['bank_name'] . ' (Ref: ' . $validated['deposit_ref'] . ') has been verified and processed.',
+            'message' => 'Your Bank transfer payment of BDT ' . number_format($validated['amount']) . ' via ' . $validated['bank_name'] . ' (Ref: ' . $validated['deposit_ref'] . ') has been verified and processed.',
             'type' => 'payment',
         ]);
 

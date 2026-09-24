@@ -15,7 +15,9 @@ Artisan::command('installments:check-overdue', function () {
     InvestorBooking::whereNotNull('next_payment_date')->where('status', '!=', 'forfeited')->each(function (InvestorBooking $booking) use (&$updated) {
         $due = Carbon::parse($booking->next_payment_date);
         if (!$due->lt(today()->startOfDay())) return;
-        $missed = min(3, $booking->missed_installments + $due->diffInMonths(now()) + 1);
+        // This command runs daily, so do not increment the counter on each run.
+        // A missed installment is counted only when another monthly due date passes.
+        $missed = min(3, max($booking->missed_installments, (int) $due->diffInMonths(now()) + 1));
         $booking->update(['missed_installments' => $missed, 'status' => $missed >= 3 ? 'forfeited' : $booking->status, 'forfeited_at' => $missed >= 3 ? now() : null]);
         $updated++;
     });

@@ -56,13 +56,15 @@ class InvestorAuthController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'phone' => ['required', 'string', 'max:20', 'unique:users,phone'],
+            'phone' => ['required', 'regex:/^01[3-9]\d{8}$/', 'unique:users,phone'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'nid_number' => ['required', 'string', 'min:10', 'max:17', 'unique:users,nid_number'],
+            'nid_number' => ['required', 'regex:/^(?:\d{10}|\d{13}|\d{17})$/', 'unique:users,nid_number'],
             'tin_number' => ['required', 'string', 'min:10', 'max:15', 'unique:users,tin_number'],
             'electricity_bill_no' => ['required', 'string', 'min:6', 'max:25', 'unique:users,electricity_bill_no'],
         ], [
             'nid_number.unique' => 'This NID Number is already registered in our legal registry database.',
+            'nid_number.regex' => 'Enter a valid NID containing exactly 10, 13, or 17 digits.',
+            'phone.regex' => 'Enter an 11-digit Bangladeshi mobile number starting with 013 to 019.',
             'tin_number.unique' => 'This TIN Certificate Number is already registered in our tax verification database.',
             'electricity_bill_no.unique' => 'This Electricity / Utility Bill Account Number is already registered.',
             'phone.unique' => 'This Phone Number is already registered.',

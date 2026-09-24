@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InvestorDocument;
-use App\Models\Project;
+use App\Models\InvestorBooking;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +17,11 @@ class InvestorDocumentController extends Controller
     {
         return view('admin.investor-documents', [
             'investors' => User::where('role', 'investor')->orderBy('name')->get(),
-            'projects' => Project::orderBy('title')->get(),
+            'investorProjects' => InvestorBooking::with('project:id,title')
+                ->whereNotIn('status', ['rejected', 'cancelled'])
+                ->get()
+                ->groupBy('user_id')
+                ->map(fn ($bookings) => $bookings->pluck('project')->filter()->unique('id')->values()),
             'documents' => InvestorDocument::with(['investor', 'project'])->latest()->paginate(20),
         ]);
     }
@@ -40,6 +44,17 @@ class InvestorDocumentController extends Controller
         ]);
 
         abort_unless(User::whereKey($validated['user_id'])->where('role', 'investor')->exists(), 422);
+
+        if (!empty($validated['project_id'])) {
+            abort_unless(
+                InvestorBooking::where('user_id', $validated['user_id'])
+                    ->where('project_id', $validated['project_id'])
+                    ->whereNotIn('status', ['rejected', 'cancelled'])
+                    ->exists(),
+                422,
+                'The selected investor does not have an active investment in this project.'
+            );
+        }
 
         $uploadedCount = 0;
 
@@ -98,21 +113,41 @@ class InvestorDocumentController extends Controller
         abort_unless($document->user_id === $request->user()->id || $request->user()->role === 'admin', 403);
 
         if (!$document->file_path || !Storage::disk('local')->exists($document->file_path)) {
-            $html = "<html><body style='font-family:sans-serif;background:#0f172a;color:#fff;padding:40px;text-align:center;'>
-                <div style='background:#1e293b;border:1px solid #334155;border-radius:16px;padding:30px;max-width:550px;margin:0 auto;'>
-                    <h2 style='color:#38bdf8;margin-bottom:10px;'>".e($document->title)."</h2>
-                    <p style='color:#94a3b8;'>Document Type: <strong style='color:#fff;'>".e($document->doc_type)."</strong></p>
-                    <p style='color:#94a3b8;'>Investor: <strong>".e($document->investor?->name)."</strong> (".e($document->investor?->email).")</p>
-                    <p style='color:#94a3b8;'>Issue Date: <strong>".($document->issued_at?->format('d M Y') ?? 'N/A')."</strong></p>
-                    <hr style='border-color:#334155;margin:20px 0;'>
-                    <span style='background:rgba(16,185,129,0.2);color:#34d399;padding:6px 14px;border-radius:999px;font-weight:700;font-size:12px;'>Official Vetted Copy</span>
+            $html = "<html><body style='font-family:Arial,sans-serif;background:#f1f5f9;color:#0f172a;padding:40px;'>
+                <div style='background:#fff;border:1px solid #cbd5e1;border-radius:16px;padding:30px;max-width:650px;margin:0 auto;'>
+                    <h2 style='margin:0 0 12px;'>".e($document->title)."</h2>
+                    <p style='color:#b91c1c;font-weight:700;'>The uploaded file is unavailable. Please upload this document again.</p>
+                    <p>Document type: <strong>".e($document->doc_type)."</strong></p>
+                    <p>Investor: <strong>".e($document->investor?->name)."</strong> (".e($document->investor?->email).")</p>
                 </div>
             </body></html>";
-            return response($html, 200, ['Content-Type' => 'text/html']);
+            return response($html, 404, ['Content-Type' => 'text/html']);
         }
 
         $fullPath = Storage::disk('local')->path($document->file_path);
         $mime = Storage::disk('local')->mimeType($document->file_path) ?? 'application/pdf';
+
+        if (str_starts_with($mime, 'image/')) {
+            if ($request->boolean('raw')) {
+                return response()->file($fullPath, [
+                    'Content-Type' => $mime,
+                    'Content-Disposition' => 'inline; filename="'.basename($fullPath).'"',
+                ]);
+            }
+
+            $imageUrl = e($request->fullUrlWithQuery(['raw' => 1]));
+            $imageTitle = e($document->title);
+            $html = "<!doctype html><html><head><meta name='viewport' content='width=device-width,initial-scale=1'><style>
+                *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:#f1f5f9}
+                body{display:grid;place-items:center;overflow:auto;padding:24px}
+                img{display:block;width:auto;height:auto;max-width:none;max-height:none;object-fit:contain;box-shadow:0 8px 28px rgba(15,23,42,.18)}
+                </style></head><body><img id='document-image' src='{$imageUrl}' alt='{$imageTitle}'>
+                <script>
+                (()=>{const image=document.getElementById('document-image');const fit=()=>{if(!image.naturalWidth||!image.naturalHeight)return;const scale=Math.min(2.2,(innerWidth*.85)/image.naturalWidth,(innerHeight*.85)/image.naturalHeight);image.style.width=Math.round(image.naturalWidth*scale)+'px';image.style.height=Math.round(image.naturalHeight*scale)+'px'};image.addEventListener('load',fit);if(image.complete)fit();addEventListener('resize',fit)})();
+                </script></body></html>";
+
+            return response($html, 200, ['Content-Type' => 'text/html; charset=UTF-8']);
+        }
 
         return response()->file($fullPath, [
             'Content-Type' => $mime,

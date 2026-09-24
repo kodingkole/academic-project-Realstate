@@ -66,4 +66,5 @@ if (landWizard) {
     next.addEventListener('click', () => { const invalid=[...panels[currentStep-1].querySelectorAll('input,select,textarea')].find(field=>!field.checkValidity()); if(invalid){invalid.reportValidity();return;} showStep(Math.min(3,currentStep+1)); });
     back.addEventListener('click',()=>showStep(Math.max(1,currentStep-1)));
     indicators.forEach(item=>item.addEventListener('click',()=>{const target=Number(item.dataset.wizardStep);if(target<currentStep)showStep(target);}));
+    if (landWizard.querySelector('.field-error')) showStep(Number(landWizard.dataset.errorStep || 1));
 }

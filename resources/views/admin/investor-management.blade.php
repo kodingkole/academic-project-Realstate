@@ -1,6 +1,6 @@
 @extends('layouts.portal')
-@section('title', 'Investor Operations & KYC Verification | Intern Estate')
-@section('page-heading', 'Investor Operations & KYC Desk')
+@section('title', 'Investor Operations | Intern Estate')
+@section('page-heading', 'Investor Operations')
 @section('content')
 
 {{-- Unit Reservations Panel --}}
@@ -19,7 +19,8 @@
                     <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Project</th>
                     <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Unit No</th>
                     <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Investment Amount</th>
-                    <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Booking Status</th>
+                    <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Due Date & Status</th>
+                    <th style="padding: 12px; font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 800;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,13 +36,36 @@
                         </td>
                         <td style="padding: 14px 12px; color: #0f172a; font-weight: 800; font-size: 14px;">BDT {{ number_format($booking->investment_amount) }}</td>
                         <td style="padding: 14px 12px;">
-                            <span style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #059669; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 999px;">
-                                {{ ucfirst($booking->status) }}
-                            </span>
+                            @php($isOverdue = $booking->next_payment_date && \Carbon\Carbon::parse($booking->next_payment_date)->lt(today()->startOfDay()) && $booking->status !== 'paid_in_full')
+                            @if($isOverdue || in_array($booking->status, ['blocked', 'forfeited']))
+                                <span style="background: #fef2f2; border: 1px solid #f87171; color: #dc2626; font-weight: 800; font-size: 11px; padding: 4px 10px; border-radius: 999px; display: inline-block;">
+                                    Blocked / Overdue ({{ $booking->next_payment_date ? \Carbon\Carbon::parse($booking->next_payment_date)->format('d M Y') : 'N/A' }})
+                                </span>
+                            @elseif($booking->status === 'paid_in_full')
+                                <span style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #059669; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 999px;">
+                                    Paid in Full
+                                </span>
+                            @else
+                                <span style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 999px;">
+                                    Active (Due: {{ $booking->next_payment_date ? \Carbon\Carbon::parse($booking->next_payment_date)->format('d M Y') : 'N/A' }})
+                                </span>
+                            @endif
+                        </td>
+                        <td style="padding: 14px 12px;">
+                            @if($isOverdue || in_array($booking->status, ['blocked', 'forfeited']))
+                                <form method="POST" action="{{ route('admin.investor-bookings.unblock', $booking) }}" style="display: inline;" onsubmit="return confirm('Unit unblock kore 30 din time extend korte chan?');">
+                                    @csrf
+                                    <button type="submit" style="background: #10b981; color: #fff; border: none; font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+                                        Unblock & Extend Due Date
+                                    </button>
+                                </form>
+                            @else
+                                <small style="color: #94a3b8;">Normal status</small>
+                            @endif
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="5" class="erp-empty" style="text-align: center; padding: 30px; color: #94a3b8;">No investor reservations recorded yet.</td></tr>
+                    <tr><td colspan="6" class="erp-empty" style="text-align: center; padding: 30px; color: #94a3b8;">No investor reservations recorded yet.</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -276,7 +276,7 @@
             </tr>
             <tr class="total-row">
                 <td>Submitted Amount</td>
-                <td>BDT {{ number_format($payment->amount, 2) }}</td>
+                <td>BDT {{ number_format($payment->amount) }}</td>
             </tr>
         </table>
 

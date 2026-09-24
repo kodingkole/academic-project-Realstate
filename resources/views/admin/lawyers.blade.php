@@ -4,7 +4,7 @@
 <div class="erp-hero compact">
     <div>
         <span class="erp-kicker">LAND DUE DILIGENCE</span>
-        <h2>Lawyers & JV Submission Review</h2>
+        <h2>Lawyers </h2>
         <p>Assign counsel, verify ownership, define the JV split and activate development.</p>
     </div>
 </div>
