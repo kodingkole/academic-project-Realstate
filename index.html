@@ -1,0 +1,1255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Intern Real Estate and Construction ERP platform">
+
+    <title>Intern Estate | Real Estate &amp; Construction ERP</title>
+
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+    <link rel="alternate icon" href="public/favicon.ico">
+
+    <style>
+@import"https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap";:root{--primary: #0f766e;--primary-dark: #0f5147;--primary-light: #e6f4f1;--secondary: #d97706;--secondary-light: #fef3c7;--dark: #0f172a;--muted: #64748b;--border: #e2e8f0;--background: #f8fafc;--white: #ffffff;--danger: #dc2626;--shadow: 0 20px 50px rgba(15, 23, 42, .08)}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--white);color:var(--dark);font-family:DM Sans,sans-serif;line-height:1.6}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.container{margin:0 auto;max-width:1200px;padding-left:24px;padding-right:24px;width:100%}.site-header{background:#fffffff5;border-bottom:1px solid rgba(223,231,227,.8);position:sticky;top:0;z-index:100}.navbar{align-items:center;display:flex;height:76px;justify-content:space-between}.brand,.portal-brand{align-items:center;display:inline-flex;gap:10px}.brand-icon{align-items:center;background:var(--primary);border-radius:10px;color:var(--white);display:inline-flex;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;height:40px;justify-content:center;width:40px}.brand-name{color:var(--dark);font-family:Manrope,sans-serif;font-size:21px;font-weight:800}.brand-name span,.footer-logo span{color:var(--primary)}.nav-links{align-items:center;display:flex;gap:30px}.nav-links>a{color:#44514b;font-size:14px;font-weight:600;transition:color .2s ease}.nav-links>a:hover{color:var(--primary)}.nav-login,.nav-dashboard{background:var(--primary);border:0;border-radius:8px;color:var(--white)!important;cursor:pointer;display:inline-flex;font-size:14px;font-weight:700;padding:11px 18px}.nav-dashboard{background:var(--secondary)}.nav-logout-form{display:flex}.mobile-menu-button{background:transparent;border:0;color:var(--dark);cursor:pointer;display:none;font-size:26px}.flash-message{background:var(--primary-light);border-bottom:1px solid #bfd9ce;color:var(--primary-dark);font-weight:600;padding:12px 0}.hero-section{background:radial-gradient(circle at 80% 20%,rgba(211,155,69,.2),transparent 28%),linear-gradient(135deg,#f5faf7,#e7f1ec);min-height:690px;overflow:hidden;padding:80px 0 110px;position:relative}.hero-overlay{background-image:linear-gradient(rgba(31,95,74,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(31,95,74,.045) 1px,transparent 1px);background-size:42px 42px;inset:0;position:absolute;pointer-events:none}.hero-grid{align-items:center;display:grid;gap:80px;grid-template-columns:1.05fr .95fr;position:relative;z-index:1}.section-badge{background:var(--primary-light);border-radius:999px;color:var(--primary);display:inline-flex;font-size:12px;font-weight:800;letter-spacing:.08em;padding:8px 13px;text-transform:uppercase}.hero-content h1{font-family:Manrope,sans-serif;font-size:clamp(46px,6vw,72px);font-weight:800;letter-spacing:-.05em;line-height:1.03;margin:24px 0;max-width:700px}.hero-content h1 span{color:var(--primary);display:block}.hero-content>p{color:var(--muted);font-size:18px;max-width:610px}.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}.button{align-items:center;border-radius:9px;display:inline-flex;font-weight:700;justify-content:center;min-height:52px;padding:0 24px;transition:transform .2s ease,box-shadow .2s ease}.button:hover{transform:translateY(-2px)}.button-primary{background:var(--primary);box-shadow:0 14px 30px #1f5f4a38;color:var(--white)}.button-light{background:var(--white);border:1px solid var(--border);color:var(--dark)}.hero-trust{display:flex;flex-wrap:wrap;gap:34px;margin-top:48px}.hero-trust div{display:flex;flex-direction:column}.hero-trust strong{color:var(--primary);font-family:Manrope,sans-serif;font-size:25px}.hero-trust span{color:var(--muted);font-size:13px}.hero-card{background:#ffffffeb;border:1px solid rgba(255,255,255,.8);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(1.5deg)}.hero-card-header{align-items:center;display:flex;font-size:13px;font-weight:700;justify-content:space-between;padding:17px 20px}.status-pill{background:var(--primary-light);border-radius:999px;color:var(--primary);font-size:11px;padding:5px 10px}.property-visual{align-items:end;background:linear-gradient(to top,#143f329e,#1f5f4a14),linear-gradient(135deg,#b9d7ca,#edf5f1);display:flex;gap:14px;height:250px;justify-content:center;overflow:hidden;padding:35px 40px 0;position:relative}.property-visual:after{background:#fffc;border-radius:100%;content:"";height:60px;position:absolute;right:40px;top:30px;width:60px}.building{background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(213,235,225,.4) 13px 20px),var(--primary-dark);border-radius:5px 5px 0 0;position:relative;width:80px}.building-one{height:135px}.building-two{height:200px}.building-three{height:165px}.hero-card-body{padding:26px}.small-label,.project-location{color:var(--secondary);font-size:11px;font-weight:800;letter-spacing:.08em}.hero-card-body h2{font-family:Manrope,sans-serif;font-size:25px;margin:5px 0 8px}.hero-card-body>p:not(.small-label){color:var(--muted);font-size:14px}.progress-information{align-items:center;display:flex;font-size:13px;justify-content:space-between;margin-top:20px}.progress-information strong{color:var(--primary)}.progress-track{background:#e6ece9;border-radius:999px;height:7px;margin-top:8px;overflow:hidden;width:100%}.progress-bar{background:linear-gradient(90deg,var(--primary),#4c9c7e);border-radius:inherit;height:100%}.text-link{color:var(--primary);display:inline-block;font-size:14px;font-weight:700;margin-top:20px}.search-wrapper{margin-top:-55px;position:relative;z-index:10}.property-search{align-items:end;background:#fff;border:1px solid rgba(226,232,240,.9);border-radius:16px;box-shadow:0 15px 35px -8px #0f172a14,0 6px 15px -4px #0f172a0a;display:grid;gap:16px;grid-template-columns:repeat(3,1fr) auto;padding:24px}.search-field{display:flex;flex-direction:column}.search-field label{color:#1e293b;display:block;font-size:13px;font-weight:700;letter-spacing:.01em;margin-bottom:8px}.input-icon-wrapper{position:relative;display:flex;align-items:center;width:100%}.input-icon-wrapper .search-icon{position:absolute;left:14px;pointer-events:none;z-index:2;transition:stroke .2s ease}.search-field input,.search-field input[type=text],.search-field input[type=search],.search-field select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-color:#f8fafc;border:1.5px solid #cbd5e1;border-radius:10px;box-sizing:border-box;color:#0f172a;font-size:14px;font-weight:500;height:50px;outline:none;padding:0 16px;transition:all .2s ease-in-out;width:100%}.input-icon-wrapper input,.input-icon-wrapper select{padding-left:42px!important}.input-icon-wrapper:focus-within .search-icon{stroke:#0d9488}.search-field input::placeholder{color:#94a3b8;font-weight:400;opacity:1}.search-field input[type=search]::-webkit-search-decoration,.search-field input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none}.search-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-position:right 16px center;background-repeat:no-repeat;background-size:16px;cursor:pointer;padding-right:42px}.search-field input:hover,.search-field select:hover{background-color:#fff;border-color:#94a3b8}.search-field input:focus,.search-field select:focus{background-color:#fff;border-color:#0d9488;box-shadow:0 0 0 4px #0d948824}.search-field select option{background-color:#fff;color:#0f172a;font-size:14px;padding:10px 14px}.search-button{align-items:center;background:linear-gradient(135deg,#0d9488,#0f766e);border:0;border-radius:10px;box-shadow:0 4px 14px #0d948859;color:#fff;cursor:pointer;display:inline-flex;gap:8px;font-size:15px;font-weight:700;height:50px;justify-content:center;padding:0 28px;transition:all .2s ease-in-out;white-space:nowrap}.search-button:hover{background:linear-gradient(135deg,#0f766e,#115e59);box-shadow:0 6px 18px #0d948873;transform:translateY(-1px)}.search-button:active{box-shadow:0 2px 8px #0d94884d;transform:translateY(0)}.section{padding:105px 0}.section-soft{background:var(--background)}.section-heading{align-items:end;display:flex;gap:30px;justify-content:space-between;margin-bottom:40px}.section-heading h2,.center-heading h2,.cta-content h2{font-family:Manrope,sans-serif;font-size:clamp(32px,4vw,46px);letter-spacing:-.04em;line-height:1.15;margin:15px 0 10px}.section-heading p,.center-heading p{color:var(--muted);max-width:620px}.center-heading{margin:0 auto 48px;max-width:760px;text-align:center}.project-grid{display:grid;gap:24px;grid-template-columns:repeat(3,1fr)}.project-card{background:var(--white);border:1px solid var(--border);border-radius:15px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}.project-card:hover{box-shadow:var(--shadow);transform:translateY(-7px)}.project-image{align-items:end;background:linear-gradient(145deg,#cbe0d7,#eff5f2);display:flex;height:235px;justify-content:center;overflow:hidden;padding-top:30px;position:relative}.project-image-2{background:linear-gradient(145deg,#dfe3e0,#f7eee0)}.project-image-3{background:linear-gradient(145deg,#c8dad3,#dfe8ed)}.project-type{background:#ffffffeb;border-radius:999px;font-size:11px;font-weight:700;left:15px;padding:7px 11px;position:absolute;top:15px}.project-building{align-items:end;display:flex;gap:6px;height:190px}.project-building span{background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(255,255,255,.12) 13px 16px),var(--primary-dark);border-radius:4px 4px 0 0;display:block;height:145px;width:65px}.project-building span:nth-child(2){height:190px;width:80px}.project-building span:nth-child(3){height:120px}.project-content{padding:24px}.project-content h3{font-family:Manrope,sans-serif;font-size:21px;margin:5px 0}.project-price{color:var(--muted);font-size:14px}.project-card-footer{align-items:center;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:space-between;margin-top:20px;padding-top:16px}.btn-card-invest{align-items:center;background:var(--primary);border-radius:8px;box-shadow:0 4px 12px #0f766e2e;color:var(--white);display:inline-flex;font-size:13px;font-weight:700;gap:6px;height:38px;justify-content:center;padding:0 14px;text-decoration:none;transition:all .2s ease;white-space:nowrap}.btn-card-invest:hover{background:var(--primary-dark);box-shadow:0 6px 16px #0f766e47;color:var(--white);transform:translateY(-1px)}.btn-card-invest svg{flex-shrink:0;stroke:currentColor}.btn-card-details{align-items:center;color:var(--primary);display:inline-flex;font-size:13px;font-weight:700;text-decoration:none;transition:color .2s ease,transform .2s ease;white-space:nowrap}.btn-card-details:hover{color:var(--primary-dark);transform:translate(2px)}.project-link{color:var(--primary);font-size:13px;font-weight:700}.service-grid{display:grid;gap:24px;grid-template-columns:repeat(3,1fr)}.service-card{background:var(--white);border:1px solid var(--border);border-radius:15px;padding:30px}.service-icon{align-items:center;background:var(--primary-light);border-radius:11px;color:var(--primary);display:flex;font-family:Manrope,sans-serif;font-weight:800;height:48px;justify-content:center;margin-bottom:22px;width:48px}.service-card h3{font-family:Manrope,sans-serif;font-size:21px;margin-bottom:10px}.service-card p{color:var(--muted);font-size:14px;min-height:70px}.service-card a{color:var(--primary);display:inline-block;font-size:14px;font-weight:700;margin-top:20px}.process-grid{display:grid;gap:24px;grid-template-columns:repeat(4,1fr)}.process-item{border-top:2px solid var(--primary-light);padding-top:24px;position:relative}.process-item>span{align-items:center;background:var(--primary);border-radius:50%;color:var(--white);display:flex;font-weight:700;height:38px;justify-content:center;margin-bottom:20px;width:38px}.process-item h3{font-family:Manrope,sans-serif;margin-bottom:8px}.process-item p{color:var(--muted);font-size:14px}.cta-section{background:radial-gradient(circle at 80% 20%,rgba(211,155,69,.25),transparent 25%),var(--primary-dark);color:var(--white);padding:80px 0}.cta-content{align-items:center;display:flex;gap:40px;justify-content:space-between}.cta-content p{color:#ddc9d9;max-width:660px}.section-badge-light{background:#ffffff1f;color:var(--white)}.site-footer{background:#101814;color:var(--white);padding-top:65px}.footer-content{display:grid;gap:45px;grid-template-columns:1.5fr repeat(3,1fr);padding-bottom:50px}.footer-logo{display:inline-block;font-family:Manrope,sans-serif;font-size:23px;font-weight:800;margin-bottom:15px}.footer-content p,.footer-content a{color:#9faca6;display:block;font-size:13px;margin-top:9px}.footer-content h4{font-family:Manrope,sans-serif;margin-bottom:15px}.footer-bottom{border-top:1px solid rgba(255,255,255,.08);color:#8c9993;font-size:12px;padding:20px;text-align:center}.login-section{background:radial-gradient(circle at 15% 20%,rgba(211,155,69,.18),transparent 26%),linear-gradient(135deg,#eef6f2,#f9faf9);min-height:calc(100vh - 76px);padding:70px 0}.login-grid{align-items:center;display:grid;gap:90px;grid-template-columns:1fr 480px}.login-grid-single{display:flex;justify-content:center}.login-grid-single .login-card{max-width:480px;width:100%}.login-information h1{font-family:Manrope,sans-serif;font-size:clamp(42px,5vw,62px);letter-spacing:-.05em;line-height:1.08;margin:22px 0}.login-information h1 span{color:var(--primary)}.login-information>p{color:var(--muted);font-size:17px;max-width:610px}.login-feature-list{display:grid;gap:20px;margin-top:40px}.login-feature-list>div{align-items:flex-start;display:flex;gap:14px}.login-feature-list>div>span{align-items:center;background:var(--primary);border-radius:50%;color:var(--white);display:flex;flex-shrink:0;font-size:12px;height:28px;justify-content:center;width:28px}.login-feature-list strong{display:block;font-size:15px}.login-feature-list p{color:var(--muted);font-size:13px}.login-card{background:var(--white);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:38px}.login-brand{margin-bottom:28px}.login-card-header h2{font-family:Manrope,sans-serif;font-size:30px;margin-bottom:5px}.login-card-header>p{color:var(--muted);font-size:14px}.login-form{display:grid;gap:20px;margin-top:30px}.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.form-group input{border:1px solid var(--border);border-radius:8px;height:50px;outline:none;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease;width:100%}.form-group input:focus{border-color:var(--primary);box-shadow:0 0 0 3px #1f5f4a1a}.label-row{align-items:center;display:flex;justify-content:space-between}.label-row span{color:var(--muted);font-size:11px}.password-wrapper{position:relative}.password-wrapper input{padding-right:65px}.password-toggle{background:transparent;border:0;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700;position:absolute;right:13px;top:50%;transform:translateY(-50%)}.input-error{border-color:var(--danger)!important}.error-message{color:var(--danger);font-size:12px;margin-top:6px}.remember-row{align-items:center;display:flex;font-size:13px;justify-content:space-between}.remember-row label{align-items:center;display:flex;gap:7px}.forgot-placeholder{color:var(--primary);font-weight:600}.login-submit{background:var(--primary);border:0;border-radius:8px;color:var(--white);cursor:pointer;font-weight:700;height:52px}.demo-credential{background:var(--background);border:1px dashed #b9c9c2;border-radius:9px;margin-top:24px;padding:15px}.demo-credential strong{font-size:13px}.demo-credential p{color:var(--muted);font-size:12px;margin-top:5px}.demo-credential code{color:var(--primary-dark);font-weight:700}.back-home{color:var(--muted);display:block;font-size:13px;margin-top:20px;text-align:center}.portal-body{background:var(--background)}.portal-layout{display:flex;min-height:100vh}.portal-sidebar{background:#12271f;color:var(--white);display:flex;flex-direction:column;flex-shrink:0;min-height:100vh;padding:26px 20px;position:fixed;width:255px;z-index:50}.portal-brand .brand-name{color:var(--white)}.portal-brand .brand-icon{background:var(--secondary);color:var(--dark)}.sidebar-label{color:#72877e;font-size:10px;font-weight:800;letter-spacing:.12em;margin:40px 12px 12px}.sidebar-navigation{display:grid;gap:6px}.sidebar-navigation a{align-items:center;border-radius:8px;color:#a9b9b2;display:flex;font-size:14px;font-weight:600;gap:12px;padding:11px 13px}.sidebar-navigation a:hover,.sidebar-navigation a.active{background:#ffffff17;color:var(--white)}.sidebar-navigation a span{align-items:center;display:inline-flex;justify-content:center;width:20px}.sidebar-bottom{border-top:1px solid rgba(255,255,255,.09);display:grid;gap:8px;margin-top:auto;padding-top:20px}.sidebar-bottom a,.sidebar-bottom button{background:transparent;border:0;color:#a9b9b2;cursor:pointer;font-size:13px;padding:7px 5px;text-align:left}.sidebar-bottom button:hover,.sidebar-bottom a:hover{color:var(--white)}.portal-main{margin-left:255px;min-width:0;width:calc(100% - 255px)}.portal-topbar{align-items:center;background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;min-height:88px;padding:16px 34px}.portal-topbar h1{font-family:Manrope,sans-serif;font-size:23px}.topbar-date{color:var(--muted);font-size:11px}.sidebar-toggle{background:transparent;border:0;cursor:pointer;display:none;font-size:24px}.user-menu{align-items:center;display:flex;gap:11px}.user-avatar{align-items:center;background:var(--primary-light);border-radius:50%;color:var(--primary);display:flex;font-weight:800;height:42px;justify-content:center;width:42px}.user-menu strong,.user-menu span{display:block}.user-menu strong{font-size:13px}.user-menu span{color:var(--muted);font-size:11px}.portal-content{padding:32px}.portal-alert{background:var(--primary-light);border:1px solid #bfd9ce;border-radius:8px;color:var(--primary-dark);font-size:13px;font-weight:600;margin-bottom:22px;padding:12px 15px}.dashboard-welcome{align-items:center;display:flex;gap:25px;justify-content:space-between;margin-bottom:28px}.dashboard-welcome h2{font-family:Manrope,sans-serif;font-size:27px;margin-top:10px}.dashboard-welcome p{color:var(--muted);font-size:14px}.dashboard-action-button{background:var(--primary);border:0;border-radius:8px;color:var(--white);cursor:pointer;font-weight:700;padding:12px 18px}.stat-card-grid{display:grid;gap:20px;grid-template-columns:repeat(4,1fr)}.stat-card{align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;display:flex;gap:14px;padding:20px}.stat-card-icon{align-items:center;background:var(--primary-light);border-radius:9px;color:var(--primary);display:flex;flex-shrink:0;font-weight:800;height:42px;justify-content:center;width:42px}.stat-card p{color:var(--muted);font-size:12px}.stat-card h3{font-family:Manrope,sans-serif;font-size:27px;line-height:1.2;margin:3px 0}.stat-card span{color:#88958f;font-size:10px}.dashboard-grid{display:grid;gap:22px;grid-template-columns:minmax(0,1.65fr) minmax(280px,.7fr);margin-top:22px}.dashboard-panel,.module-preview{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px}.panel-header{align-items:center;display:flex;justify-content:space-between;margin-bottom:20px}.panel-header h3{font-family:Manrope,sans-serif;font-size:17px}.panel-header p{color:var(--muted);font-size:11px}.panel-header a{color:var(--primary);font-size:12px;font-weight:700}.table-responsive{overflow-x:auto}.dashboard-table{border-collapse:collapse;min-width:650px;width:100%}.dashboard-table th{border-bottom:1px solid var(--border);color:var(--muted);font-size:10px;letter-spacing:.06em;padding:10px;text-align:left;text-transform:uppercase}.dashboard-table td{border-bottom:1px solid #edf1ef;font-size:12px;padding:15px 10px}.dashboard-table td strong{font-size:12px}.table-status{background:var(--primary-light);border-radius:999px;color:var(--primary);font-size:10px;font-weight:700;padding:5px 8px}.table-progress{align-items:center;display:flex;gap:9px;min-width:130px}.table-progress .progress-track{margin-top:0}.table-progress strong{color:var(--primary);font-size:10px}.quick-actions{display:grid;gap:10px}.quick-actions button,.quick-actions>a{align-items:center;background:var(--background);border:1px solid var(--border);border-radius:8px;color:var(--dark);cursor:pointer;display:flex;font-size:12px;font-weight:600;gap:10px;padding:12px;text-align:left}.quick-actions button span,.quick-actions>a span{align-items:center;background:var(--primary-light);border-radius:6px;color:var(--primary);display:flex;font-weight:800;height:28px;justify-content:center;width:28px}.module-primary-button,.module-form-actions button{background:var(--primary);border:0;border-radius:8px;color:var(--white)!important;cursor:pointer;font-weight:700;padding:11px 16px}.module-table td small{color:var(--muted);display:block;margin-top:4px;max-width:320px}.module-actions{align-items:center;display:flex;gap:10px}.module-actions form{margin:0}.module-actions button{background:none;border:0;color:#b42318;cursor:pointer;font-size:12px;padding:0}.module-empty{color:var(--muted);padding:40px!important;text-align:center}.module-pagination{margin-top:20px}.module-pagination nav>div:first-child{display:none}.module-pagination svg{height:18px;width:18px}.module-form-panel{margin:0 auto;max-width:900px}.module-form{display:grid;gap:18px;grid-template-columns:1fr 1fr}.module-form label{color:var(--dark);display:grid;font-size:12px;font-weight:700;gap:7px}.module-form input,.module-form select,.module-form textarea{background:var(--white);border:1px solid var(--border);border-radius:8px;font:inherit;padding:11px 12px;width:100%}.module-form input:focus,.module-form select:focus,.module-form textarea:focus{border-color:var(--primary);outline:2px solid var(--primary-light)}.module-form label small{color:#b42318}.module-form .full-width{grid-column:1 / -1}.module-form-actions{align-items:center;display:flex;gap:14px;justify-content:flex-end}.module-form-actions a{color:var(--muted);font-size:13px}.investor-portal-body{background:#fff;color:#335d26}.investor-portal-body .portal-layout{background:#fff}.investor-sidebar{background:#fff!important;border-right:1px solid #e2e8f0;box-shadow:2px 0 16px #0f172a0a}.investor-sidebar .portal-brand .brand-name{color:#0f172a;font-weight:800}.investor-sidebar .brand-icon{background:#0f172a;color:#fff}.investor-sidebar .sidebar-label{color:#64748b;font-weight:800}.investor-sidebar .sidebar-navigation a{color:#0e0d0d;font-weight:600}.investor-sidebar .sidebar-navigation a:hover,.investor-sidebar .sidebar-navigation a.active{background:#f1f5f9;color:#0e3898;border-left:3px solid #cbae1e}.investor-sidebar .sidebar-bottom{border-top:1px solid #e2e8f0}.investor-sidebar .sidebar-bottom a,.investor-sidebar .sidebar-bottom button{color:#64748b}.investor-sidebar .sidebar-bottom a:hover,.investor-sidebar .sidebar-bottom button:hover{color:#0f172a}.investor-portal-body .portal-topbar{background:#fff;border-bottom:1px solid #e2e8f0}.investor-portal-body .portal-topbar h1{color:#2c4338;font-weight:800}.investor-portal-body .topbar-date{color:#64748b}.investor-portal-body .user-menu strong{color:#0f172a}.investor-portal-body .user-menu span{color:#64748b}.investor-portal-body .user-avatar{background:#0b4676;color:#fff}.investor-welcome-card{align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 4px 20px #0f172a0a;color:#0f172a;display:flex;justify-content:space-between;margin-bottom:24px;overflow:hidden;padding:32px 36px;position:relative}.investor-welcome-card:after{border:1px solid rgba(15,23,42,.06);border-radius:50%;content:"";height:220px;position:absolute;right:-45px;top:-80px;width:220px}.investor-eyebrow{color:#0f172a;font-size:10px;font-weight:800;letter-spacing:.14em}.investor-welcome-card h2{color:#0f172a;font-family:Manrope,sans-serif;font-size:28px;margin:8px 0 5px}.investor-welcome-card p{color:#475569;font-size:13px}.investor-welcome-mark{align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;display:flex;flex-direction:column;height:82px;justify-content:center;position:relative;width:82px;z-index:1}.investor-welcome-mark span{color:#0f172a;font-family:Manrope,sans-serif;font-size:24px;font-weight:800}.investor-welcome-mark small{color:#64748b;font-size:7px;font-weight:800;letter-spacing:.15em}.investor-stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 4px 15px #0f172a08;color:#0f172a}.investor-stat-card p{color:#64748b;font-weight:600}.investor-stat-card h3{color:#0f172a;font-size:26px;font-weight:800}.investor-dashboard-grid{display:grid;gap:22px;grid-template-columns:minmax(0,1.7fr) minmax(260px,.7fr);margin-top:22px}.investor-live-label{background:#f1f5f9;border-radius:999px;color:#0f172a;font-size:9px;font-weight:800;padding:5px 9px}.investor-empty-state{align-items:center;display:flex;flex-direction:column;justify-content:center;min-height:200px;padding:30px;text-align:center}.investor-empty-icon{align-items:center;background:#f1f5f9;border-radius:50%;color:#0f172a;display:flex;font-size:25px;height:62px;justify-content:center;margin-bottom:14px;width:62px}.investor-empty-state h4{color:#0f172a;font-family:Manrope,sans-serif;font-size:17px}.investor-empty-state p{color:#64748b;font-size:12px;margin-top:4px;max-width:340px}.investor-documents-panel{background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 10px 30px #0f172a08;color:#0f172a;padding:28px}.investor-documents-header{border-bottom:1px solid #e2e8f0;margin-bottom:20px;padding-bottom:20px}.investor-documents-kicker{color:#0f766e;font-size:10px;font-weight:800;letter-spacing:.12em}.investor-documents-header h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:20px;margin:6px 0}.investor-documents-header p{color:#64748b;font-size:13px;margin:0}.investor-document-list{display:grid;gap:12px}.investor-document-card{align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:14px;display:flex;gap:20px;justify-content:space-between;min-height:106px;padding:20px;transition:border-color .2s,box-shadow .2s,transform .2s}.investor-document-card:hover{border-color:#99f6e4;box-shadow:0 8px 20px #0f172a0f;transform:translateY(-1px)}.investor-document-details h4{color:#0f172a;font-family:Manrope,sans-serif;font-size:16px;margin:0 0 10px;overflow-wrap:anywhere}.investor-document-details>span{color:#64748b!important;font-size:12px!important;margin-left:8px}.investor-document-details>span:first-of-type{background:#ccfbf1!important;border-radius:999px;color:#0f766e!important;font-size:10px!important;font-weight:800!important;letter-spacing:.04em;margin-left:0;padding:5px 9px!important;text-transform:uppercase}.investor-document-actions{align-items:center;display:flex;flex:0 0 auto;gap:10px}.investor-document-actions a,.investor-document-actions button{border-radius:8px;cursor:pointer;font:inherit;font-size:12px;font-weight:800;padding:10px 15px;text-decoration:none;white-space:nowrap}.investor-document-preview{background:#0f766e;border:1px solid #0f766e;box-shadow:0 4px 10px #0f766e2e;color:#fff}.investor-document-preview:hover{background:#115e59}.investor-document-download{background:#fff;border:1px solid #cbd5e1;color:#334155}.investor-document-download:hover{background:#f8fafc}@media(max-width:640px){.investor-documents-panel{padding:20px}.investor-document-card{align-items:flex-start;flex-direction:column;gap:16px}.investor-document-actions{width:100%}.investor-document-actions a,.investor-document-actions button{flex:1;text-align:center}}.investor-profile-row{border-bottom:1px solid #e2e8f0;display:flex;flex-direction:column;gap:3px;padding:13px 0}.investor-profile-row:last-child{border-bottom:0}.investor-profile-row span{color:#64748b;font-size:10px;text-transform:uppercase}.investor-profile-row strong{color:#0f172a;font-size:13px;overflow-wrap:anywhere}.investor-status{background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;color:#0f172a;display:inline-block;font-size:11px;font-weight:700;padding:3px 8px}.investor-actions{background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 4px 16px #0f172a08;display:grid;gap:18px;grid-template-columns:minmax(180px,.85fr) 1fr 1fr;margin:22px 0;padding:22px}.investor-actions-intro{padding:5px 6px}.investor-actions-intro span{color:#0f172a;font-size:10px;font-weight:800;letter-spacing:.12em}.investor-actions-intro h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:18px;margin:7px 0}.investor-actions-intro p{color:#475569;font-size:12px;line-height:1.55;margin:0}.investor-action-card{align-items:flex-start;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;box-shadow:none;display:flex;flex-direction:column;min-height:145px;padding:18px;transition:transform .2s,box-shadow .2s}.investor-action-card:hover{background:#fff;box-shadow:0 8px 24px #0f172a0f;transform:translateY(-2px)}.investor-action-icon{align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:10px;color:#0f172a;display:flex;font-size:17px;height:36px;justify-content:center;width:36px}.investor-action-card.payment .investor-action-icon{background:#fff;border:1px solid #e2e8f0;color:#0f172a}.investor-action-card h4{color:#0f172a;font-family:Manrope,sans-serif;font-size:14px;margin:12px 0 5px}.investor-action-card p{color:#475569;font-size:11px;line-height:1.45;margin:0 0 14px}.investor-action-card button,.investor-action-card a{border:0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800;margin-top:auto;padding:9px 12px}.investor-reserve-button{background:#0f172a;color:#fff!important}.investor-reserve-button:hover{background:#1e293b}.investor-pay-button{background:#0f172a;color:#fff!important}.investor-pay-button:hover{background:#1e293b}.investor-property-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 2px 8px #0f172a05;padding:18px}.investor-portal-body .dashboard-panel{background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 4px 15px #0f172a08;color:#0f172a;padding:24px}.investor-portal-body .panel-header{align-items:center;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;margin-bottom:18px;padding-bottom:14px}.investor-portal-body .panel-header h3{color:#0f172a;font-size:17px;font-weight:800}.investor-portal-body .panel-header p{color:#64748b;font-size:12px}.investor-portal-body .progress-track{background:#e2e8f0;border-radius:999px;height:8px;margin:8px 0 16px;overflow:hidden;width:100%}.investor-portal-body .progress-track span{background:#0f172a;display:block;height:100%}.investor-portal-body .erp-table{border-collapse:collapse;width:100%}.investor-portal-body .erp-table th{border-bottom:1px solid #cbd5e1;color:#475569;font-size:11px;font-weight:800;padding:12px 10px;text-transform:uppercase}.investor-portal-body .erp-table td{border-bottom:1px solid #f1f5f9;color:#0f172a;font-size:13px;padding:14px 10px}.investor-portal-body .erp-table td small{color:#64748b;display:block;margin-top:3px}.investor-portal-body .erp-secondary{background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;color:#0f172a;font-weight:700;padding:7px 12px}.investor-portal-body .erp-secondary:hover{background:#f1f5f9}.investor-portal-body .erp-button{background:#0f172a;border-radius:8px;color:#fff;font-weight:700}.investor-modal{background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 22px 70px #0f172a26;color:#0f172a;max-width:580px;overflow:hidden;padding:0;width:calc(100% - 32px)}.investor-modal::backdrop{-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);background:#0f172a66}.investor-modal-header{align-items:flex-start;background:#fff;border-bottom:1px solid #e2e8f0;color:#0f172a;display:flex;justify-content:space-between;padding:23px 25px}.investor-modal-header.payment{background:#fff;border-bottom:1px solid #e2e8f0}.investor-modal-kicker{color:#0f172a;font-size:9px;font-weight:800;letter-spacing:.13em}.investor-modal-header.payment .investor-modal-kicker{color:#0f172a}.investor-modal-header h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:19px;margin:6px 0 4px}.investor-modal-header p{color:#64748b;font-size:11px;margin:0}.investor-modal-close{background:#f1f5f9;border:0;border-radius:8px;color:#0f172a;cursor:pointer;font-size:19px;height:31px;width:31px}.investor-modal-form{display:grid;gap:16px;grid-template-columns:1fr 1fr;padding:25px}.investor-modal-form label{color:#334155;display:grid;font-size:11px;font-weight:700;gap:7px;letter-spacing:.02em}.investor-modal-form input,.investor-modal-form select{background:#fff;border:1px solid #cbd5e1;border-radius:9px;color:#0f172a;font:inherit;font-size:13px;outline-color:#0f172a;padding:11px 12px}.investor-modal-form .wide{grid-column:1 / -1}.investor-modal-note{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;color:#475569;font-size:11px;line-height:1.45;margin:0;padding:10px 12px}.investor-modal-actions{align-items:center;border-top:1px solid #e2e8f0;display:flex;gap:10px;justify-content:flex-end;margin:6px -25px -25px;padding:16px 25px}.investor-modal-actions button{border:0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800;padding:10px 15px}.investor-modal-cancel{background:#f1f5f9;color:#475569}.investor-modal-submit,.investor-modal-submit.payment{background:#0f172a;color:#fff}@media(max-width:850px){.investor-dashboard-grid{grid-template-columns:1fr}.investor-actions{grid-template-columns:1fr 1fr}.investor-actions-intro{grid-column:1 / -1}.investor-welcome-card{padding:26px}}@media(max-width:560px){.investor-welcome-mark{display:none}.investor-welcome-card h2{font-size:23px}.investor-actions,.investor-modal-form{grid-template-columns:1fr}.investor-actions-intro{grid-column:auto}}.module-preview{margin-top:22px}.module-grid{display:grid;gap:14px;grid-template-columns:repeat(6,1fr)}.module-grid article{background:var(--background);border:1px solid var(--border);border-radius:9px;padding:15px}.module-grid article>span{color:var(--secondary);font-size:10px;font-weight:800}.module-grid h4{font-family:Manrope,sans-serif;font-size:13px;margin:7px 0 5px}.module-grid p{color:var(--muted);font-size:10px}@media(max-width:1050px){.hero-grid,.login-grid{gap:45px;grid-template-columns:1fr 430px}.property-search{grid-template-columns:repeat(2,1fr)}.search-button{width:100%}.stat-card-grid{grid-template-columns:repeat(2,1fr)}.module-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:850px){.mobile-menu-button{display:block}.nav-links{align-items:stretch;background:var(--white);border-bottom:1px solid var(--border);box-shadow:var(--shadow);display:none;flex-direction:column;gap:15px;left:0;padding:25px;position:absolute;right:0;top:76px}.nav-links.open{display:flex}.hero-grid,.login-grid{grid-template-columns:1fr}.hero-card{margin:0 auto;max-width:560px;transform:none;width:100%}.project-grid,.service-grid,.process-grid,.footer-content{grid-template-columns:1fr 1fr}.portal-sidebar{transform:translate(-100%);transition:transform .25s ease}.portal-sidebar.open{transform:translate(0)}.portal-main{margin-left:0;width:100%}.sidebar-toggle{display:block}.portal-topbar{gap:15px;padding:15px 20px}.dashboard-grid{grid-template-columns:1fr}}@media(max-width:640px){.container{padding-left:18px;padding-right:18px}.hero-section{padding:60px 0 95px}.hero-content h1{font-size:43px}.hero-actions{flex-direction:column}.button{width:100%}.property-search,.project-grid,.service-grid,.process-grid,.footer-content{grid-template-columns:1fr}.section{padding:75px 0}.section-heading,.cta-content,.dashboard-welcome{align-items:flex-start;flex-direction:column}.login-card{padding:25px 20px}.remember-row{align-items:flex-start;flex-direction:column;gap:10px}.user-menu>div:last-child{display:none}.portal-content{padding:22px 16px}.stat-card-grid,.module-grid{grid-template-columns:1fr}.portal-topbar h1{font-size:18px}}.erp-dark{--erp-bg: #07101e;--erp-surface: rgba(15, 23, 42, .82);--erp-card: rgba(30, 41, 59, .68);--erp-line: rgba(148, 163, 184, .16);--erp-text: #e8eef7;--erp-muted: #8fa0b7;--erp-green: #10b981;--erp-amber: #f59e0b;--erp-indigo: #6366f1;background:radial-gradient(circle at 90% 0,#13352e 0,transparent 30%),#07101e;color:var(--erp-text);font-family:Inter,Arial,sans-serif;margin:0}.erp-dark *{box-sizing:border-box}.erp-shell{min-height:100vh}.erp-sidebar{background:#07101ef0;border-right:1px solid var(--erp-line);bottom:0;display:flex;flex-direction:column;left:0;padding:24px 16px;position:fixed;top:0;width:250px;z-index:30}.erp-brand{align-items:center;color:#fff;display:flex;font-size:18px;font-weight:800;gap:12px;margin:0 8px 30px}.erp-brand>span{align-items:center;background:linear-gradient(135deg,var(--erp-green),#047857);border-radius:12px;display:flex;height:44px;justify-content:center;width:44px}.erp-brand small{color:var(--erp-green);display:block;font-size:8px;letter-spacing:.16em;margin-top:3px}.erp-sidebar nav{display:grid;gap:4px;overflow:auto}.erp-sidebar nav p{color:#53647a;font-size:9px;font-weight:800;letter-spacing:.16em;margin:16px 12px 6px}.erp-sidebar nav a{border:1px solid transparent;border-radius:9px;color:#a7b5c8;font-size:12px;font-weight:600;padding:10px 12px}.erp-sidebar nav a:hover,.erp-sidebar nav a.active{background:#10b9811a;border-color:#10b98133;color:#6ee7b7}.erp-sidebar-foot{display:grid;gap:9px;margin-top:auto}.erp-sidebar-foot a,.erp-sidebar-foot button{background:none;border:0;color:#7d8da2;cursor:pointer;font-size:11px;padding:6px;text-align:left}.erp-main{margin-left:250px;min-height:100vh}.erp-topbar{align-items:center;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);background:#07101eb8;border-bottom:1px solid var(--erp-line);display:flex;justify-content:space-between;padding:18px 30px;position:sticky;top:0;z-index:20}.erp-topbar h1{font-size:20px;margin:3px 0 0}.erp-topbar small{color:var(--erp-muted);font-size:10px}.erp-user{align-items:center;display:flex;gap:10px}.erp-user>span{align-items:center;background:linear-gradient(135deg,var(--erp-indigo),#3730a3);border-radius:10px;display:flex;font-weight:800;height:38px;justify-content:center;width:38px}.erp-user b,.erp-user small{display:block;font-size:11px}.erp-menu{background:none;border:0;color:#fff;display:none;font-size:20px}.erp-content{padding:30px}.erp-notice,.erp-error{border-radius:9px;font-size:12px;margin-bottom:18px;padding:12px 15px}.erp-notice{background:#10b9811f;border:1px solid rgba(16,185,129,.3);color:#6ee7b7}.erp-error{background:#f43f5e1f;border:1px solid rgba(244,63,94,.3);color:#fda4af}.erp-hero{align-items:center;background:linear-gradient(125deg,#10b9812b,#6366f11f);border:1px solid rgba(16,185,129,.18);border-radius:18px;display:flex;justify-content:space-between;margin-bottom:22px;overflow:hidden;padding:30px;position:relative}.erp-hero:after{border:1px solid rgba(255,255,255,.07);border-radius:50%;content:"";height:200px;position:absolute;right:-50px;top:-100px;width:200px}.erp-hero.compact{padding:22px 26px}.erp-hero h2{font-size:25px;margin:6px 0}.erp-hero p{color:var(--erp-muted);font-size:12px}.erp-kicker{color:#6ee7b7;font-size:9px;font-weight:900;letter-spacing:.17em}.erp-button,.erp-secondary{border:0;border-radius:9px;cursor:pointer;display:inline-block;font-size:11px;font-weight:800;padding:11px 15px;position:relative;z-index:1}.erp-button{background:var(--erp-green);color:#03140e}.erp-secondary{background:#94a3b81a;border:1px solid var(--erp-line);color:var(--erp-text)}.erp-kpis{display:grid;gap:16px;grid-template-columns:repeat(4,1fr);margin-bottom:22px}.erp-kpis article,.erp-kpis .erp-kpi-link,.erp-panel,.erp-module-grid a{-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);background:var(--erp-card);border:1px solid var(--erp-line);border-radius:14px}.erp-kpis article{padding:20px}.erp-kpi-link{color:inherit;display:block;padding:20px;text-decoration:none;transition:border-color .18s ease,transform .18s ease}.erp-kpi-link:hover,.erp-kpi-link:focus-visible{border-color:#34d399;outline:none;transform:translateY(-2px)}.erp-kpis span,.erp-kpis small{color:var(--erp-muted);display:block;font-size:10px}.erp-kpis b{display:block;font-size:26px;margin:8px 0}.erp-kpis article:first-child b{color:#6ee7b7}.erp-two{display:grid;gap:20px;grid-template-columns:minmax(0,1.7fr) minmax(270px,.7fr);margin-bottom:20px}.erp-panel{padding:20px}.erp-panel-head{align-items:center;display:flex;justify-content:space-between;margin-bottom:16px}.erp-panel-head h3{font-size:15px;margin:0}.erp-panel-head p{color:var(--erp-muted);font-size:10px;margin:4px 0}.erp-panel-head a{color:#6ee7b7;font-size:10px;font-weight:700}.erp-table-wrap{overflow:auto}.erp-table{border-collapse:collapse;min-width:620px;width:100%}.erp-table th{border-bottom:1px solid var(--erp-line);color:#718198;font-size:9px;letter-spacing:.08em;padding:10px;text-align:left;text-transform:uppercase}.erp-table td{border-bottom:1px solid rgba(148,163,184,.09);font-size:11px;padding:13px 10px}.erp-table td small{color:var(--erp-muted);display:block;margin-top:3px}.erp-pill,.erp-risk{border-radius:999px;display:inline-block;font-size:9px;font-weight:800;padding:5px 8px;text-transform:capitalize}.erp-pill{background:#6366f121;color:#a5b4fc}.erp-risk.low{background:#10b98121;color:#6ee7b7}.erp-risk.medium{background:#f59e0b21;color:#fcd34d}.erp-risk.high,.erp-risk.critical{background:#f43f5e21;color:#fda4af}.erp-empty{color:var(--erp-muted)!important;padding:30px!important;text-align:center}.health-row{align-items:center;border-bottom:1px solid var(--erp-line);display:flex;font-size:11px;justify-content:space-between;padding:13px 0}.health-row b{color:#6ee7b7;font-size:10px}.health-row small{color:var(--erp-muted);display:block;margin-top:4px}.erp-panel>.erp-secondary{margin-top:16px}.erp-module-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}.erp-module-grid a{color:var(--erp-text);padding:23px;transition:.2s}.erp-module-grid a:hover{border-color:#10b98173;transform:translateY(-2px)}.erp-module-grid span{color:#53647a;font-size:10px;font-weight:800}.erp-module-grid h3{font-size:16px;margin:13px 0 7px}.erp-module-grid p{color:var(--erp-muted);font-size:11px}.erp-module-grid b{color:#6ee7b7;display:block;font-size:10px;margin-top:16px}.erp-inline-action{margin:-8px 0 20px}.erp-modal{background:#0f172a;border:1px solid rgba(148,163,184,.25);border-radius:16px;color:var(--erp-text);max-height:90vh;max-width:760px;padding:0;width:calc(100% - 30px)}.erp-modal[open]{inset:0;margin:auto;max-height:min(90vh,900px);overflow-y:auto;position:fixed}.erp-modal--fullpage[open]{border:0;border-radius:0;height:100vh;height:100dvh;max-height:none;max-width:none;width:100vw}.erp-modal::backdrop{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:#020617c7}.erp-modal>form,.erp-modal>div{padding:24px}.erp-modal-head{align-items:center;border-bottom:1px solid var(--erp-line);display:flex;justify-content:space-between}.erp-modal-head h3{margin:5px 0}.erp-modal-head>button{background:none;border:0;color:#94a3b8;cursor:pointer;font-size:25px}.erp-form{display:grid;gap:14px;grid-template-columns:1fr 1fr;padding:22px 24px!important}.erp-form label{color:#a7b5c8;display:grid;font-size:10px;font-weight:700;gap:7px}.erp-form input,.erp-form select,.erp-form textarea,.erp-filters input,.erp-row-form select{background:#111d31;border:1px solid var(--erp-line);border-radius:8px;color:var(--erp-text);font:inherit;padding:10px}.erp-form textarea{min-height:80px;resize:vertical}.erp-form .wide{grid-column:1/-1}.erp-modal-actions{align-items:center;border-top:1px solid var(--erp-line);display:flex;gap:10px;justify-content:flex-end;padding:16px 24px}.erp-modal-actions>button:not(.erp-button){background:none;border:0;color:var(--erp-muted);cursor:pointer}.erp-row-form,.erp-actions,.erp-filters{align-items:center;display:flex;gap:7px}.erp-row-form button,.erp-actions button{background:#10b98124;border:0;border-radius:6px;color:#6ee7b7;cursor:pointer;font-size:9px;padding:7px}.erp-actions button.danger{background:#f43f5e21;color:#fda4af}.erp-filters{margin-bottom:18px}.erp-pagination{margin-top:16px}.cms-item{border-bottom:1px solid var(--erp-line);padding:13px 0}.cms-item p,.cms-item small{color:var(--erp-muted);font-size:10px}.cms-preview-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}.cms-preview-grid article{background:#111d31;border-radius:10px;min-height:160px;padding:18px}.cms-preview-grid span{color:#6ee7b7;font-size:9px;font-weight:900}.cms-preview-grid p{line-height:1.7}.erp-pagination svg{height:15px;width:15px}.erp-chart-panel{height:360px;margin-top:20px}.erp-chart-panel canvas{max-height:285px}.jv-admin-actions{display:grid;gap:6px}.jv-admin-actions input{background:#111d31;border:1px solid var(--erp-line);border-radius:6px;color:var(--erp-text);font-size:9px;max-width:100px;padding:7px}.jv-admin-actions .danger{background:#f43f5e21;color:#fda4af}.admin-portal{--erp-bg: #f6f8fc;--erp-surface: rgba(255, 255, 255, .94);--erp-card: #fff;--erp-line: #e2e8f0;--erp-text: #162033;--erp-muted: #64748b;--erp-green: #059669;--erp-indigo: #4f46e5;background:linear-gradient(135deg,#f8fafc,#eefbf6);color:var(--erp-text)}.admin-portal .erp-sidebar{background:#fff;border-color:#e2e8f0;box-shadow:4px 0 18px #0f172a0a}.admin-portal .erp-brand{color:#162033}.admin-portal .erp-sidebar nav p{color:#94a3b8}.admin-portal .erp-sidebar nav a{color:#475569}.admin-portal .erp-sidebar nav a:hover,.admin-portal .erp-sidebar nav a.active{background:#ecfdf5;border-color:#bbf7d0;color:#047857}.admin-portal .erp-sidebar-foot a,.admin-portal .erp-sidebar-foot button{color:#64748b}.admin-portal .erp-topbar{background:#ffffffe0;border-color:#e2e8f0;box-shadow:0 2px 12px #0f172a08}.admin-portal .erp-menu{color:#162033}.admin-portal .erp-hero{background:linear-gradient(125deg,#ecfdf5,#eef2ff);border-color:#bbf7d0}.admin-portal .erp-hero:after{border-color:#0596691f}.admin-portal .erp-kicker,.admin-portal .erp-panel-head a,.admin-portal .erp-module-grid b{color:#047857}.admin-portal .erp-kpis article,.admin-portal .erp-panel,.admin-portal .erp-module-grid a{box-shadow:0 4px 16px #0f172a0b}.admin-portal .erp-module-grid a:hover{border-color:#6ee7b7}.admin-portal .erp-table th{color:#64748b}.admin-portal .erp-table td{border-color:#edf2f7}.admin-portal .erp-form label{color:#475569}.admin-portal .erp-modal{background:#fff;border-color:#dbe3ee}.admin-portal .erp-modal::backdrop{background:#0f172a59}.admin-portal .erp-modal-head>button{color:#64748b}.admin-portal .erp-form input,.admin-portal .erp-form select,.admin-portal .erp-form textarea,.admin-portal .erp-filters input,.admin-portal .erp-row-form select,.admin-portal .cms-preview-grid article,.admin-portal .jv-admin-actions input{background:#fff;border-color:#cbd5e1;color:#162033}.admin-portal .erp-secondary{background:#f8fafc;border-color:#cbd5e1;color:#334155}.admin-portal .erp-notice{color:#047857}.admin-portal .erp-error{color:#be123c}.btn-admin-action{align-items:center;border:0;border-radius:6px;cursor:pointer;display:inline-flex;font-size:12px;font-weight:700;justify-content:center;padding:8px 14px;transition:all .2s ease;white-space:nowrap}.btn-admin-action.assign{background:#0284c7!important;color:#fff!important}.btn-admin-action.assign:hover{background:#0369a1!important;transform:translateY(-1px)}.btn-admin-action.approve{background:#0f766e!important;color:#fff!important}.btn-admin-action.approve:hover{background:#0f5147!important;transform:translateY(-1px)}.btn-admin-action.reject{background:#dc2626!important;color:#fff!important}.btn-admin-action.reject:hover{background:#b91c1c!important;transform:translateY(-1px)}.landowner-portal{--erp-bg: #f8fafc;--erp-surface: #ffffff;--erp-card: #ffffff;--erp-line: #e2e8f0;--erp-text: #0f172a;--erp-muted: #64748b;--erp-green: #0f766e;--erp-amber: #d97706;--erp-indigo: #4338ca;background:#f8fafc!important;color:#0f172a!important}.landowner-portal .erp-sidebar{background:#fff!important;border-color:#e2e8f0!important;box-shadow:4px 0 18px #0f172a0a!important}.landowner-portal .erp-brand{color:#0f172a!important}.landowner-portal .erp-brand small{color:#0f766e!important}.landowner-portal .erp-sidebar nav p{color:#94a3b8!important}.landowner-portal .erp-sidebar nav a{color:#475569!important}.landowner-portal .erp-sidebar nav a:hover,.landowner-portal .erp-sidebar nav a.active{background:#e6f4f1!important;border-color:#cbd5e1!important;color:#0f766e!important;font-weight:700}.landowner-portal .erp-sidebar-foot a,.landowner-portal .erp-sidebar-foot button{color:#64748b!important}.landowner-portal .erp-topbar{background:#ffffffeb!important;border-color:#e2e8f0!important;box-shadow:0 2px 12px #0f172a08!important}.landowner-portal .erp-topbar h1,.landowner-portal .erp-topbar h2,.landowner-portal .erp-topbar h3{color:#0f172a!important}.landowner-portal .erp-topbar small{color:#64748b!important}.landowner-portal .erp-user span{background:linear-gradient(135deg,#0f766e,#0f5147)!important;color:#fff!important}.landowner-portal .erp-user b{color:#0f172a!important}.landowner-portal .erp-user small{color:#64748b!important}.landowner-portal .erp-hero{background:linear-gradient(135deg,#e6f4f1,#fff 60%,#fef3c7)!important;border-color:#cbd5e1!important}.landowner-portal .erp-hero h2{color:#0f172a!important}.landowner-portal .erp-hero p{color:#475569!important}.landowner-portal .erp-kicker,.landowner-portal .erp-panel-head a{color:#0f766e!important}.landowner-portal .erp-button{background:#0f766e!important;color:#fff!important}.landowner-portal .erp-kpis article,.landowner-portal .erp-panel{background:#fff!important;border-color:#e2e8f0!important;box-shadow:0 4px 16px #0f172a0b!important}.landowner-portal .erp-kpis span,.landowner-portal .erp-kpis small,.landowner-portal .erp-panel-head p{color:#64748b!important}.landowner-portal .erp-kpis b,.landowner-portal .erp-panel-head h3{color:#0f172a!important}.landowner-portal .landowner-kpis article:first-child b,.landowner-portal .landowner-kpis .growth{color:#0f766e!important}.landowner-portal .erp-table th{border-color:#e2e8f0!important;color:#64748b!important}.landowner-portal .erp-table td{border-color:#edf2f7!important;color:#0f172a!important}.landowner-portal .land-progress{background:#e2e8f0!important}.landowner-portal .land-progress i{background:linear-gradient(90deg,#0f766e,#14b8a6)!important}.landowner-portal .health-row{border-color:#e2e8f0!important}.landowner-portal .health-row b{color:#0f766e!important}.landowner-portal .health-row small{color:#64748b!important}.landowner-portal .erp-pill{background:#e6f4f1!important;color:#0f766e!important;border:1px solid #b9e6dc!important}.landowner-portal .legal-timeline b{background:#e2e8f0!important;color:#64748b!important}.landowner-portal .legal-timeline span{color:#64748b!important}.landowner-portal .legal-timeline i{background:#e2e8f0!important}.landowner-portal .legal-timeline .done b{background:#0f766e!important;color:#fff!important}.landowner-portal .legal-timeline i.done{background:#0f766e!important}.landowner-portal .legal-timeline div.done span{color:#0f766e!important;font-weight:700}.landowner-portal .land-track-details div{background:#f8fafc!important;border:1px solid #e2e8f0!important}.landowner-portal .land-track-details span,.landowner-portal .land-track-details small{color:#64748b!important}.landowner-portal .land-track-details b{color:#0f172a!important}.landowner-portal .jv-terms{border-color:#e2e8f0!important}.landowner-portal .jv-terms summary{color:#0f766e!important}.landowner-portal .jv-terms p{color:#475569!important}.landowner-portal .erp-notice{background:#e6f4f1!important;border-color:#b9e6dc!important;color:#0f766e!important}.landowner-portal .erp-error{background:#fff1f2!important;border-color:#fecdd3!important;color:#be123c!important}.land-wizard-page{background:linear-gradient(135deg,#f7f4ed,#fff 55%,#f2ede2);color:#1a1a1a;min-height:85vh;padding:70px 20px}.land-wizard-shell{margin:auto;max-width:920px}.land-wizard-intro{text-align:center}.land-wizard-intro>span{color:#a37a2e;font-size:10px;font-weight:900;letter-spacing:.2em}.land-wizard-intro h1{font-family:Georgia,serif;font-size:42px;font-weight:500;margin:12px 0}.land-wizard-intro p{color:#676258;line-height:1.7;margin:0 auto;max-width:650px}.wizard-steps{align-items:center;display:flex;justify-content:center;margin:42px auto 25px;max-width:650px}.wizard-steps button{align-items:center;background:none;border:0;color:#8a857d;display:flex;flex-direction:column;font-size:10px;font-weight:700;gap:7px}.wizard-steps b{align-items:center;background:#e6e1d7;border-radius:50%;display:flex;height:32px;justify-content:center;width:32px}.wizard-steps button.active b,.wizard-steps button.done b{background:#1a1a1a;color:#fff}.wizard-steps button.active span{color:#1a1a1a}.wizard-steps i{background:#ddd6c8;height:1px;margin:0 8px;width:90px}.land-wizard-card{background:#fff;border:1px solid #e5dfd3;border-radius:18px;box-shadow:0 24px 70px #5341211a;overflow:hidden}.wizard-panel{display:none;padding:38px}.wizard-panel.active{display:block}.wizard-heading{align-items:center;border-bottom:1px solid #ece7dd;display:flex;gap:16px;margin-bottom:26px;padding-bottom:20px}.wizard-heading>span{color:#c5a059;font-family:Georgia,serif;font-size:30px}.wizard-heading h2{font-family:Georgia,serif;font-size:23px;font-weight:500;margin:0}.wizard-heading p{color:#8a857d;font-size:11px;margin:5px 0}.land-form-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr}.land-form-grid label{display:grid;font-size:11px;font-weight:800;gap:8px}.land-form-grid input,.land-form-grid select,.land-form-grid textarea{background:#fbfaf7;border:1px solid #ddd7ca;border-radius:8px;color:#1a1a1a;font:inherit;padding:12px}.land-form-grid textarea{min-height:80px;resize:vertical}.land-form-grid .wide{grid-column:1/-1}.file-field{background:#fbfaf7;border:1px dashed #c5a059;border-radius:10px;padding:18px}.file-field input{background:transparent;border:0;padding:8px 0}.file-field small{color:#8a857d;font-weight:400}.wizard-actions{align-items:center;background:#faf8f3;border-top:1px solid #ece7dd;display:flex;justify-content:flex-end;padding:18px 38px}.wizard-back{background:none;border:0;color:#6f685e;cursor:pointer;margin-right:auto}.wizard-next{background:#1a1a1a;border:0;border-radius:8px;color:#fff;cursor:pointer;font-weight:800;padding:12px 20px}.land-review{display:grid;gap:0;grid-template-columns:1fr 1fr}.land-review div{border-bottom:1px solid #ece7dd;display:flex;flex-direction:column;gap:5px;padding:14px}.land-review span{color:#8a857d;font-size:9px;text-transform:uppercase}.land-review b{font-size:12px}.land-consent{align-items:center;display:flex;font-size:11px;gap:9px;margin:25px 14px}.land-errors{background:#fff1f2;color:#be123c;font-size:11px;padding:12px 38px}.land-assurance{display:grid;gap:15px;grid-template-columns:repeat(3,1fr);margin-top:25px;text-align:center}.land-assurance b,.land-assurance span{display:block}.land-assurance b{font-family:Georgia,serif;font-size:13px}.land-assurance span{color:#8a857d;font-size:9px;margin-top:5px}.land-success{align-items:center;background:#fff;border:1px solid #e5dfd3;border-radius:18px;display:flex;gap:24px;margin:40px auto;padding:38px;max-width:620px}.land-success>span{align-items:center;background:#ecfdf5;border-radius:50%;color:#059669;display:flex;font-size:25px;height:65px;justify-content:center;width:65px}.land-success h2{font-family:Georgia,serif;margin:0}.land-success p,.land-success small{color:#777168;display:block;font-size:11px}.land-success strong{color:#a37a2e;display:block;font-size:25px;letter-spacing:.08em;margin:8px 0}.landowner-kpis .growth{color:#6ee7b7}.land-progress{background:#253247;border-radius:99px;height:6px;overflow:hidden;width:120px}.land-progress i{background:linear-gradient(90deg,#10b981,#34d399);display:block;height:100%}.land-track-card{margin-bottom:18px}.legal-timeline{align-items:flex-start;display:flex;margin:28px 0}.legal-timeline>div{align-items:center;color:#68798f;display:flex;flex:0 0 100px;flex-direction:column;text-align:center}.legal-timeline b{align-items:center;background:#253247;border-radius:50%;display:flex;height:30px;justify-content:center;width:30px}.legal-timeline span{font-size:9px;margin-top:8px}.legal-timeline i{background:#253247;flex:1;height:2px;margin-top:14px}.legal-timeline .done b{background:#10b981;color:#03140e}.legal-timeline i.done{background:#10b981}.legal-timeline div.done span{color:#6ee7b7}.land-track-details{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}.land-track-details>div{background:#111d31;border-radius:9px;padding:14px}.land-track-details span,.land-track-details small{color:#8fa0b7;display:block;font-size:9px}.land-track-details b{display:block;font-size:11px;margin:6px 0}.jv-terms{border-top:1px solid var(--erp-line);margin-top:18px;padding-top:15px}.jv-terms summary{color:#6ee7b7;cursor:pointer;font-size:11px;font-weight:700}.jv-terms p{color:var(--erp-muted);font-size:11px;line-height:1.7}@media(max-width:1000px){.erp-kpis{grid-template-columns:1fr 1fr}.erp-two{grid-template-columns:1fr}}@media(max-width:760px){.erp-sidebar{transform:translate(-100%);transition:.2s}.erp-sidebar.open{transform:none}.erp-main{margin-left:0}.erp-menu{display:block}.erp-content{padding:18px}.erp-topbar{padding:14px 18px}.erp-user div{display:none}.erp-kpis,.erp-module-grid,.erp-form,.cms-preview-grid{grid-template-columns:1fr}.erp-hero{align-items:flex-start;flex-direction:column;gap:18px}.erp-form .wide{grid-column:auto}}@media(max-width:640px){.land-wizard-intro h1{font-size:32px}.land-form-grid,.land-review,.land-assurance,.land-track-details{grid-template-columns:1fr}.land-form-grid .wide{grid-column:auto}.wizard-panel{padding:24px 20px}.wizard-actions{padding:16px 20px}.wizard-steps i{width:25px}.legal-timeline{overflow-x:auto}.legal-timeline>div{flex-basis:85px}}.land-share-notice{align-items:flex-start;background:#fffaf0;border:1px solid #e7cf9e;border-radius:14px;display:flex;gap:13px;margin:26px auto -17px;max-width:760px;padding:16px 20px}.land-share-notice-icon{align-items:center;background:#1a1a1a;border-radius:50%;color:#f7d98b;display:flex;flex:0 0 30px;font-family:Georgia,serif;font-size:16px;font-weight:700;height:30px;justify-content:center}.land-share-notice strong{color:#5e4617;display:block;font-size:13px}.land-share-notice p{color:#71654d;font-size:11px;line-height:1.55;margin:5px 0 0;max-width:none}.land-form-grid label em,.wizard-heading em{color:#dc2626;font-size:14px;font-style:normal;line-height:0}.land-form-grid label small{color:#8a857d;font-size:10px;font-weight:400;line-height:1.35;margin-top:-3px}.land-form-grid label .field-error{color:#dc2626;font-weight:700}.land-form-grid label:has(.field-error) input,.land-form-grid label:has(.field-error) select,.land-form-grid label:has(.field-error) textarea{border-color:#ef4444;background:#fff8f8}.land-form-grid input:invalid:not(:placeholder-shown),.land-form-grid textarea:invalid:not(:placeholder-shown){border-color:#ef4444}.file-field .field-error{margin-top:0}.file-field small{line-height:1.35}.flat-work-update{background:#f8fbff;border:1px solid #dbeafe;border-radius:12px;margin-top:16px;padding:15px}.flat-work-update-head{align-items:flex-start;display:flex;gap:16px;justify-content:space-between}.flat-work-update-head span{color:#0284c7;font-size:9px;font-weight:900;letter-spacing:.1em}.flat-work-update-head h5{color:#0f172a;font-size:13px;margin:4px 0 0}.flat-work-update-head>b{background:#e0f2fe;border-radius:999px;color:#0369a1;font-size:10px;padding:6px 9px;white-space:nowrap}.flat-work-list{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:13px}.flat-work-list div{background:#fff;border:1px solid #e0e7ff;border-radius:8px;padding:9px 10px}.flat-work-list strong,.flat-work-list span{display:block}.flat-work-list strong{color:#1e3a5f;font-size:11px}.flat-work-list span{color:#0284c7;font-size:10px;font-weight:700;margin-top:4px}.flat-work-summary,.flat-work-empty{color:#475569;font-size:11px;line-height:1.55;margin:12px 0 0}.flat-work-summary strong{color:#0f172a}.admin-portal .health-row b{color:#047857}.admin-portal .erp-actions button{background:#d1fae5;color:#065f46;font-weight:800}.admin-portal .erp-actions button:hover{background:#a7f3d0;color:#064e3b}.admin-portal .erp-actions button.danger,.admin-portal .jv-admin-actions .danger{background:#fee2e2;color:#b91c1c;font-weight:800}.admin-portal .erp-actions button.danger:hover,.admin-portal .jv-admin-actions .danger:hover{background:#fecaca;color:#991b1b}.admin-portal .erp-panel-head a,.admin-portal .erp-kicker,.admin-portal .erp-module-grid b,.admin-portal .erp-risk.low{color:#047857}.admin-portal .erp-risk.high,.admin-portal .erp-risk.critical{color:#be123c}.checkout-page-wrapper{background:linear-gradient(135deg,#0f172a,#1e293b,#0b1329);color:#f8fafc;min-height:92vh;padding:50px 0 80px}.checkout-header{margin-bottom:35px;text-align:center}.checkout-badge{background:#10b98126;border:1px solid rgba(16,185,129,.3);border-radius:999px;color:#34d399;display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;padding:6px 16px}.checkout-header h1{font-size:36px;font-weight:800;margin:12px 0 8px}.checkout-header p{color:#94a3b8;font-size:15px;margin:0 auto;max-width:650px}.checkout-grid{display:grid;gap:30px;grid-template-columns:1fr 360px}.checkout-card{background:#1e293bb3;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(148,163,184,.15);border-radius:20px;box-shadow:0 20px 40px #0000004d;margin-bottom:25px;padding:28px}.card-header{align-items:center;border-bottom:1px solid rgba(148,163,184,.15);display:flex;justify-content:space-between;margin-bottom:20px;padding-bottom:15px}.card-header h3{font-size:18px;font-weight:700}.status-badge.live{background:#10b98133;border:1px solid #10b981;border-radius:6px;color:#34d399;font-size:11px;font-weight:700;padding:4px 10px}.property-summary-body{align-items:center;display:flex;gap:20px}.property-icon{align-items:center;background:#6366f126;border:1px solid rgba(99,102,241,.3);border-radius:16px;display:flex;font-size:32px;height:70px;justify-content:center;width:70px}.property-details h2{font-size:22px;margin-bottom:4px}.property-details p{color:#94a3b8;font-size:13px;margin-bottom:8px}.property-price-tag{font-size:14px}.property-price-tag strong{color:#34d399;font-size:18px;margin-left:8px}.required-pill{background:#f59e0b26;border:1px solid rgba(245,158,11,.4);border-radius:6px;color:#fbbf24;font-size:11px;font-weight:700;padding:4px 10px}.verification-subtitle{color:#94a3b8;font-size:13px;margin-bottom:22px}.verification-fields-grid{display:grid;gap:20px}.doc-field-box{background:#0f172a99;border:1px solid rgba(148,163,184,.2);border-radius:14px;padding:20px}.doc-box-header{align-items:center;display:flex;gap:12px;margin-bottom:15px}.doc-icon{font-size:20px}.doc-box-header h4{font-size:15px;font-weight:700;margin-right:auto}.validity-indicator{border-radius:999px;font-size:11px;font-weight:700;padding:3px 10px}.validity-indicator.valid{background:#10b9812e;border:1px solid #10b981;color:#34d399}.validity-indicator.invalid{background:#f43f5e2e;border:1px solid #f43f5e;color:#fb7185}.doc-inputs{display:grid;gap:15px;grid-template-columns:1fr 1fr}.input-group{display:flex;flex-direction:column;gap:6px}.input-group label{color:#cbd5e1;font-size:12px;font-weight:600}.input-group input,.input-group select{background:#0f172a;border:1px solid rgba(148,163,184,.25);border-radius:8px;color:#f8fafc;font-size:13px;padding:11px 14px;transition:all .2s ease}.input-group input:focus,.input-group select:focus{border-color:#34d399;outline:none}.payment-tabs{display:grid;gap:12px;grid-template-columns:repeat(3,1fr);margin-bottom:25px}.payment-tab{align-items:center;background:#0f172ab3;border:2px solid rgba(148,163,184,.2);border-radius:12px;color:#cbd5e1;cursor:pointer;display:flex;flex-direction:column;font-size:13px;font-weight:700;gap:6px;padding:16px;transition:all .2s ease}.payment-tab:hover{border-color:#38bdf8}.payment-tab.active{background:#0f172af2}.payment-tab.bkash-tab.active{border-color:#e2136e;box-shadow:0 0 15px #e2136e4d;color:#ff69b4}.payment-tab.nagad-tab.active{border-color:#f7941d;box-shadow:0 0 15px #f7941d4d;color:#fa4}.payment-tab.bank-tab.active{border-color:#38bdf8;box-shadow:0 0 15px #38bdf84d;color:#38bdf8}.payment-panel-box{border-radius:14px;padding:24px}.bkash-theme{background:linear-gradient(135deg,#e2136e1f,#0f172acc);border:1px solid rgba(226,19,110,.35)}.nagad-theme{background:linear-gradient(135deg,#f7941d1f,#0f172acc);border:1px solid rgba(247,148,29,.35)}.bank-theme{background:linear-gradient(135deg,#38bdf81f,#0f172acc);border:1px solid rgba(56,189,248,.35)}.panel-header-brand{align-items:center;display:flex;justify-content:space-between;margin-bottom:20px}.bkash-badge{background:#e2136e;border-radius:6px;color:#fff;font-size:12px;font-weight:900;padding:3px 8px}.nagad-badge{background:#f7941d;border-radius:6px;color:#fff;font-size:12px;font-weight:900;padding:3px 8px}.bank-badge{background:#0284c7;border-radius:6px;color:#fff;font-size:12px;font-weight:900;padding:3px 8px}.charge-free{color:#34d399;font-size:12px;font-weight:700}.gateway-inputs{display:grid;gap:16px;grid-template-columns:1fr 1fr;margin-bottom:16px}.gateway-inputs.bank-grid{grid-template-columns:1fr 1fr}.wide-field{grid-column:1 / -1}.gateway-instructions{color:#94a3b8;font-size:12px;line-height:1.5}.checkout-submit-area{margin-top:30px;text-align:center}.checkout-submit-btn{background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:12px;box-shadow:0 10px 25px #10b98166;color:#fff;cursor:pointer;font-size:16px;font-weight:800;padding:16px 28px;transition:all .25s ease;width:100%}.checkout-submit-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px #10b98180}.privacy-note{color:#64748b;font-size:12px;margin-top:10px}.order-breakdown-card h3{border-bottom:1px solid rgba(148,163,184,.15);margin-bottom:18px;padding-bottom:12px}.breakdown-row{align-items:center;color:#cbd5e1;display:flex;font-size:13px;justify-content:space-between;margin-bottom:12px}.green-text{color:#34d399}.breakdown-divider{border:none;border-top:1px solid rgba(148,163,184,.15);margin:16px 0}.total-row{font-size:15px;font-weight:700}.total-amount{color:#34d399;font-size:18px}.guarantee-box{align-items:flex-start;background:#10b98114;border:1px solid rgba(16,185,129,.2);border-radius:12px;display:flex;gap:12px;margin-top:25px;padding:16px}.guarantee-box h4{color:#34d399;font-size:13px;margin-bottom:4px}.portal-role-register-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;margin-bottom:20px;padding:20px}.role-section-header{margin-bottom:16px;text-align:center}.role-badge{background:#0f172a;border-radius:6px;color:#fff;display:inline-block;font-family:Manrope,sans-serif;font-size:10px;font-weight:800;margin-bottom:6px;padding:3px 8px;text-transform:uppercase}.role-section-header h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:17px;font-weight:800}.role-cards-grid{display:grid;gap:14px;grid-template-columns:1fr 1fr}@media(max-width:600px){.role-cards-grid{grid-template-columns:1fr}}.role-register-card{background:#fff;border:1px solid #cbd5e1;border-radius:14px;display:flex;flex-direction:column;justify-content:space-between;padding:16px;transition:all .25s ease}.role-register-card:hover{box-shadow:0 8px 25px #0f172a14;transform:translateY(-2px)}.role-register-card.investor{border-color:#a7f3d0}.role-register-card.landowner{border-color:#bae6fd}.role-pill{border-radius:6px;display:inline-block;font-family:Manrope,sans-serif;font-size:10px;font-weight:800;margin-bottom:8px;padding:2px 8px;text-transform:uppercase}.role-pill.investor{background:#dcfce7;color:#059669}.role-pill.landowner{background:#e0f2fe;color:#0284c7}.role-register-card h4{color:#0f172a;font-family:Manrope,sans-serif;font-size:15px;font-weight:800;margin-bottom:6px}.role-register-card p{color:#64748b;font-size:12px;line-height:1.4;margin-bottom:16px}.btn-role-register{border-radius:10px;font-family:Manrope,sans-serif;font-size:13px;font-weight:800;padding:10px;text-align:center;text-decoration:none;transition:all .2s ease;width:100%}.btn-role-register.investor{background:#10b981;color:#fff}.btn-role-register.investor:hover{background:#059669}.btn-role-register.landowner{background:#0284c7;color:#fff}.btn-role-register.landowner:hover{background:#0369a1}.legal-warning-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;margin-bottom:20px;padding:14px 16px}.legal-warning-box h4{color:#be123c;font-family:Manrope,sans-serif;font-size:13px;font-weight:800;margin-bottom:6px}.legal-warning-box p{color:#9f1239;font-size:12px;line-height:1.5;margin:0}.pre-registration-checklist-box{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:14px;margin-bottom:20px;padding:18px 20px}.pre-registration-checklist-box.landowner{background:#f0f9ff;border:1px solid #bae6fd}.checklist-header{margin-bottom:14px}.checklist-badge{background:#10b981;border-radius:6px;color:#fff;display:inline-block;font-family:Manrope,sans-serif;font-size:10px;font-weight:800;margin-bottom:6px;padding:3px 8px;text-transform:uppercase}.checklist-badge.landowner{background:#0284c7}.checklist-header h4{color:#0f172a;font-family:Manrope,sans-serif;font-size:15px;font-weight:800;margin-bottom:4px}.checklist-header p{color:#475569;font-size:12px;margin:0}.checklist-items-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr}@media(max-width:600px){.checklist-items-grid{grid-template-columns:1fr}}.checklist-item{align-items:center;background:#fff;border:1px solid #cbd5e1;border-radius:10px;display:flex;gap:12px;padding:10px 12px}.item-num{align-items:center;background:#ecfdf5;border:1px solid #10b981;border-radius:50%;color:#059669;display:flex;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;height:26px;justify-content:center;min-width:26px;width:26px}.item-num.landowner{background:#f0f9ff;border-color:#0284c7;color:#0284c7}.checklist-item strong{color:#0f172a;display:block;font-size:12px;font-weight:800}.checklist-item small{color:#64748b;display:block;font-size:11px}.nav-register-group{align-items:center;display:flex;gap:8px}.form-row-2col{display:grid;gap:16px;grid-template-columns:1fr 1fr}@media(max-width:640px){.form-row-2col{grid-template-columns:1fr}}.auth-link-footer{align-items:center;display:flex;flex-wrap:wrap;font-size:13px;gap:10px;justify-content:center;margin-top:20px;text-align:center}.auth-link-footer a{color:#0284c7;font-weight:700;text-decoration:none}.auth-link-footer a:hover{text-decoration:underline}@media(max-width:900px){.checkout-grid,.doc-inputs,.gateway-inputs{grid-template-columns:1fr}}.portfolio-item-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 15px #0f172a08;margin-bottom:20px;padding:20px;transition:box-shadow .2s ease,border-color .2s ease}.portfolio-item-card:hover{border-color:#cbd5e1;box-shadow:0 8px 25px #0f172a0f}.portfolio-item-header{align-items:center;display:flex;flex-wrap:wrap;gap:15px;justify-content:space-between;margin-bottom:16px}.portfolio-title-block{align-items:center;display:flex;gap:12px}.portfolio-unit-badge{align-items:center;background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:10px;color:#fff;display:flex;font-family:Manrope,sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px;padding:8px 14px;white-space:nowrap}.portfolio-project-title{color:#0f172a;font-family:Manrope,sans-serif;font-size:17px;font-weight:800;line-height:1.3;margin-bottom:3px}.portfolio-project-meta{align-items:center;color:#64748b;display:flex;flex-wrap:wrap;font-size:13px;gap:8px}.meta-separator{color:#cbd5e1}.construction-pill{background:#f1f5f9;border-radius:6px;color:#475569;font-size:11px;font-weight:600;padding:2px 8px}.portfolio-action-group{align-items:center;display:flex;flex-wrap:wrap;gap:10px}.paid-full-badge{align-items:center;background:#dcfce7;border:1px solid #86efac;border-radius:999px;color:#15803d;display:inline-flex;font-size:13px;font-weight:800;gap:6px;padding:8px 16px}.btn-portfolio-pay{align-items:center;background:#0f172a;border:0;border-radius:8px;color:#fff;cursor:pointer;display:inline-flex;font-size:12px;font-weight:800;gap:6px;padding:9px 16px;transition:background .2s ease;white-space:nowrap}.btn-portfolio-pay:hover{background:#1e293b}.btn-portfolio-history{align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:#475569;cursor:pointer;display:inline-flex;font-size:12px;font-weight:700;gap:6px;padding:8px 14px;transition:all .2s ease}.btn-portfolio-history:hover{background:#f1f5f9;border-color:#cbd5e1;color:#0f172a}.portfolio-progress-container{background:#f8fafc;border:1px solid #f1f5f9;border-radius:12px;padding:14px}.portfolio-progress-bar{background:#e2e8f0;border-radius:999px;height:10px;margin-bottom:10px;overflow:hidden;width:100%}.portfolio-progress-fill{background:linear-gradient(90deg,#10b981,#059669);border-radius:999px;display:block;height:100%;transition:width .6s ease}.portfolio-progress-labels{align-items:center;color:#475569;display:flex;flex-wrap:wrap;font-size:13px;gap:15px;justify-content:space-between}.text-green{color:#059669!important}.text-bold{color:#0f172a!important;font-weight:700}.next-due-tag{background:#fef3c7;border:1px solid #fde047;border-radius:6px;color:#92400e;font-size:12px;padding:2px 8px}.next-due-tag.tag-overdue{background:#fef2f2!important;border-color:#f87171!important;color:#b91c1c!important;font-weight:800!important}.is-blocked-card{border:2px solid #ef4444!important;background:#fffcfc!important;box-shadow:0 4px 25px #ef44441f!important}.is-blocked-card:hover{border-color:#dc2626!important;box-shadow:0 8px 30px #ef44442e!important}.portfolio-unit-badge.badge-blocked{background:linear-gradient(135deg,#b91c1c,#dc2626)!important;box-shadow:0 2px 8px #dc26264d}.status-blocked-tag{background:#fef2f2;border:1px solid #f87171;color:#dc2626;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;display:inline-flex;align-items:center;text-transform:uppercase;letter-spacing:.5px}.overdue-blocked-banner{background:#fef2f2;border:1px solid #fca5a5;border-left:4px solid #ef4444;border-radius:10px;margin-top:16px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}.blocked-banner-left{display:flex;align-items:center;gap:12px;flex:1;min-width:250px}.blocked-bell-icon{font-size:20px;line-height:1;flex-shrink:0}.blocked-title-line{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap}.blocked-title-line strong{color:#991b1b;font-size:13.5px;font-weight:800}.blocked-badge-small{background:#fee2e2;border:1px solid #f87171;color:#991b1b;font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px}.blocked-subtext{color:#7f1d1d;font-size:12.5px;margin:0;line-height:1.4;font-weight:500}.blocked-banner-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}.btn-request-admin-unblock{background:#0f172a;border:0;border-radius:8px;color:#fff;cursor:pointer;font-size:12px;font-weight:700;padding:7px 14px;transition:background .15s ease;white-space:nowrap}.btn-request-admin-unblock:hover{background:#1e293b}.btn-blocked-pay-now{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:#334155;cursor:pointer;font-size:12px;font-weight:700;padding:7px 14px;transition:all .15s ease;white-space:nowrap}.btn-blocked-pay-now:hover{background:#f1f5f9;border-color:#cbd5e1}.unblock-submitted-pill{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.plot-history-container{background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin-top:15px;overflow:hidden;padding:16px}.plot-history-header{align-items:center;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:10px}.plot-history-header h5{color:#0f172a;font-family:Manrope,sans-serif;font-size:14px;font-weight:700}.plot-history-table{font-size:13px;margin:0;width:100%}.status-badge-verified{background:#dcfce7;border-radius:4px;color:#15803d;font-size:11px;font-weight:800;padding:3px 8px}.status-badge-pending{background:#fef3c7;border-radius:4px;color:#b45309;font-size:11px;font-weight:800;padding:3px 8px}.status-badge-rejected{background:#fee2e2;border-radius:4px;color:#b91c1c;font-size:11px;font-weight:800;padding:3px 8px}.type-pill{background:#f1f5f9;border-radius:4px;color:#475569;font-size:11px;padding:2px 6px}.invoice-link{color:#2563eb;font-weight:600;text-decoration:underline}dialog.fullpage-payment-portal{background:#0f172ad9;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:none;height:100vh;inset:0;margin:0;max-height:100vh;max-width:100vw;overflow-y:auto;padding:0;position:fixed;width:100vw;z-index:999999}dialog.fullpage-payment-portal[open]{align-items:center;display:flex;justify-content:center}.portal-payment-container{background:#fff;border-radius:24px;box-shadow:0 25px 50px -12px #00000080;margin:20px auto;max-width:1100px;overflow:hidden;width:95%}.portal-payment-header{align-items:center;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;display:flex;justify-content:space-between;padding:24px 32px}.security-badge-icon{background:#10b98133;border:1px solid rgba(16,185,129,.4);border-radius:999px;color:#34d399;display:inline-block;font-size:12px;font-weight:800;margin-bottom:6px;padding:4px 12px}.portal-brand-title h2{font-family:Manrope,sans-serif;font-size:22px;font-weight:800;margin-bottom:2px}.portal-brand-title p{color:#94a3b8;font-size:13px}.portal-close-btn{background:#ffffff1a;border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;cursor:pointer;font-family:Manrope,sans-serif;font-size:14px;font-weight:700;padding:10px 18px;transition:all .2s ease}.portal-close-btn:hover{background:#ef4444cc;border-color:#ef4444}.portal-payment-body{padding:32px}.portal-payment-grid{display:grid;gap:24px;grid-template-columns:1.4fr 1fr}@media(max-width:900px){.portal-payment-grid{grid-template-columns:1fr}}.portal-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;margin-bottom:20px;padding:20px}.portal-card-head{align-items:center;display:flex;gap:12px;margin-bottom:16px}.step-num{align-items:center;background:#10b981;border-radius:50%;color:#fff;display:flex;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;height:28px;justify-content:center;width:28px}.portal-card-head h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:16px;font-weight:800}.portal-select,.portal-input{background:#fff;border:1px solid #cbd5e1;border-radius:10px;color:#0f172a;font-size:14px;font-weight:600;outline:none;padding:12px 14px;transition:border-color .2s ease;width:100%}.portal-select:focus,.portal-input:focus{border-color:#10b981;box-shadow:0 0 0 3px #10b98126}.real-plot-summary-box{background:#fff;border:1px solid #cbd5e1;border-radius:12px;display:grid;gap:12px;grid-template-columns:repeat(3,1fr);margin-top:16px;padding:16px}@media(max-width:600px){.real-plot-summary-box{grid-template-columns:1fr}}.summary-stat-item{display:flex;flex-direction:column}.summary-stat-item span{color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase}.summary-stat-item strong{color:#0f172a;font-family:Manrope,sans-serif;font-size:16px;font-weight:800;margin-top:2px}.tenure-selection-block{margin-bottom:20px}.tenure-selection-block label{color:#0f172a;display:block;font-size:13px;font-weight:700;margin-bottom:10px}.tenure-btn-group{display:grid;gap:10px;grid-template-columns:repeat(3,1fr)}.tenure-option{cursor:pointer;position:relative}.tenure-radio{display:none}.tenure-card{align-items:center;background:#fff;border:2px solid #cbd5e1;border-radius:12px;display:flex;flex-direction:column;padding:12px 8px;text-align:center;transition:all .2s ease}.tenure-card strong{color:#0f172a;font-size:14px}.tenure-card small{color:#64748b;font-size:11px}.tenure-radio:checked+.tenure-card{background:#ecfdf5;border-color:#10b981;box-shadow:0 4px 12px #10b98126}.tenure-radio:checked+.tenure-card strong{color:#059669}.payment-mode-grid{display:flex;flex-direction:column;gap:10px;margin-top:10px}.mode-card-option{cursor:pointer;position:relative}.mode-radio{display:none}.mode-card-content{background:#fff;border:2px solid #cbd5e1;border-radius:12px;padding:14px;transition:all .2s ease}.mode-radio:checked+.mode-card-content{background:#ecfdf5;border-color:#10b981}.mode-title{color:#0f172a;font-size:14px;font-weight:700}.mode-amount{color:#059669;font-family:Manrope,sans-serif;font-size:16px;font-weight:800;margin:4px 0}.channel-selector-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-top:8px}.channel-card{align-items:center;background:#fff;border:1px solid #cbd5e1;border-radius:10px;cursor:pointer;display:flex;font-size:13px;font-weight:700;gap:8px;padding:10px}.payment-terms-box{background:#fffbeb;border:1px solid #fef3c7;border-left:5px solid #f59e0b;border-radius:12px;margin-bottom:20px;padding:16px}.payment-terms-box h4{color:#92400e;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;margin-bottom:10px}.payment-terms-box ul{display:flex;flex-direction:column;gap:10px;list-style:none;padding:0}.payment-terms-box li{color:#78350f;font-size:12px;line-height:1.5}.payment-terms-box li strong{color:#92400e}.btn-confirm-secure-payment{align-items:center;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:14px;box-shadow:0 8px 25px #10b98166;color:#fff;cursor:pointer;display:flex;font-family:Manrope,sans-serif;font-size:17px;font-weight:800;gap:10px;justify-content:center;padding:16px;transition:all .25s ease;width:100%}.btn-confirm-secure-payment:hover{box-shadow:0 12px 32px #10b9818c;transform:translateY(-2px)}.payment-success-modal-overlay{align-items:center;background:#0f172acc;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;height:100vh;inset:0;justify-content:center;position:fixed;width:100vw;z-index:9999999}.payment-success-modal-card{background:#fff;border-radius:20px;box-shadow:0 25px 50px -12px #00000059;max-width:540px;padding:32px;text-align:center;width:90%}.success-icon-badge{align-items:center;background:#dcfce7;border-radius:50%;color:#10b981;display:flex;height:80px;justify-content:center;margin:0 auto 16px;width:80px}.payment-success-modal-card h3{color:#0f172a;font-family:Manrope,sans-serif;font-size:22px;font-weight:800}.success-subtitle{font-size:14px;margin:6px 0 20px}.success-receipt-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:16px;text-align:left}.receipt-row{display:flex;font-size:13px;justify-content:space-between}.receipt-row span{color:#64748b}.receipt-amount{color:#059669;font-size:16px}.receipt-notice-text{color:#475569;font-size:12px;line-height:1.5;margin-bottom:24px}.btn-close-success{background:#0f172a;border:none;border-radius:12px;color:#fff;cursor:pointer;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;padding:12px 24px;width:100%}.btn-close-success:hover{background:#1e293b}dialog.fullpage-payment-portal,dialog.fullpage-booking-portal{background:#0f172ad9;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:none;display:none;height:100vh;inset:0;margin:0;max-height:100vh;max-width:100vw;overflow-y:auto;padding:0;position:fixed;scroll-behavior:smooth;width:100vw;z-index:999999;-webkit-overflow-scrolling:touch}dialog.fullpage-payment-portal[open],dialog.fullpage-booking-portal[open]{display:block}.portal-payment-container,.portal-booking-container{background:#fff;border-radius:20px;box-shadow:0 25px 50px -12px #00000080;margin:25px auto;max-width:1100px;overflow:hidden;width:94%}.portal-payment-header,.portal-booking-header{align-items:center;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;display:flex;justify-content:space-between;padding:18px 24px}.portal-payment-body,.portal-booking-body{padding:20px 24px}.portal-card.compact{margin-bottom:12px;padding:14px}.building-columns-wrapper{display:grid;gap:12px;grid-template-columns:1fr 1fr}@media(max-width:768px){.building-columns-wrapper{grid-template-columns:1fr}}.floor-row-compact{align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;display:flex;gap:8px;margin-bottom:6px;padding:6px 10px}.floor-badge-sm{color:#0f172a;font-family:Manrope,sans-serif;font-size:11px;font-weight:800;min-width:42px}.floor-cubes-grid-sm{display:grid;gap:6px;grid-template-columns:repeat(4,1fr);width:100%}.floor-cubes-grid-sm .cube-box{border-radius:6px;height:38px}.floor-cubes-grid-sm .cube-unit-code{font-size:12px}.deposit-breakdown-card{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin-top:10px;padding:12px}@media(max-width:600px){.deposit-breakdown-card{grid-template-columns:1fr}}.deposit-stat{display:flex;flex-direction:column}.deposit-stat span{color:#047857;font-size:11px;font-weight:700;text-transform:uppercase}.deposit-stat strong{color:#0f172a;font-family:Manrope,sans-serif;font-size:15px;font-weight:800;margin-top:2px}.highlight-deposit strong{color:#059669!important;font-size:16px}.cube-legend-bar{align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;display:flex;flex-wrap:wrap;font-size:11px;gap:12px;margin-bottom:10px;padding:8px 12px}.legend-box{border-radius:4px;display:inline-block;height:12px;width:12px}.legend-box.available{background:#fff;border:2px solid #cbd5e1}.legend-box.selected{background:#10b981}.legend-box.booked{background:#64748b}.cube-box{align-items:center;border-radius:8px;cursor:pointer;display:flex;flex-direction:column;height:38px;justify-content:center;pointer-events:auto;position:relative;transition:all .2s ease;-webkit-user-select:none;user-select:none;z-index:10}.cube-unit-code{font-family:Manrope,sans-serif;font-size:12px;font-weight:800;pointer-events:none}.cube-box.available{background:#fff!important;border:2px solid #cbd5e1!important;color:#0f172a!important;cursor:pointer!important;pointer-events:auto!important}.cube-box.available:hover{background:#f0fdf4!important;border-color:#10b981!important;box-shadow:0 4px 12px #10b98133;transform:translateY(-1px)}.cube-box.booked{background:#f1f5f9!important;border:2px solid #e2e8f0!important;color:#94a3b8!important;cursor:not-allowed!important;opacity:.65;pointer-events:none!important}.cube-box.selected{background:linear-gradient(135deg,#10b981,#059669)!important;border:2px solid #047857!important;box-shadow:0 4px 12px #10b98166;color:#fff!important}.reservation-summary-box.compact{padding:14px}.btn-confirm-reservation{align-items:center;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:12px;box-shadow:0 8px 20px #10b98159;color:#fff;cursor:pointer;display:flex;font-family:Manrope,sans-serif;font-size:15px;font-weight:800;justify-content:center;margin-top:14px;padding:12px;transition:all .25s ease;width:100%}.payment-terms-box.compact{margin-bottom:14px;padding:12px}.payment-terms-box.compact ul{gap:6px}.payment-terms-box.compact li{font-size:11px}.payment-tabs-grid{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-bottom:22px}@media(max-width:768px){.payment-tabs-grid{grid-template-columns:repeat(2,1fr)}}.payment-tab-btn{align-items:center;background:#0f172ab3;border:2px solid rgba(148,163,184,.2);border-radius:14px;color:#94a3b8;cursor:pointer;display:flex;flex-direction:column;font-size:13px;font-weight:700;gap:6px;padding:14px 10px;text-align:center;transition:all .25s ease}.payment-tab-btn:hover{transform:translateY(-2px)}.payment-tab-btn.active{background:#0f172af2}.payment-tab-btn.bkash-tab.active{border-color:#e2136e;box-shadow:0 0 20px #e2136e59;color:#ff69b4}.payment-tab-btn.nagad-tab.active{border-color:#f7941d;box-shadow:0 0 20px #f7941d59;color:#fa4}.payment-tab-btn.ssl-tab.active{border-color:#0077b6;box-shadow:0 0 20px #0077b666;color:#38bdf8}.payment-tab-btn.bank-tab.active{border-color:#10b981;box-shadow:0 0 20px #10b98159;color:#34d399}.tab-badge{border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.5px;padding:2px 8px;text-transform:uppercase}.bkash-badge{background:#e2136e;color:#fff}.nagad-badge{background:#f7941d;color:#fff}.ssl-badge{background:#0077b6;color:#fff}.bank-badge{background:#059669;color:#fff}.payment-gateway-panel{border-radius:16px;overflow:hidden;transition:all .3s ease}.bkash-gateway-box{background:#fff;border:2px solid #e2136e;border-radius:16px;color:#333}.bkash-gateway-box .gw-header{align-items:center;background:#e2136e;color:#fff;display:flex;justify-content:space-between;padding:16px 20px}.bkash-gateway-box .gw-brand-title{align-items:center;display:flex;gap:10px}.bkash-gateway-box .gw-logo-pill{background:#fff;border-radius:8px;color:#e2136e;font-size:16px;font-weight:900;padding:4px 10px}.bkash-gateway-box .gw-body{padding:20px}.nagad-gateway-box{background:#fff;border:2px solid #f7941d;border-radius:16px;color:#333}.nagad-gateway-box .gw-header{align-items:center;background:linear-gradient(135deg,#f7941d,#d9381e);color:#fff;display:flex;justify-content:space-between;padding:16px 20px}.nagad-gateway-box .gw-logo-pill{background:#fff;border-radius:8px;color:#d9381e;font-size:16px;font-weight:900;padding:4px 10px}.nagad-gateway-box .gw-body{padding:20px}.ssl-gateway-box{background:#0b2545;border:2px solid #0077b6;border-radius:16px;color:#fff}.ssl-gateway-box .gw-header{align-items:center;background:linear-gradient(135deg,#0b2545,#134074);border-bottom:1px solid rgba(56,189,248,.2);display:flex;justify-content:space-between;padding:18px 22px}.ssl-gateway-box .gw-logo-pill{background:linear-gradient(135deg,#0077b6,#00b4d8);border-radius:8px;color:#fff;font-size:15px;font-weight:900;padding:5px 12px}.ssl-gateway-box .gw-body{padding:22px}.bank-gateway-box{background:#0f172a;border:2px solid #10b981;border-radius:16px;color:#fff}.bank-gateway-box .gw-header{align-items:center;background:linear-gradient(135deg,#064e3b,#047857);display:flex;justify-content:space-between;padding:16px 20px}.bank-gateway-box .gw-body{padding:20px}.gw-step-nav{align-items:center;border-bottom:1px solid rgba(0,0,0,.08);display:flex;gap:10px;margin-bottom:18px;padding-bottom:12px}.ssl-gateway-box .gw-step-nav{border-bottom:1px solid rgba(255,255,255,.1)}.gw-step-item{align-items:center;border-radius:20px;color:#888;display:flex;font-size:12px;font-weight:700;gap:6px;padding:6px 12px}.gw-step-item.active{background:#0000000f;color:#111}.bkash-gateway-box .gw-step-item.active{background:#e2136e1a;color:#e2136e}.nagad-gateway-box .gw-step-item.active{background:#f7941d1a;color:#d9381e}.ssl-gateway-box .gw-step-item{color:#94a3b8}.ssl-gateway-box .gw-step-item.active{background:#38bdf826;color:#38bdf8}.gw-step-num{border-radius:50%;display:inline-block;font-size:11px;height:18px;line-height:18px;text-align:center;width:18px}.netbanking-options-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));margin-bottom:16px}.netbank-chip{align-items:center;background:#0f172acc;border:1px solid rgba(148,163,184,.25);border-radius:10px;cursor:pointer;display:flex;font-size:12px;font-weight:700;gap:8px;padding:10px;transition:all .2s ease}.netbank-chip:hover,.netbank-chip.selected{background:#0077b633;border-color:#38bdf8;color:#38bdf8}.bkash-gateway-box label,.nagad-gateway-box label{color:#444;font-size:12px;font-weight:700;margin-bottom:4px}.bkash-gateway-box input,.nagad-gateway-box input,.bkash-gateway-box select,.nagad-gateway-box select{background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:8px;color:#1e293b;font-size:14px;font-weight:600;padding:11px 14px;width:100%}.bkash-gateway-box input:focus{border-color:#e2136e;outline:none}.nagad-gateway-box input:focus{border-color:#f7941d;outline:none}.ssl-gateway-box label{color:#cbd5e1;font-size:12px;font-weight:700;margin-bottom:4px}.ssl-gateway-box input,.ssl-gateway-box select{background:#0f172a;border:1.5px solid rgba(148,163,184,.3);border-radius:8px;color:#fff;font-size:14px;font-weight:600;padding:11px 14px;width:100%}.ssl-gateway-box input:focus,.ssl-gateway-box select:focus{border-color:#38bdf8;outline:none}.ssl-sub-tabs{display:flex;gap:10px;margin-bottom:18px}.ssl-sub-btn{background:#0f172a99;border:1px solid rgba(148,163,184,.2);border-radius:10px;color:#94a3b8;cursor:pointer;font-size:13px;font-weight:700;padding:10px 16px;transition:all .2s ease}.ssl-sub-btn.active{background:#0077b6;border-color:#38bdf8;color:#fff}.btn-gw-primary{align-items:center;border:none;border-radius:10px;color:#fff;cursor:pointer;display:flex;font-size:14px;font-weight:800;justify-content:center;padding:12px 20px;transition:all .2s ease;width:100%}.btn-gw-primary.bkash-btn{background:#e2136e}.btn-gw-primary.bkash-btn:hover{background:#c2185b}.btn-gw-primary.nagad-btn{background:linear-gradient(135deg,#f7941d,#d9381e)}.btn-gw-primary.nagad-btn:hover{opacity:.95}.btn-gw-primary.ssl-btn{background:linear-gradient(135deg,#0077b6,#00b4d8)}.btn-gw-primary.ssl-btn:hover{opacity:.95}.btn-gw-secondary{background:#e2e8f0;border:none;border-radius:10px;color:#475569;cursor:pointer;font-size:13px;font-weight:700;padding:10px 16px}.ssl-gateway-box .btn-gw-secondary{background:#ffffff1a;color:#cbd5e1}.otp-timer-text{color:#64748b;font-size:12px;font-weight:700;text-align:center}.ai-assistant-container{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,sans-serif}.ai-launcher-btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0f172a,#1e293b,#0284c7);color:#fff;border:1.5px solid rgba(56,189,248,.4);border-radius:50px;padding:10px 20px 10px 14px;cursor:pointer;box-shadow:0 10px 25px -5px #0284c766,0 8px 10px -6px #0000004d;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative}.ai-launcher-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 15px 30px -5px #0284c780,0 10px 12px -5px #0006;border-color:#38bdf8}.ai-launcher-btn.active{background:#0f172a;border-color:#38bdf8}.ai-launcher-icon{display:flex;align-items:center;justify-content:center;color:#38bdf8}.ai-launcher-badge{font-weight:700;font-size:14px;letter-spacing:.3px;color:#f8fafc}.ai-pulse-dot{width:9px;height:9px;background-color:#10b981;border-radius:50%;box-shadow:0 0 #10b981b3;animation:aiPulse 1.8s infinite}@keyframes aiPulse{0%{transform:scale(.95);box-shadow:0 0 #10b981b3}70%{transform:scale(1);box-shadow:0 0 0 8px #10b98100}to{transform:scale(.95);box-shadow:0 0 #10b98100}}.ai-chat-modal{position:fixed;bottom:84px;right:24px;width:380px;max-width:calc(100vw - 32px);height:530px;max-height:calc(100vh - 120px);background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 20px 45px -10px #0f172a40,0 0 20px #0284c71a;display:flex;flex-direction:column;overflow:hidden;z-index:10000;animation:aiModalSlideUp .3s cubic-bezier(.16,1,.3,1)}@keyframes aiModalSlideUp{0%{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}.ai-chat-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fff;border-bottom:1.5px solid #f1f5f9}.ai-header-info{display:flex;align-items:center;gap:12px}.ai-avatar{width:38px;height:38px;background:linear-gradient(135deg,#0284c7,#2563eb);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 4px 12px #0284c74d}.ai-title{margin:0;font-size:14px;font-weight:800;color:#0f172a;line-height:1.2}.ai-status{font-size:11px;color:#64748b;display:flex;align-items:center;gap:5px;margin-top:2px;font-weight:600}.status-dot{width:7px;height:7px;background-color:#10b981;border-radius:50%}.ai-header-actions{display:flex;align-items:center;gap:6px}.ai-icon-btn{background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;width:30px;height:30px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s ease}.ai-icon-btn:hover{background:#e2e8f0;color:#0f172a}.ai-messages-list{flex:1;padding:16px;background:#f8fafc;overflow-y:auto;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}.ai-message{display:flex;flex-direction:column;max-width:85%}.ai-message.bot{align-self:flex-start}.ai-message.user{align-self:flex-end}.ai-msg-bubble{padding:12px 16px;border-radius:16px;font-size:13px;line-height:1.55;word-break:break-word}.ai-message.bot .ai-msg-bubble{background:#fff;border:1px solid #e2e8f0;color:#1e293b;border-top-left-radius:4px;box-shadow:0 2px 8px #0f172a0d}.ai-message.user .ai-msg-bubble{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;border-top-right-radius:4px;box-shadow:0 4px 12px #0284c740}.ai-msg-bubble p{margin:0 0 6px}.ai-msg-bubble p:last-child{margin-bottom:0}.ai-msg-bubble strong{color:#0284c7;font-weight:800}.ai-message.user .ai-msg-bubble strong{color:#fff}.ai-action-box{margin-top:10px}.ai-action-btn{display:inline-block;background:linear-gradient(135deg,#059669,#10b981);color:#fff!important;text-decoration:none;font-weight:700;font-size:12px;padding:8px 14px;border-radius:8px;box-shadow:0 4px 10px #10b98140;transition:all .2s ease}.ai-action-btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px #10b98159}.ai-suggestions-container{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}.ai-chip{background:#fff;border:1.5px solid #cbd5e1;color:#0284c7;border-radius:20px;padding:6px 13px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s ease;box-shadow:0 2px 4px #00000008}.ai-chip:hover{background:#0284c7;color:#fff;border-color:#0284c7;transform:translateY(-1px);box-shadow:0 4px 10px #0284c74d}.ai-typing-indicator{padding:10px 18px;display:flex;align-items:center;gap:4px;background:#f1f5f9;border-top:1px solid #e2e8f0}.ai-typing-indicator .dot{width:6px;height:6px;background:#0284c7;border-radius:50%;animation:aiDotBounce 1.4s infinite ease-in-out both}.ai-typing-indicator .dot:nth-child(1){animation-delay:-.32s}.ai-typing-indicator .dot:nth-child(2){animation-delay:-.16s}@keyframes aiDotBounce{0%,80%,to{transform:scale(0)}40%{transform:scale(1)}}.typing-text{font-size:11px;color:#64748b;font-weight:600;margin-left:6px}.ai-chat-footer{padding:12px;background:#fff;border-top:1.5px solid #f1f5f9}#aiChatForm{display:flex;align-items:center;gap:8px}.ai-input-field{flex:1;background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:12px;padding:10px 14px;color:#0f172a;font-size:13px;font-weight:500;outline:none;transition:all .2s ease}.ai-input-field:focus{background:#fff;border-color:#0284c7;box-shadow:0 0 0 3px #0284c726}.ai-send-btn{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease;box-shadow:0 4px 12px #0284c74d}.ai-send-btn:hover{opacity:.95;transform:translateY(-1px);box-shadow:0 6px 16px #0284c766}.benefit-card-enhanced{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:28px;box-shadow:0 10px 30px -10px #0f172a14;transition:all .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}.benefit-card-enhanced:hover{transform:translateY(-5px);box-shadow:0 18px 40px -10px #0f172a26;border-color:#cbd5e1}.trust-card-highlight{background:linear-gradient(180deg,#fff,#f0f9ff);border:1.5px solid #bae6fd}.trust-icon-badge{background:linear-gradient(135deg,#0284c7,#0369a1)!important;color:#fff!important}.service-intro{color:#64748b;font-size:14px;line-height:1.5;margin-bottom:16px}.benefit-list{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;flex:1}.benefit-list li{font-size:13px;color:#334155;line-height:1.5;position:relative;padding-left:22px}.benefit-list li:before{content:"✓";position:absolute;left:0;top:0;color:#0284c7;font-weight:900;font-size:14px}.benefit-list li strong{color:#0f172a}.service-link{display:inline-block;color:#0284c7;font-weight:700;font-size:14px;text-decoration:none;transition:all .2s ease;margin-top:auto}.service-link:hover{color:#0369a1;transform:translate(4px)}.process-grid-detailed{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}@media(max-width:1024px){.process-grid-detailed{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.process-grid-detailed{grid-template-columns:1fr}}.process-card-detailed{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:24px;box-shadow:0 8px 24px -6px #0f172a0f;transition:all .3s ease;display:flex;flex-direction:column}.process-card-detailed:hover{transform:translateY(-4px);box-shadow:0 14px 30px -8px #0f172a1f;border-color:#38bdf8}.process-step-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.workflow-step-number{align-items:initial;background:transparent;border-radius:0;display:inline;height:auto;justify-content:initial;font-weight:900;font-size:18px;color:#0284c7;width:auto}.workflow-step-badge{background:#f0f9ff;color:#0284c7;border:1px solid #e0f2fe;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}.process-card-detailed h3{font-size:16px;font-weight:800;color:#0f172a;margin:0 0 10px}.process-card-detailed p{font-size:13px;color:#64748b;line-height:1.6;margin:0}.project-search-form{align-items:center;display:flex;gap:10px;margin:0 0 28px}.project-search-form input{background:#fff;border:1px solid #cbd5e1;border-radius:10px;color:#0f172a;flex:1;font:inherit;max-width:460px;padding:12px 14px}.project-search-form input:focus{border-color:var(--primary);box-shadow:0 0 0 3px #0e74901f;outline:0}.project-search-form button,.project-search-form a{border-radius:10px;font-size:14px;font-weight:700;padding:12px 18px}.project-search-form button{background:var(--primary);border:1px solid var(--primary);color:#fff;cursor:pointer}.project-search-form a{color:var(--primary)}.projects-pagination,.projects-pagination .page-numbers{align-items:center;display:flex;gap:8px}.projects-pagination{justify-content:center;margin-top:36px}.projects-pagination a,.projects-pagination span{border:1px solid #dbe4ef;border-radius:8px;color:#334155;font-size:14px;font-weight:700;padding:9px 12px}.projects-pagination .is-current{background:var(--primary);border-color:var(--primary);color:#fff}.projects-pagination .is-disabled{color:#94a3b8}.workflow-timeline{counter-reset:workflow;margin:0 auto;max-width:850px;position:relative}.workflow-timeline:before{background:#b9e5df;bottom:34px;content:"";left:24px;position:absolute;top:34px;width:2px}.workflow-step{counter-increment:workflow;padding:0 0 38px 76px;position:relative}.workflow-step:last-child{padding-bottom:0}.workflow-step:before{background:var(--primary);border:6px solid #e7f6f3;border-radius:50%;align-items:center;color:#fff;content:counter(workflow);display:flex;font-size:14px;font-weight:800;height:38px;justify-content:center;left:0;line-height:1;position:absolute;text-align:center;top:0;width:38px}.how-it-works-header .center-heading{margin-bottom:0}.how-it-works-section{padding:32px 0 80px}.workflow-step .process-step-header{justify-content:flex-start;gap:14px;margin:0 0 8px}.workflow-step h3{color:#102a43;font-family:Manrope,sans-serif;font-size:21px;margin:0 0 8px}.workflow-step p{color:#52616b;font-size:15px;line-height:1.7;margin:0}.benefits-grid{align-items:stretch}.benefit-card-enhanced{gap:0;min-width:0}.benefit-card-enhanced .service-icon{flex:0 0 auto}.benefit-card-enhanced h3,.benefit-card-enhanced .service-intro,.benefit-card-enhanced .benefit-list{width:100%}.benefit-card-enhanced .benefit-list{flex:0 0 auto}.benefits-grid .benefit-card-enhanced{display:flex;min-height:100%}.benefits-grid .service-link{margin-top:auto}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px}.project-search-form{justify-content:center;width:100%}.project-search-form input{flex:0 1 720px;max-width:720px}.project-search-form button{margin-left:0}@media(max-width:1024px){.benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.benefits-grid{grid-template-columns:minmax(0,1fr)}.process-step-header{align-items:flex-start;flex-direction:column;gap:8px}.project-search-form{align-items:stretch;flex-wrap:wrap}.project-search-form input{flex-basis:100%;max-width:none}.projects-pagination{flex-wrap:wrap}.workflow-step{padding-left:62px}.workflow-step h3{font-size:18px}}.erp-pagination{align-items:center;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;margin-top:20px}.erp-pagination-summary{color:var(--erp-muted);font-size:11px}.erp-pagination-links{align-items:center;display:flex;flex-wrap:wrap;gap:6px}.erp-pagination-links a,.erp-pagination-links span{border:1px solid var(--erp-line);border-radius:7px;color:var(--erp-text);font-size:11px;font-weight:700;line-height:1;padding:9px 11px;text-decoration:none}.erp-pagination-links a:hover{background:#10b9811a;border-color:#10b98166;color:var(--erp-green)}.erp-pagination-links .is-current{background:var(--erp-green);border-color:var(--erp-green);color:#fff}.erp-pagination-links .is-disabled{color:var(--erp-muted);cursor:not-allowed;opacity:.55}.procurement-status-form{align-items:center;display:flex;gap:8px;min-width:190px}.procurement-status-form select{appearance:auto;background:#fff;border:1px solid #cbd5e1;border-radius:7px;color:#1e293b;font:inherit;font-size:11px;min-width:92px;padding:7px 26px 7px 9px}.procurement-status-form .erp-secondary{border-radius:7px;font-size:10px;line-height:1;padding:8px 11px;white-space:nowrap}.procurement-status-form .erp-secondary:hover{background:#e2e8f0;border-color:#94a3b8}@media(max-width:640px){.procurement-status-form{min-width:170px}.procurement-status-form select{min-width:82px}}.pg-gateway-wrapper{min-height:100vh;background:#f1f5f9;padding:30px 16px 60px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;box-sizing:border-box}.pg-gateway-container{max-width:1060px;margin:0 auto}.pg-top-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:24px;background:#fff;padding:16px 24px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 6px #0f172a0a}.pg-brand-lockup{display:flex;align-items:center;gap:16px}.pg-back-link{display:inline-flex;align-items:center;gap:6px;color:#475569;text-decoration:none;font-size:13px;font-weight:700;transition:color .15s}.pg-back-link:hover{color:#0f172a}.pg-brand-separator{width:1px;height:28px;background:#cbd5e1}.pg-brand-info h2{margin:0;font-size:16px;font-weight:900;letter-spacing:.5px;color:#0f172a}.pg-brand-info span{font-size:11px;color:#64748b;font-weight:700;letter-spacing:.3px}.pg-trust-badges{display:flex;gap:8px;flex-wrap:wrap}.pg-trust-pill{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1px solid #cbd5e1;color:#334155;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px}.pg-main-grid{display:grid;grid-template-columns:380px 1fr;gap:24px;align-items:start}@media(max-width:900px){.pg-main-grid{grid-template-columns:1fr}}.pg-summary-card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:24px;box-shadow:0 2px 8px #0f172a0a}.pg-summary-badge-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}.pg-serial-pill{background:#1e293b;color:#fff;font-weight:800;font-size:12px;padding:3px 8px;border-radius:6px}.pg-unit-pill{background:#e0e7ff;color:#3730a3;font-weight:800;font-size:12px;padding:3px 8px;border-radius:6px}.pg-type-pill{font-weight:800;font-size:11px;padding:3px 8px;border-radius:6px}.pg-type-pill.deposit{background:#fef3c7;color:#92400e}.pg-type-pill.installment{background:#e0f2fe;color:#0369a1}.pg-type-pill.full{background:#dcfce7;color:#166534}.pg-project-name{margin:0 0 4px;font-size:18px;font-weight:800;color:#0f172a}.pg-project-loc{margin:0 0 18px;font-size:13px;color:#64748b}.pg-amount-box{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:18px;border-radius:10px;text-align:center;margin-bottom:20px}.pg-amount-label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;margin-bottom:4px}.pg-amount-value{font-size:32px;font-weight:900;line-height:1.1;color:#38bdf8}.pg-amount-value small{font-size:16px;font-weight:700;color:#94a3b8;margin-right:4px}.pg-amount-words{margin:8px 0 0;font-size:11px;color:#cbd5e1}.pg-breakdown-list{border-top:1px solid #f1f5f9;border-bottom:1px solid #f1f5f9;padding:12px 0;margin-bottom:16px}.pg-breakdown-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;color:#475569}.pg-breakdown-item strong{color:#0f172a}.pg-breakdown-item.highlight strong{color:#2563eb}.pg-breakdown-item.due-info{background:#f0fdf4;padding:8px 10px;border-radius:6px;margin-top:6px;color:#166534}.pg-breakdown-item.due-info strong{color:#15803d}.pg-customer-meta{font-size:12px;margin-bottom:16px}.pg-meta-row{display:flex;justify-content:space-between;padding:3px 0;color:#64748b}.pg-meta-row strong{color:#1e293b}.pg-guarantee-note{display:flex;align-items:flex-start;gap:8px;background:#03140e;border:1px solid #bbf7d0;padding:10px;border-radius:8px;font-size:11px;color:#166534;line-height:1.4}.pg-payment-channels{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:24px;box-shadow:0 2px 8px #0f172a0a}.pg-channel-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;border-bottom:2px solid #f1f5f9;padding-bottom:14px}@media(max-width:600px){.pg-channel-tabs{grid-template-columns:repeat(2,1fr)}}.pg-tab-btn{display:flex;align-items:center;gap:10px;background:#f8fafc;border:1px solid #e2e8f0;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;transition:all .15s}.pg-tab-btn:hover{border-color:#cbd5e1;background:#f1f5f9}.pg-tab-btn.active{background:#0f172a;border-color:#0f172a;color:#fff;box-shadow:0 3px 8px #0f172a2e}.pg-tab-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}.bkash-dot{background:#d12053}.nagad-dot{background:#f7941d}.rocket-dot{background:#8c3494}.ssl-dot{background:#0284c7}.pg-tab-text strong{display:block;font-size:13px;line-height:1.2}.pg-tab-text small{display:block;font-size:11px;opacity:.8}.pg-channel-screen{display:none;border-radius:10px;border:1px solid #e2e8f0;overflow:hidden}.pg-channel-screen.active{display:block}.bkash-header{background:#d12053;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.bkash-logo-wrap{display:flex;align-items:center;gap:8px}.bkash-bird-icon{font-size:24px}.bkash-logo-text{font-size:22px;font-weight:900;letter-spacing:.5px}.bkash-amount-badge{font-size:14px;text-align:right}.bkash-amount-badge strong{font-size:16px;margin-left:4px}.bkash-btn{background:#d12053!important;color:#fff!important}.bkash-btn:hover{background:#b81545!important}.bkash-spinner{border-top-color:#d12053!important}.bkash-footer{background:#fdf2f4;border-top:1px solid #fce7eb;padding:10px 20px;font-size:11px;color:#9f1239;display:flex;justify-content:space-between}.nagad-header{background:#f7941d;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.nagad-logo-wrap{display:flex;align-items:center;gap:8px}.nagad-flame-icon{font-size:24px}.nagad-logo-text{font-size:20px;font-weight:900}.nagad-amount-badge{font-size:14px}.nagad-btn{background:#f7941d!important;color:#fff!important}.nagad-btn:hover{background:#e07f0f!important}.nagad-spinner{border-top-color:#f7941d!important}.nagad-footer{background:#fff7ed;border-top:1px solid #ffedd5;padding:10px 20px;font-size:11px;color:#c2410c}.rocket-header{background:#8c3494;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.rocket-logo-wrap{display:flex;align-items:center;gap:8px}.rocket-icon{font-size:22px}.rocket-logo-text{font-size:20px;font-weight:900}.rocket-amount-badge{font-size:14px}.rocket-btn{background:#8c3494!important;color:#fff!important}.rocket-btn:hover{background:#75287c!important}.rocket-spinner{border-top-color:#8c3494!important}.rocket-footer{background:#faf5ff;border-top:1px solid #f3e8ff;padding:10px 20px;font-size:11px;color:#6b21a8}.ssl-header{background:#0f172a;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.ssl-logo-wrap{display:flex;align-items:center;gap:8px}.ssl-shield-icon{font-size:22px}.ssl-logo-text{font-size:18px;font-weight:900;letter-spacing:.5px}.ssl-cards-icons{display:flex;gap:6px}.card-chip{background:#ffffff26;font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;letter-spacing:.5px}.ssl-btn{background:#0284c7!important;color:#fff!important}.ssl-btn:hover{background:#0369a1!important}.ssl-spinner{border-top-color:#0284c7!important}.ssl-footer{background:#f8fafc;border-top:1px solid #e2e8f0;padding:10px 20px;font-size:11px;color:#475569}.mfs-step-box{display:none;padding:24px;background:#fff}.mfs-step-box.active{display:block}.mfs-prompt-banner{margin-bottom:20px;text-align:center}.mfs-prompt-banner p{margin:0 0 4px;font-size:16px;font-weight:800;color:#0f172a}.mfs-prompt-banner small{font-size:13px;color:#64748b}.mfs-input-group{display:flex;align-items:center;border:2px solid #cbd5e1;border-radius:8px;overflow:hidden;max-width:360px;margin:0 auto 16px;transition:border-color .15s}.mfs-input-group:focus-within{border-color:#0f172a}.mfs-prefix{background:#f1f5f9;padding:12px 14px;font-size:15px;font-weight:700;color:#475569;border-right:1px solid #cbd5e1}.mfs-input{border:none;outline:none;padding:12px 16px;font-size:18px;font-weight:700;color:#0f172a;width:100%;letter-spacing:1px}.mfs-input.pin-input{text-align:center;letter-spacing:6px;font-size:22px}.mfs-terms-check{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#475569;margin-bottom:20px;cursor:pointer}.mfs-terms-check a{color:#0284c7;text-decoration:underline}.mfs-actions{display:flex;justify-content:center;gap:12px;max-width:360px;margin:0 auto}.btn-mfs-next{flex:1;padding:12px 20px;border:none;border-radius:8px;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.5px;transition:all .15s}.btn-mfs-close,.btn-mfs-back{padding:12px 18px;background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;transition:all .15s}.btn-mfs-close:hover,.btn-mfs-back:hover{background:#e2e8f0}.demo-otp-helper{background:#eff6ff;border:1px dashed #93c5fd;padding:8px 12px;border-radius:6px;font-size:12px;color:#1e40af;text-align:center;max-width:360px;margin:0 auto 16px}.otp-boxes-wrapper{max-width:240px;margin:0 auto 16px}.mfs-otp-single{width:100%;padding:12px;font-size:20px;font-weight:800;letter-spacing:6px;text-align:center;border:2px solid #cbd5e1;border-radius:8px;outline:none;box-sizing:border-box}.mfs-otp-single:focus{border-color:#0f172a}.mfs-resend-timer{display:flex;justify-content:space-between;font-size:12px;max-width:360px;margin:0 auto 20px;color:#64748b}.mfs-resend-timer a{color:#0284c7;font-weight:700;text-decoration:none}.mfs-security-warning{background:#fffbeb;border:1px solid #fde68a;padding:8px 12px;border-radius:6px;font-size:11px;color:#92400e;text-align:center;max-width:360px;margin:0 auto 20px}.ssl-card-fields{max-width:400px;margin:0 auto}.ssl-field{margin-bottom:14px}.ssl-field label{display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:4px}.ssl-input{width:100%;padding:10px 14px;font-size:14px;font-weight:600;border:1.5px solid #cbd5e1;border-radius:6px;outline:none;box-sizing:border-box}.ssl-input:focus{border-color:#0284c7}.ssl-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mfs-processing-box{padding:48px 24px;text-align:center;background:#fff}.mfs-spinner{width:48px;height:48px;border:4px solid #e2e8f0;border-top:4px solid #0f172a;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.mfs-processing-box h4{margin:0 0 6px;font-size:17px;font-weight:800;color:#0f172a}.mfs-processing-box p{margin:0 0 8px;font-size:14px;color:#475569}.mfs-processing-box small{font-size:12px;color:#94a3b8}
+
+</style><script>
+const v=document.getElementById("mobileMenuButton"),y=document.getElementById("navLinks");v&&y&&v.addEventListener("click",()=>{y.classList.toggle("open")});const i=document.getElementById("togglePassword"),l=document.getElementById("password");i&&l&&i.addEventListener("click",()=>{const e=l.type==="password";l.type=e?"text":"password",i.textContent=e?"Hide":"Show"});const h=document.getElementById("sidebarToggle"),p=document.getElementById("portalSidebar");h&&p&&h.addEventListener("click",()=>{p.classList.toggle("open")});document.querySelectorAll("[data-modal-open]").forEach(e=>{e.addEventListener("click",()=>document.getElementById(e.dataset.modalOpen)?.showModal())});document.querySelectorAll("[data-modal-close]").forEach(e=>{e.addEventListener("click",()=>e.closest("dialog")?.close())});const B=document.getElementById("cmsPreview");B&&B.addEventListener("click",()=>{document.getElementById("previewEn").textContent=document.getElementById("contentEn").value||"English preview",document.getElementById("previewBn").textContent=document.getElementById("contentBn").value||"বাংলা প্রিভিউ",document.getElementById("cmsPreviewModal").showModal()});const o=document.getElementById("landWizard");if(o){let e=1;const r=[...o.querySelectorAll("[data-wizard-panel]")],s=[...document.querySelectorAll("[data-wizard-step]")],m=document.getElementById("wizardBack"),u=document.getElementById("wizardNext"),I=document.getElementById("wizardSubmit"),a=t=>{if(e=t,r.forEach(n=>n.classList.toggle("active",Number(n.dataset.wizardPanel)===t)),s.forEach(n=>{const d=Number(n.dataset.wizardStep);n.classList.toggle("active",d===t),n.classList.toggle("done",d<t)}),m.hidden=t===1,u.hidden=t===3,I.hidden=t!==3,t===3){const n=[["Owner","owner_name"],["Phone","phone"],["Division","division"],["District","district"],["Location","location"],["Land size","katha"],["Road width","road_width"],["NID","nid_number"]],d=document.getElementById("landReview");d.replaceChildren(),n.forEach(([f,c])=>{const g=document.createElement("div"),E=document.createElement("span"),w=document.createElement("b");E.textContent=f,w.textContent=(o.elements[c]?.value||"—")+(c==="katha"?" Katha":c==="road_width"?" ft":""),g.append(E,w),d.append(g)})}};u.addEventListener("click",()=>{const t=[...r[e-1].querySelectorAll("input,select,textarea")].find(n=>!n.checkValidity());if(t){t.reportValidity();return}a(Math.min(3,e+1))}),m.addEventListener("click",()=>a(Math.max(1,e-1))),s.forEach(t=>t.addEventListener("click",()=>{const n=Number(t.dataset.wizardStep);n<e&&a(n)})),o.querySelector(".field-error")&&a(Number(o.dataset.errorStep||1))}
+
+</script></head>
+
+<body>
+    <header class="site-header">
+    <div class="container navbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">IE</span>
+            <span class="brand-name">
+                Intern<span>Estate</span>
+            </span>
+        </a>
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+            aria-label="Open navigation"
+        >
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#" class="active">Home</a>
+            <a href="#projects" class="">Projects</a>
+            <a href="#services" class="">Services</a>
+            <a href="#how-it-works" class="">How It Works</a>
+
+                            <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="nav-login">
+                    Portal Login
+                </a>
+                    </nav>
+    </div>
+</header>
+    
+    <main>
+        
+    
+    
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="section-badge">
+                    Real Estate & Construction ERP
+                </span>
+
+                <h1>
+                    Own better.
+                    <span>Build transparently.</span>
+                </h1>
+
+                <p>
+                    Discover trusted properties, monitor construction
+                    progress and manage every project from one secure
+                    digital platform.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="button button-primary">
+                        Explore Projects
+                    </a>
+
+                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="button button-light">
+                        Access Your Portal
+                    </a>
+
+                    <a href="#submit-land" class="button button-light">
+                        Submit Your Land
+                    </a>
+                </div>
+
+                <div class="hero-trust">
+                    <div>
+                        <strong>13</strong>
+                        <span>Active Projects</span>
+                    </div>
+
+                    <div>
+                        <strong>4</strong>
+                        <span>Investors</span>
+                    </div>
+
+                </div>
+            </div>
+
+                        <div class="hero-card">
+                <div class="hero-card-header">
+                    <span>Featured Investment</span>
+                    <span class="status-pill">Active</span>
+                </div>
+
+                <div class="property-visual">
+                    <div class="building building-one"></div>
+                    <div class="building building-two"></div>
+
+
+                </div>
+
+                <div class="hero-card-body">
+                    <p class="small-label">HOSSAIN MARKET,TONGI</p>
+
+                    <h2>Bogura JV Land</h2>
+
+                    <p>
+                        Modern residential apartments with transparent
+                        construction progress and investment tracking.
+                    </p>
+
+                    <div class="progress-information">
+                        <span>Construction progress</span>
+                        <strong>0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div
+                            class="progress-bar"
+                            style="width: 0%"
+                        ></div>
+                    </div>
+
+                    <div style="margin-top: 18px;">
+                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest" style="height: 42px; padding: 0 20px; font-size: 14px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Buy / Invest Now
+                            </a>
+                                            </div>
+                </div>
+            </div>
+                    </div>
+    </section>
+
+    
+    <section class="search-wrapper">
+        <div class="container">
+            <form class="property-search" action="#projects" method="GET">
+                <div class="search-field">
+                    <label for="search">Project name</label>
+                    <input id="search" type="search" name="search" value="" placeholder="Search project name">
+                </div>
+
+                <div class="search-field">
+                    <label for="location">Location</label>
+                    <input id="location" type="search" name="location" value="" placeholder="Search location">
+                </div>
+
+                <div class="search-field">
+                    <label for="budget">Budget</label>
+
+                    <select id="budget" name="budget">
+                        <option value="">Choose your budget</option>
+                        <option value="under-5cr" >Under 5 Crore BDT</option>
+                        <option value="5cr-10cr" >5 Crore – 10 Crore BDT</option>
+                        <option value="over-10cr" >Over 10 Crore BDT</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="search-button">
+                    Search Properties
+                </button>
+            </form>
+        </div>
+    </section>
+
+    
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <span class="section-badge">Featured Projects</span>
+
+                    <h2>Properties built around trust</h2>
+
+                    <p>
+                        Explore active residential and commercial
+                        developments from our verified project portfolio.
+                    </p>
+                </div>
+
+                <a href="#projects" class="text-link">
+                    View all projects →
+                </a>
+            </div>
+
+            <div class="project-grid">
+                                    <article class="project-card">
+                        <div class="project-image project-image-1">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                hossain market,tongi
+                            </p>
+
+                            <h3>Bogura JV Land</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-2">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                2e1e
+                            </p>
+
+                            <h3>Noakhali JV Land</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-3">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                wqw
+                            </p>
+
+                            <h3>umbrella</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 750,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-1">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                ratargul
+                            </p>
+
+                            <h3>Sunamganj JV Land</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-2">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                bank colony
+                            </p>
+
+                            <h3>Khulna JV Land</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-3">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Hossain Market, Tongi (Station Road Junction, Mouza: Tongi, Dag: 625)
+                            </p>
+
+                            <h3>Gazipur JV Land (Dag #625)</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-1">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Hossain Market, Tongi (Beside College Road, Mouza: Tongi, Dag: 518)
+                            </p>
+
+                            <h3>Gazipur JV Land (Dag #518)</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-2">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Hossain Market, Tongi (Near Mill Gate, Mouza: Tongi, Dag: 412)
+                            </p>
+
+                            <h3>Gazipur JV Land (Dag #412)</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,250,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-3">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Gulshan
+                            </p>
+
+                            <h3>Nupur foundation</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 625,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-1">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Bashundhara R/A, Dhaka
+                            </p>
+
+                            <h3>Skyline Residence</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 2,125,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-2">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Uttara Sector 12, Dhaka
+                            </p>
+
+                            <h3>Green Valley Heights</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 3,000,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                                    <article class="project-card">
+                        <div class="project-image project-image-3">
+                            <span class="project-type">
+                                Residential &amp; Commercial
+                            </span>
+
+                            <div class="project-building">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <p class="project-location">
+                                Gazipur Commercial Hub
+                            </p>
+
+                            <h3>Urban Trade Center</h3>
+
+                            <p class="project-price">
+                                Starting from BDT 1,125,000
+                            </p>
+
+                            <div class="progress-information">
+                                <span>Project progress</span>
+                                <strong>
+                                    0%
+                                </strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-bar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                            <div class="project-card-footer">
+                                                                    <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="btn-card-invest">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                        Buy / Invest Now
+                                    </a>
+                                                            </div>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
+
+    
+    <section class="section section-soft" id="services">
+        <div class="container">
+            <div class="center-heading">
+                <span class="section-badge">One Integrated Platform</span>
+
+                <h2>Everything needed to build with confidence</h2>
+
+                <p>
+                    Different stakeholders receive separate secure
+                    portals while the business manages everything
+                    through one ERP.
+                </p>
+            </div>
+
+            <div class="service-grid">
+                <article class="service-card">
+                    <div class="service-icon">01</div>
+                    <h3>Investor Portal & Benefits</h3>
+                    <p>
+                        Track investments, bookings, payment history,
+                        8-12% ROI, 1-3 Yrs EMI and legal title deed updates.
+                    </p>
+                    <a href="#services">View detailed benefits →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">02</div>
+                    <h3>Landowner JV Portal</h3>
+                    <p>
+                        Monitor land submissions, 50-50 JV agreements, unit swap,
+                        valuations and panel lawyer legal vetting.
+                    </p>
+                    <a href="#services">View landowner benefits →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">03</div>
+                    <h3>100% Trusted & Compliance</h3>
+                    <p>
+                        RAJUK & City Corp compliance, 256-bit SSL encrypted
+                        payments, automated KYC, and audited ERP logs.
+                    </p>
+                    <a href="#services">View trust & security standards →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="process">
+        <div class="container">
+            <div class="center-heading">
+                <span class="section-badge">Simple Process</span>
+                <h2>From discovery to deed ownership</h2>
+            </div>
+
+            <div class="process-grid">
+                <article class="process-item">
+                    <span>1</span>
+                    <h3>Explore</h3>
+                    <p>
+                        Browse verified projects based on location,
+                        property type and budget.
+                    </p>
+                </article>
+
+                <article class="process-item">
+                    <span>2</span>
+                    <h3>Connect</h3>
+                    <p>
+                        Submit your interest and choose full or 1-3 years
+                        Credit Card EMI plans.
+                    </p>
+                </article>
+
+                <article class="process-item">
+                    <span>3</span>
+                    <h3>Invest</h3>
+                    <p>
+                        Reserve a property, upload KYC documents, and track
+                        panel lawyer legal audits.
+                    </p>
+                </article>
+
+                <article class="process-item">
+                    <span>4</span>
+                    <h3>Monitor</h3>
+                    <p>
+                        Receive official ownership deed and follow milestone progress
+                        in real time.
+                    </p>
+                </article>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#how-it-works" class="text-link" style="font-size: 15px;">
+                    View detailed 4-step workflow guide →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="cta-section">
+        <div class="container cta-content">
+            <div>
+                <span class="section-badge section-badge-light">
+                    Start Today
+                </span>
+
+                <h2>Build your real estate future transparently.</h2>
+
+                <p>
+                    Access project information and stakeholder
+                    portals from one secure platform.
+                </p>
+            </div>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('demoModal').style.display='flex'" class="button button-light">
+                Login to Portal
+            </a>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <a href="#" class="footer-logo">
+                    Intern<span>Estate</span>
+                </a>
+
+                <p>
+                    Transparent real estate investment and
+                    construction management in one platform.
+                </p>
+            </div>
+
+            <div>
+                <h4>Contact</h4>
+                <p>Dhaka, Bangladesh</p>
+                <p>support@internestate.test</p>
+                <p>+880 1700-000000</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Intern Estate. Academic Internship Project.
+        </div>
+    <div id="aiAssistantContainer" class="ai-assistant-container">
+    
+    
+    <button type="button" id="aiAssistantLauncher" class="ai-launcher-btn" onclick="toggleAiModal()" aria-label="Open Intern Estate">
+        <span class="ai-launcher-badge">Intern Estate</span>
+        <span class="ai-pulse-dot"></span>
+    </button>
+
+    
+    <div id="aiChatModal" class="ai-chat-modal" style="display: none;">
+        
+        
+        <div class="ai-chat-header">
+            <div class="ai-header-info">
+                <div>
+                    <h4 class="ai-title">Intern Estate</h4>
+                    <span class="ai-status">
+                        <span class="status-dot"></span> Online • Property Support
+                    </span>
+                </div>
+            </div>
+            <div class="ai-header-actions">
+                <button type="button" class="ai-icon-btn" onclick="clearAiChat()" title="Clear Conversation" style="width: auto; padding: 0 8px; font-size: 11px; font-weight: 700;">
+                    Clear
+                </button>
+                <button type="button" class="ai-icon-btn" onclick="toggleAiModal()" title="Close Assistant" style="width: auto; padding: 0 8px; font-size: 11px; font-weight: 700;">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        
+        <div id="aiMessagesList" class="ai-messages-list">
+            
+            
+            <div class="ai-message bot">
+                <div class="ai-msg-bubble">
+                    <p>Hello! Welcome to <strong>Intern Estate</strong>.</p>
+                    <p>Ask me anything about active investment projects, 1-3 year Credit Card EMI plans, or land joint-ventures!</p>
+                </div>
+            </div>
+
+            
+            <div id="aiDefaultSuggestions" class="ai-suggestions-container">
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('Top Recommended Projects')">
+                    Top Projects
+                </button>
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('How does EMI work?')">
+                    EMI Payment Plans
+                </button>
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('Submit Land for JV')">
+                    Landowner JV
+                </button>
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('NID & Tax Document rules')">
+                    Legal Verification
+                </button>
+            </div>
+
+        </div>
+
+        
+        <div id="aiTypingIndicator" class="ai-typing-indicator" style="display: none;">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="typing-text">Searching live real estate data...</span>
+        </div>
+
+        
+        <div class="ai-chat-footer">
+            <form id="aiChatForm" onsubmit="handleAiSubmit(event)">
+                <input 
+                    type="text" 
+                    id="aiInputMessage" 
+                    class="ai-input-field" 
+                    placeholder="Ask about projects, budget, EMI..." 
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" id="aiSendBtn" class="ai-send-btn">
+                    <span>Send</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    function toggleAiModal() {
+        const modal = document.getElementById('aiChatModal');
+        const launcher = document.getElementById('aiAssistantLauncher');
+        if (modal.style.display === 'none' || modal.style.display === '') {
+            modal.style.display = 'flex';
+            launcher.classList.add('active');
+            document.getElementById('aiInputMessage').focus();
+        } else {
+            modal.style.display = 'none';
+            launcher.classList.remove('active');
+        }
+    }
+
+    function sendAiPrompt(promptText) {
+        document.getElementById('aiInputMessage').value = promptText;
+        handleAiSubmit(new Event('submit'));
+    }
+
+    function clearAiChat() {
+        const msgList = document.getElementById('aiMessagesList');
+        msgList.innerHTML = `
+            <div class="ai-message bot">
+                <div class="ai-msg-bubble">
+                    <p>Conversation cleared. How can I assist you with real estate investments today?</p>
+                </div>
+            </div>
+            <div id="aiDefaultSuggestions" class="ai-suggestions-container">
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('Top Recommended Projects')">Top Projects</button>
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('How does EMI work?')">EMI Payment Plans</button>
+                <button type="button" class="ai-chip" onclick="sendAiPrompt('Submit Land for JV')">Landowner JV</button>
+            </div>
+        `;
+    }
+
+    async function handleAiSubmit(event) {
+        event.preventDefault();
+        const input = document.getElementById('aiInputMessage');
+        const userMsg = input.value.trim();
+        if (!userMsg) return;
+
+        // Append User Message
+        appendMessage(userMsg, 'user');
+        input.value = '';
+
+        // Show Typing Indicator
+        const indicator = document.getElementById('aiTypingIndicator');
+        indicator.style.display = 'flex';
+        scrollToBottom();
+
+        try {
+            const response = await fetch("/api/ai/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "iTrSZreYQhkt2fzUWfnALvOIMsPRmsD0ICxk3MfC"
+                },
+                body: JSON.stringify({ message: userMsg })
+            });
+
+            const data = await response.json();
+            indicator.style.display = 'none';
+
+            if (data.status === 'success') {
+                appendSmoothBotMessage(data.reply, data.action_link, data.suggestions);
+            } else {
+                appendMessage("Sorry, I encountered an issue processing your request. Please try again.", 'bot');
+            }
+
+        } catch (error) {
+            console.error('Intern Estate chat error:', error);
+            indicator.style.display = 'none';
+            appendMessage("Unable to connect to Intern Estate. Please check your network connection.", 'bot');
+        }
+    }
+
+    function appendMessage(text, sender, actionLink = null, suggestions = []) {
+        const msgList = document.getElementById('aiMessagesList');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-message ${sender}`;
+
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+
+        let htmlContent = `<div class="ai-msg-bubble"><p>${formattedText}</p>`;
+
+        if (actionLink && actionLink.url) {
+            htmlContent += `
+                <div class="ai-action-box">
+                    <a href="${actionLink.url}" class="ai-action-btn">${actionLink.text}</a>
+                </div>
+            `;
+        }
+
+        htmlContent += `</div>`;
+        msgDiv.innerHTML = htmlContent;
+        msgList.appendChild(msgDiv);
+
+        if (suggestions && suggestions.length > 0) {
+            const chipDiv = document.createElement('div');
+            chipDiv.className = 'ai-suggestions-container';
+            suggestions.forEach(s => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'ai-chip';
+                btn.innerText = s;
+                btn.onclick = () => sendAiPrompt(s);
+                chipDiv.appendChild(btn);
+            });
+            msgList.appendChild(chipDiv);
+        }
+
+        scrollToBottom();
+    }
+
+    // Typewriter Smooth Streaming Effect for Bot Response
+    function appendSmoothBotMessage(text, actionLink = null, suggestions = []) {
+        const msgList = document.getElementById('aiMessagesList');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'ai-message bot';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'ai-msg-bubble';
+        const p = document.createElement('p');
+        bubble.appendChild(p);
+        msgDiv.appendChild(bubble);
+        msgList.appendChild(msgDiv);
+
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+
+        let index = 0;
+        const speed = 12;
+
+        function typeWriter() {
+            if (index < formattedText.length) {
+                if (formattedText.charAt(index) === '<') {
+                    const closingIndex = formattedText.indexOf('>', index);
+                    if (closingIndex !== -1) {
+                        index = closingIndex + 1;
+                    } else {
+                        index++;
+                    }
+                } else {
+                    index++;
+                }
+                p.innerHTML = formattedText.substring(0, index);
+                scrollToBottom();
+                setTimeout(typeWriter, speed);
+            } else {
+                p.innerHTML = formattedText;
+                if (actionLink && actionLink.url) {
+                    const actionBox = document.createElement('div');
+                    actionBox.className = 'ai-action-box';
+                    actionBox.innerHTML = `<a href="${actionLink.url}" class="ai-action-btn">${actionLink.text}</a>`;
+                    bubble.appendChild(actionBox);
+                }
+
+                if (suggestions && suggestions.length > 0) {
+                    const chipDiv = document.createElement('div');
+                    chipDiv.className = 'ai-suggestions-container';
+                    suggestions.forEach(s => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'ai-chip';
+                        btn.innerText = s;
+                        btn.onclick = () => sendAiPrompt(s);
+                        chipDiv.appendChild(btn);
+                    });
+                    msgList.appendChild(chipDiv);
+                }
+                scrollToBottom();
+            }
+        }
+
+        typeWriter();
+    }
+
+    function scrollToBottom() {
+        const msgList = document.getElementById('aiMessagesList');
+        msgList.scrollTop = msgList.scrollHeight;
+    }
+</script>
+    <div id="demoModal" style="display:none; position:fixed; z-index:999999; left:0; top:0; width:100%; height:100%; background:rgba(15,23,42,0.7); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
+    <div style="background:#ffffff; color:#0f172a; max-width:480px; width:90%; padding:28px 24px; border-radius:16px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.25); text-align:center; font-family:system-ui,-apple-system,sans-serif;">
+        <div style="width:56px; height:56px; background:#eff6ff; color:#2563eb; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px auto; font-size:28px;">ℹ️</div>
+        <h3 style="font-size:20px; font-weight:700; margin-bottom:8px; color:#1e293b;">Live Preview on GitHub Pages</h3>
+        <p style="font-size:14px; line-height:1.6; color:#64748b; margin-bottom:20px;">
+            This is the live landing page preview of the <strong>InternEstate Real Estate & ERP Platform</strong>.<br><br>
+            The authenticated <strong>Investor Portal</strong>, <strong>Payment Gateway</strong>, and <strong>Admin Dashboard</strong> run on the full Laravel backend with MySQL database.
+        </p>
+        <button onclick="document.getElementById('demoModal').style.display='none'" style="background:#2563eb; color:#ffffff; border:none; padding:10px 24px; border-radius:8px; font-weight:600; font-size:14px; cursor:pointer;">
+            Close Preview
+        </button>
+    </div>
+</div>
+</body>
+</html>
+
+
+
